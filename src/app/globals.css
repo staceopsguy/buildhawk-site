@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
+@theme {
+  /* Primary palette */
+  --color-bh-white: #ffffff;
+  --color-bh-black: #111111;
+  --color-bh-orange: #de5123;
+
+  /* Secondary palette */
+  --color-bh-graphite: #6e7180;
+  --color-bh-space: #9da2b3;
+  --color-bh-steel: #bcbfcc;
+  --color-bh-smoke: #d3d6e0;
+  --color-bh-cloud: #edeff7;
+
+  /* Extended orange ramp (from UI Button system) */
+  --color-bh-orange-900: #9a2a06;
+  --color-bh-orange-700: #bc3c12;
+  --color-bh-orange-500: #de5123;
+  --color-bh-orange-200: #ffcebe;
+  --color-bh-orange-50:  #fff0eb;
+
+  /* Type scale (px from brand guide p.23) */
+  --text-bh-display: 9.375rem;       /* 150px */
+  --text-bh-display--line-height: 0.95;
+  --text-bh-display--letter-spacing: -0.03em;
+  --text-bh-h1: 6.25rem;              /* 100px */
+  --text-bh-h1--line-height: 1;
+  --text-bh-h1--letter-spacing: -0.03em;
+  --text-bh-h2: 4.6875rem;            /* 75px */
+  --text-bh-h2--line-height: 1.05;
+  --text-bh-h2--letter-spacing: -0.03em;
+  --text-bh-h3: 3.75rem;              /* 60px */
+  --text-bh-h3--line-height: 1.05;
+  --text-bh-h3--letter-spacing: -0.03em;
+  --text-bh-h4: 2.25rem;              /* 36px */
+  --text-bh-h4--line-height: 1.15;
+  --text-bh-h4--letter-spacing: -0.03em;
+  --text-bh-body: 1.5rem;             /* 24px */
+  --text-bh-body--line-height: 1.45;
+  --text-bh-body--letter-spacing: -0.02em;
+  --text-bh-caption: 1.25rem;         /* 20px */
+  --text-bh-caption--line-height: 1.4;
+  --text-bh-caption--letter-spacing: 0em;
+
+  /* Container */
+  --spacing-bh-gutter: 2rem;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-bh-white);
+  --foreground: var(--color-bh-black);
+  --font-display: var(--font-suisse), "Inter", "Helvetica Neue", system-ui, sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
+html, body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-display);
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-bh-orange);
+  color: var(--color-bh-white);
+}
+
+/* Hide scrollbar visual only — keep scrolling */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Lenis smooth-scroll: prevent body from scrolling on its own when lenis is mounted */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Hairline rule used across sections */
+.bh-hairline {
+  background-image: linear-gradient(to right, var(--color-bh-steel) 0 100%);
+  height: 1px;
+}
+
+/* Subtle grain layer (optional — can be toggled per-section) */
+.bh-grain::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: radial-gradient(rgba(0, 0, 0, 0.6) 1px, transparent 1px);
+  background-size: 3px 3px;
 }
