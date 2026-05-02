@@ -196,7 +196,7 @@ export default function BuildSequence() {
   }, []);
 
   const stages = [
-    { label: "Foundation", at: 0.0 },
+    { label: "Estimate", at: 0.0 },
     { label: "Frame", at: 0.22 },
     { label: "Cladding", at: 0.5 },
     { label: "Roof", at: 0.72 },
@@ -224,7 +224,7 @@ export default function BuildSequence() {
               03 / How It Works
             </p>
             <h2 className="mt-4 font-medium tracking-[-0.03em] leading-[1.0] text-[36px] md:text-[56px] lg:text-[80px] max-w-3xl">
-              From slab to handover.
+              From estimate to handover.
               <br />
               <span className="text-bh-steel">No improvisation.</span>
             </h2>
