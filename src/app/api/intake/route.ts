@@ -4,6 +4,7 @@ import { Resend } from "resend";
 export const runtime = "nodejs";
 
 type IntakePayload = {
+  audience?: string;
   name?: string;
   email?: string;
   phone?: string;
@@ -13,6 +14,13 @@ type IntakePayload = {
   stage?: string;
   valueRange?: string;
   message?: string;
+};
+
+const audienceLabels: Record<string, string> = {
+  builder: "Builder · Hawktress subscription enquiry",
+  trade: "Trade · Hawktress subscription enquiry",
+  supplier: "Supplier · platform listing enquiry",
+  other: "General enquiry",
 };
 
 const TO_EMAIL = process.env.INTAKE_TO_EMAIL || "info@buildhawk.com.au";
@@ -29,7 +37,10 @@ function escapeHtml(s: string): string {
 }
 
 function buildHtml(p: IntakePayload): string {
+  const audienceLabel =
+    (p.audience && audienceLabels[p.audience]) || "General enquiry";
   const rows: [string, string | undefined][] = [
+    ["Audience", audienceLabel],
     ["Name", p.name],
     ["Email", p.email],
     ["Phone", p.phone],
@@ -73,8 +84,11 @@ function buildHtml(p: IntakePayload): string {
 }
 
 function buildText(p: IntakePayload): string {
+  const audienceLabel =
+    (p.audience && audienceLabels[p.audience]) || "General enquiry";
   const lines: string[] = ["BuildHawk — New brief", ""];
   const rows: [string, string | undefined][] = [
+    ["Audience", audienceLabel],
     ["Name", p.name],
     ["Email", p.email],
     ["Phone", p.phone],
@@ -132,11 +146,13 @@ export async function POST(req: Request) {
   const resend = new Resend(apiKey);
 
   try {
+    const audienceLabel =
+      (body.audience && audienceLabels[body.audience]) || "General";
     await resend.emails.send({
       from: FROM_EMAIL,
       to: [TO_EMAIL],
       replyTo: email,
-      subject: `New brief: ${name} · ${projectType}`,
+      subject: `[${audienceLabel}] ${name} · ${projectType}`,
       html: buildHtml(body),
       text: buildText(body),
     });

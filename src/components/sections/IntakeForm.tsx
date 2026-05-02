@@ -43,6 +43,7 @@ export default function IntakeForm() {
     const form = e.currentTarget;
     const data = new FormData(form);
     const payload = {
+      audience: data.get("audience"),
       name: data.get("name"),
       email: data.get("email"),
       phone: data.get("phone"),
@@ -82,7 +83,7 @@ export default function IntakeForm() {
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-12 md:mb-16">
           <div className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
-              06 / Intake
+              Intake
             </p>
           </div>
           <div className="col-span-12 md:col-span-9">
@@ -152,6 +153,7 @@ export default function IntakeForm() {
                 className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-bh-steel/60 border border-bh-steel/60"
                 noValidate
               >
+                <AudienceSelector />
                 <Field
                   name="name"
                   label="Your name"
@@ -265,6 +267,68 @@ export default function IntakeForm() {
 
 function fieldShellClasses(extra = "") {
   return `bg-bh-white p-5 md:p-6 flex flex-col gap-2 ${extra}`;
+}
+
+const audienceOptions = [
+  { id: "builder", label: "Builder", note: "Estimating · CA · margin tracking" },
+  { id: "trade", label: "Trade", note: "Category benchmarks AU + NZ" },
+  { id: "supplier", label: "Supplier", note: "Platform listing + recommendations" },
+  { id: "other", label: "General", note: "Consulting or another enquiry" },
+] as const;
+
+function AudienceSelector() {
+  const [selected, setSelected] = useState<string>("builder");
+  return (
+    <div className="bg-bh-white p-5 md:p-6 sm:col-span-2">
+      <p className="text-[11px] tracking-[0.18em] uppercase text-bh-graphite mb-3">
+        I am a <span className="text-bh-orange">*</span>
+      </p>
+      <input type="hidden" name="audience" value={selected} />
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+        {audienceOptions.map((o) => {
+          const active = selected === o.id;
+          return (
+            <button
+              key={o.id}
+              type="button"
+              onClick={() => setSelected(o.id)}
+              className={`text-left p-3.5 rounded-[6px] border transition-colors ${
+                active
+                  ? "border-bh-orange bg-bh-orange-50"
+                  : "border-bh-steel/60 hover:border-bh-graphite bg-bh-white"
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <span
+                  className={`inline-flex items-center justify-center w-4 h-4 rounded-full border ${
+                    active
+                      ? "border-bh-orange bg-bh-orange"
+                      : "border-bh-steel"
+                  }`}
+                >
+                  {active && (
+                    <svg width="10" height="10" viewBox="0 0 10 10" aria-hidden>
+                      <path d="M2 5l2 2 4-4" stroke="#fff" strokeWidth="1.6" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  )}
+                </span>
+                <span
+                  className={`text-[14px] font-medium tracking-[-0.005em] ${
+                    active ? "text-bh-black" : "text-bh-black"
+                  }`}
+                >
+                  {o.label}
+                </span>
+              </span>
+              <span className="block mt-1 ml-6 text-[12px] text-bh-graphite leading-[1.35]">
+                {o.note}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 }
 
 function labelClasses() {

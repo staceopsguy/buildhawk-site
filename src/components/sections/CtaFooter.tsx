@@ -145,14 +145,45 @@ export default function CtaFooter() {
           </div>
         </div>
 
-        <div className="mt-20 md:mt-28 pt-10 border-t border-bh-graphite/40 flex flex-col md:flex-row items-start md:items-end justify-between gap-6">
-          <BrandLockup tone="dark" size="md" showTagline />
-          <div className="flex flex-col md:flex-row md:items-end md:gap-12 gap-3 text-[12px] tracking-[-0.005em] text-bh-steel/70">
-            <p>© {new Date().getFullYear()} BuildHawk Pty Ltd</p>
-            <p>Geelong, VIC · Australia</p>
-            <a className="hover:text-bh-white" href="#top">
-              Back to top ↑
-            </a>
+        <div className="mt-20 md:mt-28 pt-10 border-t border-bh-graphite/40 grid grid-cols-12 gap-8">
+          <div className="col-span-12 md:col-span-5">
+            <BrandLockup tone="dark" size="md" showTagline />
+            <p className="mt-5 max-w-xs text-[13px] leading-[1.55] text-bh-steel/70 tracking-[-0.005em]">
+              BuildHawk Pty Ltd. Operator of Hawktress · the cost intelligence
+              and project execution platform for residential builders, trades,
+              and suppliers across Australia and New Zealand.
+            </p>
+          </div>
+
+          <div className="col-span-6 md:col-span-3">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/70 mb-4">
+              Hawktress
+            </p>
+            <ul className="space-y-2 text-[13px] tracking-[-0.005em]">
+              <li><a href="#hawktress" className="text-bh-white hover:text-bh-orange transition-colors">Lifecycle</a></li>
+              <li><a href="#how" className="text-bh-white hover:text-bh-orange transition-colors">How it works</a></li>
+              <li><a href="#pricing" className="text-bh-white hover:text-bh-orange transition-colors">Pricing</a></li>
+              <li><a href="#about" className="text-bh-white hover:text-bh-orange transition-colors">About</a></li>
+              <li><a href="#intake" className="text-bh-white hover:text-bh-orange transition-colors">Start a brief</a></li>
+            </ul>
+          </div>
+
+          <div className="col-span-6 md:col-span-4">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/70 mb-4">
+              Legal
+            </p>
+            <ul className="space-y-2 text-[13px] tracking-[-0.005em]">
+              <li><a href="/terms-builders" className="text-bh-white hover:text-bh-orange transition-colors">Builder terms</a></li>
+              <li><a href="/terms-trades" className="text-bh-white hover:text-bh-orange transition-colors">Trade terms</a></li>
+              <li><a href="/terms-suppliers" className="text-bh-white hover:text-bh-orange transition-colors">Supplier terms</a></li>
+              <li><a href="/data-policy" className="text-bh-white hover:text-bh-orange transition-colors">Data policy</a></li>
+            </ul>
+          </div>
+
+          <div className="col-span-12 pt-8 border-t border-bh-graphite/40 flex flex-col md:flex-row items-start md:items-end justify-between gap-3 text-[12px] tracking-[-0.005em] text-bh-steel/70">
+            <p>© {new Date().getFullYear()} BuildHawk Pty Ltd · Geelong, VIC · Australia</p>
+            <p>Governing law · Victoria, Australia</p>
+            <a className="hover:text-bh-white" href="#top">Back to top ↑</a>
           </div>
         </div>
       </div>

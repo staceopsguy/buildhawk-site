@@ -93,6 +93,82 @@ html.lenis body {
   height: 1px;
 }
 
+/* Legal page typography */
+.prose-bh {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--color-bh-graphite);
+  letter-spacing: -0.005em;
+}
+.prose-bh h2 {
+  font-size: 24px;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--color-bh-black);
+  font-weight: 500;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+.prose-bh h3 {
+  font-size: 17px;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--color-bh-black);
+  font-weight: 500;
+  margin-top: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+.prose-bh p { margin-top: 0.9rem; margin-bottom: 0.9rem; }
+.prose-bh ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 1rem 0;
+}
+.prose-bh ul li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin: 0.45rem 0;
+}
+.prose-bh ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 6px;
+  height: 1px;
+  background: var(--color-bh-orange);
+}
+.prose-bh strong {
+  color: var(--color-bh-black);
+  font-weight: 500;
+}
+.prose-bh table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5rem 0;
+  font-size: 14px;
+}
+.prose-bh th, .prose-bh td {
+  border-bottom: 1px solid var(--color-bh-steel);
+  padding: 0.75rem 0.5rem;
+  text-align: left;
+  vertical-align: top;
+}
+.prose-bh th {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--color-bh-graphite);
+  font-weight: 500;
+}
+.prose-bh td { color: var(--color-bh-black); }
+.prose-bh td:first-child { color: var(--color-bh-graphite); }
+.prose-bh a {
+  color: var(--color-bh-orange);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 /* Subtle grain layer (optional — can be toggled per-section) */
 .bh-grain::before {
   content: "";

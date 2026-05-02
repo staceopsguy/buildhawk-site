@@ -1,10 +1,12 @@
 import Nav from "@/components/Nav";
 import Hero from "@/components/sections/Hero";
-import Pillars from "@/components/sections/Pillars";
+import Lifecycle from "@/components/sections/Lifecycle";
 import HowItWorks from "@/components/sections/HowItWorks";
+import ValueCase from "@/components/sections/ValueCase";
+import Pricing from "@/components/sections/Pricing";
 import Portfolio from "@/components/sections/Portfolio";
+import Founder from "@/components/sections/Founder";
 import WhoWeAre from "@/components/sections/WhoWeAre";
-import Testimonials from "@/components/sections/Testimonials";
 import IntakeForm from "@/components/sections/IntakeForm";
 import CtaFooter from "@/components/sections/CtaFooter";
 
@@ -13,11 +15,13 @@ export default function Home() {
     <main className="relative">
       <Nav />
       <Hero />
-      <Pillars />
+      <Lifecycle />
       <HowItWorks />
+      <ValueCase />
+      <Pricing />
       <Portfolio />
+      <Founder />
       <WhoWeAre />
-      <Testimonials />
       <IntakeForm />
       <CtaFooter />
     </main>

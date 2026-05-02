@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import BrandLockup from "@/components/BrandLockup";
 
 const links = [
-  { href: "#services", label: "Services" },
+  { href: "#hawktress", label: "Hawktress" },
   { href: "#how", label: "How It Works" },
+  { href: "#pricing", label: "Pricing" },
   { href: "#about", label: "About" },
-  { href: "#intake", label: "Start Brief" },
 ];
 
 export default function Nav() {
