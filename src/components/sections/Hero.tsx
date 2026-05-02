@@ -36,16 +36,19 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-32 md:pt-44 pb-24 md:pb-32 min-h-[100svh] flex flex-col">
         <div className="grid grid-cols-12 gap-6 md:gap-8 mt-auto">
           <div className="col-span-12 md:col-span-8 lg:col-span-7">
-            <p className="text-[12px] md:text-[13px] tracking-[0.2em] uppercase text-bh-graphite mb-6 md:mb-10">
-              <span className="inline-block w-2 h-2 rounded-full bg-bh-orange mr-3 align-middle" />
-              Estimate to Execution
+            <p className="text-[12px] md:text-[13px] tracking-[0.2em] uppercase text-bh-graphite mb-6 md:mb-10 inline-flex items-center gap-3">
+              <span className="inline-block w-2 h-2 rounded-full bg-bh-orange align-middle" />
+              <span className="text-bh-orange font-semibold">25 years</span>
+              <span className="inline-block w-px h-3 bg-bh-steel/70" />
+              <span>Residential construction</span>
             </p>
-            <h1 className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-black text-[44px] sm:text-[64px] md:text-[88px] lg:text-[112px]">
+            <h1 className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-black text-[56px] sm:text-[80px] md:text-[112px] lg:text-[148px]">
               Precision Estimating.
               <br />
               <span className="text-bh-orange">Disciplined Delivery.</span>
             </h1>
             <p className="mt-8 max-w-xl text-bh-graphite text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.01em]">
+              Twenty-five years inside Australian residential construction.
               The back-end partner for builders, developers, and owner-builders.
               We protect margins, control costs, and strengthen execution from
               tender through completion.
@@ -63,6 +66,15 @@ export default function Hero() {
         <div className="mt-auto pt-16 md:pt-24 grid grid-cols-12 gap-6 md:gap-8 items-end">
           <div className="col-span-6 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">
+              Experience
+            </p>
+            <p className="text-bh-black text-[14px] md:text-[15px] tracking-[-0.01em]">
+              <span className="text-bh-orange font-semibold">25 yrs</span>{" "}
+              residential construction
+            </p>
+          </div>
+          <div className="col-span-6 md:col-span-3">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">
               Office
             </p>
             <p className="text-bh-black text-[14px] md:text-[15px] tracking-[-0.01em]">
@@ -77,8 +89,7 @@ export default function Hero() {
               Tender → Completion
             </p>
           </div>
-          <div className="hidden md:block md:col-span-3" />
-          <div className="col-span-12 md:col-span-3 text-right">
+          <div className="col-span-6 md:col-span-3 text-right">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
               Scroll
             </p>

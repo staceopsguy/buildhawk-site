@@ -25,8 +25,8 @@ export default function WhoWeAre() {
 
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-bh-steel/60">
               {[
+                { k: "Industry experience", v: "25 years residential" },
                 { k: "Margin protection", v: "First principle" },
-                { k: "Operating standard", v: "Systems-led" },
                 { k: "Office", v: "Geelong, VIC" },
                 { k: "Engagement", v: "Tender → Completion" },
               ].map((item) => (
