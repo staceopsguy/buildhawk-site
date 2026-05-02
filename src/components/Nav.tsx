@@ -7,7 +7,7 @@ const links = [
   { href: "#services", label: "Services" },
   { href: "#how", label: "How It Works" },
   { href: "#about", label: "About" },
-  { href: "#contact", label: "Contact" },
+  { href: "#intake", label: "Start Brief" },
 ];
 
 export default function Nav() {
@@ -58,10 +58,10 @@ export default function Nav() {
             +61 433 366 607
           </a>
           <a
-            href="#contact"
+            href="#intake"
             className="inline-flex items-center h-10 px-5 rounded-[8px] bg-bh-black text-bh-white text-[13px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
           >
-            Book a Call
+            Start Brief
           </a>
         </div>
       </div>

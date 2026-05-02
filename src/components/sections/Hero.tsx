@@ -54,7 +54,7 @@ export default function Hero() {
               tender through completion.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Button href="#contact">Book a Call</Button>
+              <Button href="#intake">Start Your Brief</Button>
               <Button href="#services" variant="secondary">
                 Explore Services
               </Button>

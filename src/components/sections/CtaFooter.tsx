@@ -68,12 +68,7 @@ export default function CtaFooter() {
               a call.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Button
-                href="https://www.buildhawk.com.au/contact-us"
-                external
-              >
-                Open Intake Form
-              </Button>
+              <Button href="#intake">Start Your Brief</Button>
               <Button href="tel:+61433366607" variant="ghost-dark">
                 Call +61 433 366 607
               </Button>
@@ -129,9 +124,7 @@ export default function CtaFooter() {
             </a>
 
             <a
-              href="https://www.buildhawk.com.au/contact-us"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#intake"
               className="group flex items-start gap-4 p-6 md:p-7 hover:bg-bh-orange-900/25 transition-colors"
             >
               <span className="mt-1 inline-flex w-9 h-9 rounded-full bg-bh-orange/15 items-center justify-center">
@@ -142,10 +135,10 @@ export default function CtaFooter() {
               </span>
               <div>
                 <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/80">
-                  Intake Form
+                  Brief intake
                 </p>
                 <p className="mt-1 text-bh-white text-[18px] md:text-[20px] tracking-[-0.01em] group-hover:text-bh-orange transition-colors">
-                  buildhawk.com.au/contact-us
+                  Open the form
                 </p>
               </div>
             </a>

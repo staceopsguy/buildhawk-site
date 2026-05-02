@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export default function WhoWeAre() {
   return (
     <section id="about" className="relative bg-bh-cloud py-24 md:py-36">
@@ -15,13 +17,30 @@ export default function WhoWeAre() {
               <span className="text-bh-orange">protect profit margins</span>,
               control project costs, and strengthen execution.
             </p>
-            <p className="mt-8 max-w-3xl text-[17px] md:text-[19px] leading-[1.55] tracking-[-0.01em] text-bh-graphite">
-              We do not just prepare estimates. We help construction
-              professionals build reliable systems that win projects and deliver
-              them successfully from tender through completion. The brand
-              stands for structure, clarity, and operational confidence. Calm
-              authority, not hype.
-            </p>
+
+            {/* Photo + supporting copy */}
+            <div className="mt-14 grid grid-cols-12 gap-6 md:gap-8 items-start">
+              <figure className="col-span-12 md:col-span-5 relative aspect-[4/3] overflow-hidden bg-bh-white">
+                <Image
+                  src="/images/architect-plans.webp"
+                  alt="Architect reviewing residential drawings on a workbench"
+                  fill
+                  sizes="(min-width: 768px) 38vw, 100vw"
+                  className="object-cover"
+                />
+              </figure>
+              <div className="col-span-12 md:col-span-7">
+                <p className="text-[17px] md:text-[19px] leading-[1.55] tracking-[-0.01em] text-bh-graphite">
+                  We do not just prepare estimates. We help construction
+                  professionals build reliable systems that win projects and
+                  deliver them successfully from tender through completion.
+                </p>
+                <p className="mt-6 text-[17px] md:text-[19px] leading-[1.55] tracking-[-0.01em] text-bh-graphite">
+                  The brand stands for structure, clarity, and operational
+                  confidence. Calm authority, not hype.
+                </p>
+              </div>
+            </div>
 
             <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-px bg-bh-steel/60">
               {[

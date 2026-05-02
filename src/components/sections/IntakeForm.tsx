@@ -1,0 +1,438 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+
+type Status = "idle" | "submitting" | "success" | "error";
+
+const projectTypes = [
+  "New residential build",
+  "Knockdown rebuild",
+  "Extension / renovation",
+  "Multi-residential / townhouses",
+  "Owner-builder",
+  "Other",
+] as const;
+
+const stages = [
+  "Pre-tender / planning",
+  "Active tender",
+  "Mid-build",
+  "Pre-construction handover",
+  "Just exploring",
+] as const;
+
+const valueRanges = [
+  "Under $500k",
+  "$500k – $1M",
+  "$1M – $3M",
+  "$3M – $10M",
+  "$10M+",
+  "Prefer not to say",
+] as const;
+
+export default function IntakeForm() {
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState<string>("");
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    setStatus("submitting");
+    setErrorMsg("");
+
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const payload = {
+      name: data.get("name"),
+      email: data.get("email"),
+      phone: data.get("phone"),
+      company: data.get("company"),
+      role: data.get("role"),
+      projectType: data.get("projectType"),
+      stage: data.get("stage"),
+      valueRange: data.get("valueRange"),
+      message: data.get("message"),
+    };
+
+    try {
+      const res = await fetch("/api/intake", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const j = await res.json().catch(() => ({}));
+        throw new Error(j.error || `Submission failed (${res.status})`);
+      }
+      setStatus("success");
+      form.reset();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "Something went wrong";
+      setErrorMsg(msg);
+      setStatus("error");
+    }
+  }
+
+  return (
+    <section
+      id="intake"
+      className="relative bg-bh-white py-24 md:py-36 scroll-mt-20"
+    >
+      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+        <div className="grid grid-cols-12 gap-6 md:gap-8 mb-12 md:mb-16">
+          <div className="col-span-12 md:col-span-3">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
+              06 / Intake
+            </p>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <h2 className="font-medium tracking-[-0.03em] leading-[1.05] text-[36px] md:text-[56px] lg:text-[72px] text-bh-black">
+              Start your brief.
+              <br />
+              <span className="text-bh-graphite">
+                We reply within one business day.
+              </span>
+            </h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-12 gap-6 md:gap-10">
+          {/* Side context */}
+          <aside className="col-span-12 md:col-span-4 lg:col-span-3">
+            <div className="relative aspect-[4/5] mb-6 overflow-hidden bg-bh-cloud hidden md:block">
+              <Image
+                src="/images/site-aerial.webp"
+                alt="Construction crew on a slab review"
+                fill
+                sizes="(min-width: 768px) 28vw, 100vw"
+                className="object-cover"
+              />
+            </div>
+
+            <div className="space-y-5 text-[14px] tracking-[-0.005em] text-bh-graphite">
+              <p>
+                Tell us about the project. We come back with a scope, a fixed
+                fee, and a timeline. No proposal theatre.
+              </p>
+              <div className="pt-5 border-t border-bh-steel/60">
+                <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">
+                  Direct line
+                </p>
+                <a
+                  href="tel:+61433366607"
+                  className="block text-bh-black hover:text-bh-orange transition-colors text-[16px]"
+                >
+                  +61 433 366 607
+                </a>
+                <a
+                  href="mailto:info@buildhawk.com.au"
+                  className="block text-bh-black hover:text-bh-orange transition-colors text-[16px] mt-1"
+                >
+                  info@buildhawk.com.au
+                </a>
+              </div>
+              <div className="pt-5 border-t border-bh-steel/60">
+                <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">
+                  Office
+                </p>
+                <p className="text-bh-black text-[16px]">
+                  Geelong, VIC · Australia
+                </p>
+              </div>
+            </div>
+          </aside>
+
+          {/* Form */}
+          <div className="col-span-12 md:col-span-8 lg:col-span-9">
+            {status === "success" ? (
+              <SuccessState onReset={() => setStatus("idle")} />
+            ) : (
+              <form
+                onSubmit={handleSubmit}
+                className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-bh-steel/60 border border-bh-steel/60"
+                noValidate
+              >
+                <Field
+                  name="name"
+                  label="Your name"
+                  required
+                  autoComplete="name"
+                />
+                <Field
+                  name="email"
+                  type="email"
+                  label="Email"
+                  required
+                  autoComplete="email"
+                />
+                <Field
+                  name="phone"
+                  type="tel"
+                  label="Phone"
+                  autoComplete="tel"
+                />
+                <Field
+                  name="company"
+                  label="Company"
+                  autoComplete="organization"
+                />
+                <Field
+                  name="role"
+                  label="Your role"
+                  placeholder="e.g. Builder, Developer, Owner"
+                  className="sm:col-span-2"
+                />
+
+                <Select
+                  name="projectType"
+                  label="Project type"
+                  options={projectTypes as unknown as string[]}
+                  required
+                />
+                <Select
+                  name="stage"
+                  label="Project stage"
+                  options={stages as unknown as string[]}
+                  required
+                />
+                <Select
+                  name="valueRange"
+                  label="Estimated project value"
+                  options={valueRanges as unknown as string[]}
+                  className="sm:col-span-2"
+                />
+
+                <Textarea
+                  name="message"
+                  label="Project notes"
+                  placeholder="Site address, current docs, what you need from us"
+                  className="sm:col-span-2"
+                />
+
+                <div className="sm:col-span-2 bg-bh-white p-6 md:p-7 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                  <p className="text-[12px] text-bh-graphite tracking-[-0.005em] max-w-md">
+                    By submitting you agree we can contact you about your
+                    project. We never share or sell details.
+                  </p>
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="group inline-flex items-center justify-between gap-4 rounded-[8px] pl-6 pr-2 h-12 text-[14px] tracking-[-0.005em] bg-bh-orange text-bh-white hover:bg-bh-orange-700 active:bg-bh-orange-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+                  >
+                    <span className="font-medium">
+                      {status === "submitting" ? "Sending..." : "Send Brief"}
+                    </span>
+                    <span className="inline-flex items-center justify-center rounded-full w-9 h-9 bg-bh-white/20 group-hover:bg-bh-white/30 transition-colors">
+                      <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 14 14"
+                        fill="none"
+                        className="stroke-bh-white"
+                        aria-hidden
+                      >
+                        <path
+                          d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
+                          strokeWidth="1.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                  </button>
+                </div>
+
+                {status === "error" && (
+                  <div className="sm:col-span-2 bg-bh-white border-t-2 border-red-500 p-5 text-[14px] text-red-700">
+                    {errorMsg}. You can also{" "}
+                    <a
+                      href="mailto:info@buildhawk.com.au?subject=Project%20brief"
+                      className="underline"
+                    >
+                      email us directly
+                    </a>
+                    .
+                  </div>
+                )}
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function fieldShellClasses(extra = "") {
+  return `bg-bh-white p-5 md:p-6 flex flex-col gap-2 ${extra}`;
+}
+
+function labelClasses() {
+  return "text-[11px] tracking-[0.18em] uppercase text-bh-graphite";
+}
+
+function inputClasses() {
+  return "w-full bg-transparent border-0 border-b border-bh-steel/60 focus:border-bh-orange focus:ring-0 outline-none py-2 text-[16px] text-bh-black placeholder:text-bh-steel tracking-[-0.005em]";
+}
+
+function Field({
+  name,
+  label,
+  type = "text",
+  required,
+  placeholder,
+  autoComplete,
+  className = "",
+}: {
+  name: string;
+  label: string;
+  type?: string;
+  required?: boolean;
+  placeholder?: string;
+  autoComplete?: string;
+  className?: string;
+}) {
+  return (
+    <div className={fieldShellClasses(className)}>
+      <label htmlFor={name} className={labelClasses()}>
+        {label}
+        {required && <span className="text-bh-orange ml-1">*</span>}
+      </label>
+      <input
+        id={name}
+        name={name}
+        type={type}
+        required={required}
+        placeholder={placeholder}
+        autoComplete={autoComplete}
+        className={inputClasses()}
+      />
+    </div>
+  );
+}
+
+function Select({
+  name,
+  label,
+  options,
+  required,
+  className = "",
+}: {
+  name: string;
+  label: string;
+  options: string[];
+  required?: boolean;
+  className?: string;
+}) {
+  return (
+    <div className={fieldShellClasses(className)}>
+      <label htmlFor={name} className={labelClasses()}>
+        {label}
+        {required && <span className="text-bh-orange ml-1">*</span>}
+      </label>
+      <div className="relative">
+        <select
+          id={name}
+          name={name}
+          required={required}
+          defaultValue=""
+          className={`${inputClasses()} appearance-none pr-8`}
+        >
+          <option value="" disabled>
+            Select…
+          </option>
+          {options.map((o) => (
+            <option key={o} value={o}>
+              {o}
+            </option>
+          ))}
+        </select>
+        <svg
+          className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none"
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          aria-hidden
+        >
+          <path
+            d="M3 5l4 4 4-4"
+            stroke="#6e7180"
+            strokeWidth="1.4"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    </div>
+  );
+}
+
+function Textarea({
+  name,
+  label,
+  placeholder,
+  className = "",
+}: {
+  name: string;
+  label: string;
+  placeholder?: string;
+  className?: string;
+}) {
+  return (
+    <div className={fieldShellClasses(className)}>
+      <label htmlFor={name} className={labelClasses()}>
+        {label}
+      </label>
+      <textarea
+        id={name}
+        name={name}
+        rows={5}
+        placeholder={placeholder}
+        className="w-full bg-transparent border-0 border-b border-bh-steel/60 focus:border-bh-orange focus:ring-0 outline-none py-2 text-[16px] text-bh-black placeholder:text-bh-steel tracking-[-0.005em] resize-y"
+      />
+    </div>
+  );
+}
+
+function SuccessState({ onReset }: { onReset: () => void }) {
+  return (
+    <div className="border border-bh-orange/40 bg-bh-orange-50 p-8 md:p-12 flex flex-col items-start gap-5">
+      <div className="inline-flex w-12 h-12 rounded-full bg-bh-orange/15 items-center justify-center">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M5 12.5l4.5 4.5L19 7.5"
+            stroke="#de5123"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+      <div>
+        <h3 className="text-[28px] md:text-[36px] font-medium tracking-[-0.02em] leading-[1.1] text-bh-black">
+          Brief received.
+        </h3>
+        <p className="mt-3 text-bh-graphite text-[17px] leading-[1.5] max-w-xl">
+          We will reply within one business day from{" "}
+          <span className="text-bh-black">info@buildhawk.com.au</span>. If your
+          project is urgent, call{" "}
+          <a
+            href="tel:+61433366607"
+            className="text-bh-orange hover:underline"
+          >
+            +61 433 366 607
+          </a>
+          .
+        </p>
+      </div>
+      <button
+        type="button"
+        onClick={onReset}
+        className="text-[13px] tracking-[-0.005em] text-bh-graphite hover:text-bh-black underline underline-offset-4"
+      >
+        Submit another brief
+      </button>
+    </div>
+  );
+}
