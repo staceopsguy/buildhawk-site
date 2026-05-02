@@ -1,3 +1,6 @@
+import Reveal from "@/components/motion/Reveal";
+import Counter from "@/components/motion/Counter";
+
 const stages = [
   {
     n: "01",
@@ -52,7 +55,7 @@ export default function Lifecycle() {
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         {/* Section header */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-14 md:mb-20">
-          <div className="col-span-12 md:col-span-4">
+          <Reveal as="div" className="col-span-12 md:col-span-4" duration={750}>
             <span className="inline-flex items-center gap-2 px-3 h-7 rounded-full bg-bh-orange-50 border border-bh-orange/30 text-[11px] tracking-[0.18em] uppercase text-bh-orange-700 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-bh-orange" />
               Hawktress
@@ -62,8 +65,8 @@ export default function Lifecycle() {
               <br />
               <span className="text-bh-graphite">platform inside every build.</span>
             </h2>
-          </div>
-          <div className="col-span-12 md:col-span-7 md:col-start-6 md:pt-3">
+          </Reveal>
+          <Reveal as="div" className="col-span-12 md:col-span-7 md:col-start-6 md:pt-3" delay={180} duration={750}>
             <p className="text-[18px] md:text-[20px] leading-[1.5] tracking-[-0.01em] text-bh-graphite">
               Most platforms stop at estimating. Hawktress connects intelligence
               across every stage of the project. It captures real quote-to-actual
@@ -73,7 +76,7 @@ export default function Lifecycle() {
             <p className="mt-5 text-[14px] tracking-[-0.005em] text-bh-graphite">
               Powered by BuildHawk · Built by builders, for builders.
             </p>
-          </div>
+          </Reveal>
         </div>
 
         {/* Stages — 7 column grid on desktop, scroll on mobile */}
@@ -83,8 +86,12 @@ export default function Lifecycle() {
 
           <div className="grid grid-cols-1 md:grid-cols-7 gap-px bg-bh-steel/60 border border-bh-steel/60">
             {stages.map((s, i) => (
-              <article
+              <Reveal
+                as="article"
                 key={s.n}
+                delay={i * 90}
+                duration={650}
+                y={28}
                 className="relative bg-bh-white p-5 md:p-6 flex flex-col min-h-[260px] md:min-h-[320px] hover:bg-bh-cloud transition-colors group"
               >
                 {/* number dot */}
@@ -109,15 +116,19 @@ export default function Lifecycle() {
                 <p className="mt-auto text-[13px] leading-[1.45] tracking-[-0.005em] text-bh-black/85">
                   {s.role}
                 </p>
-              </article>
+              </Reveal>
             ))}
           </div>
 
           {/* Threshold callout */}
-          <div className="mt-8 md:mt-10 grid grid-cols-12 gap-6 md:gap-8 items-center">
+          <Reveal
+            as="div"
+            duration={900}
+            className="mt-8 md:mt-10 grid grid-cols-12 gap-6 md:gap-8 items-center"
+          >
             <div className="col-span-12 md:col-span-2 lg:col-span-1">
-              <p className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-orange text-[64px] md:text-[88px]">
-                5%
+              <p className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-orange text-[64px] md:text-[88px] tabular-nums">
+                <Counter to={5} suffix="%" duration={1100} />
               </p>
             </div>
             <div className="col-span-12 md:col-span-9 lg:col-span-8">
@@ -130,7 +141,7 @@ export default function Lifecycle() {
                 </span>
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

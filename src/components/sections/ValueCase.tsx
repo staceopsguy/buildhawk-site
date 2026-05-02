@@ -1,3 +1,6 @@
+import Counter from "@/components/motion/Counter";
+import Reveal from "@/components/motion/Reveal";
+
 const internalCosts = [
   ["Senior estimator", "$130,000"],
   ["Contract administrator", "$110,000"],
@@ -24,12 +27,12 @@ export default function ValueCase() {
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         {/* Header */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-14 md:mb-20">
-          <div className="col-span-12 md:col-span-3">
+          <Reveal as="div" className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
               The numbers
             </p>
-          </div>
-          <div className="col-span-12 md:col-span-9">
+          </Reveal>
+          <Reveal as="div" className="col-span-12 md:col-span-9" delay={80}>
             <h2 className="font-medium tracking-[-0.03em] leading-[1.0] text-[36px] md:text-[56px] lg:text-[72px] text-bh-black">
               Cheaper than one estimator.
               <br />
@@ -37,20 +40,20 @@ export default function ValueCase() {
                 Smarter than two.
               </span>
             </h2>
-          </div>
+          </Reveal>
         </div>
 
         {/* Headline saving */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-20 items-end">
-          <div className="col-span-12 md:col-span-7">
+          <Reveal as="div" className="col-span-12 md:col-span-7" duration={900}>
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-3">
               Year-one saving · Base subscription
             </p>
-            <p className="font-medium tracking-[-0.04em] leading-[0.9] text-bh-orange text-[88px] md:text-[140px] lg:text-[180px]">
-              $303,600
+            <p className="font-medium tracking-[-0.04em] leading-[0.9] text-bh-orange text-[88px] md:text-[140px] lg:text-[180px] tabular-nums">
+              <Counter to={303600} prefix="$" duration={1600} />
             </p>
-          </div>
-          <div className="col-span-12 md:col-span-5">
+          </Reveal>
+          <Reveal as="div" className="col-span-12 md:col-span-5" delay={200}>
             <p className="text-[18px] md:text-[20px] leading-[1.5] tracking-[-0.01em] text-bh-graphite">
               Hawktress replaces the cost of a senior estimator and a contract
               administrator and adds an intelligence layer neither of them can
@@ -59,13 +62,13 @@ export default function ValueCase() {
             <p className="mt-4 text-[13px] tracking-[-0.005em] text-bh-graphite">
               All figures ex GST. Based on Australian market salaries.
             </p>
-          </div>
+          </Reveal>
         </div>
 
         {/* Comparison */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {/* Internal hire column */}
-          <div className="bg-bh-white border border-bh-steel/60 p-7 md:p-9">
+          <Reveal as="div" className="bg-bh-white border border-bh-steel/60 p-7 md:p-9" duration={800} delay={100}>
             <div className="flex items-baseline justify-between mb-7 pb-5 border-b border-bh-steel/60">
               <h3 className="text-[20px] md:text-[24px] font-medium tracking-[-0.015em] text-bh-black">
                 Two internal hires
@@ -90,17 +93,17 @@ export default function ValueCase() {
                 Total
               </span>
               <span className="text-[28px] md:text-[36px] font-medium tracking-[-0.02em] text-bh-black tabular-nums">
-                $342,100
+                <Counter to={342100} prefix="$" duration={1500} />
               </span>
             </div>
             <p className="mt-5 text-[13px] text-bh-graphite leading-[1.5]">
               Two people. No intelligence layer. No benchmarking. No cost
               database.
             </p>
-          </div>
+          </Reveal>
 
           {/* Hawktress column */}
-          <div className="relative bg-bh-black text-bh-white p-7 md:p-9 overflow-hidden">
+          <Reveal as="div" className="relative bg-bh-black text-bh-white p-7 md:p-9 overflow-hidden" duration={800} delay={250}>
             <div className="absolute top-0 left-0 right-0 h-1 bg-bh-orange" />
             <div className="flex items-baseline justify-between mb-7 pb-5 border-b border-bh-graphite/40">
               <h3 className="text-[20px] md:text-[24px] font-medium tracking-[-0.015em]">
@@ -140,13 +143,13 @@ export default function ValueCase() {
                 Total · Year 1
               </span>
               <span className="text-[28px] md:text-[36px] font-medium tracking-[-0.02em] tabular-nums">
-                $38,500
+                <Counter to={38500} prefix="$" duration={1500} />
               </span>
             </div>
             <p className="mt-3 text-[12px] text-bh-steel/80 tabular-nums">
               $35,000 annual subscription · $3,500 one-off onboarding
             </p>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

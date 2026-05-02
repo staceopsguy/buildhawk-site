@@ -2,6 +2,8 @@
 
 import dynamic from "next/dynamic";
 import Button from "@/components/Button";
+import Reveal from "@/components/motion/Reveal";
+import Magnetic from "@/components/motion/Magnetic";
 
 const HeroCanvas = dynamic(() => import("@/components/three/HeroCanvas"), {
   ssr: false,
@@ -36,29 +38,34 @@ export default function Hero() {
       <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-32 md:pt-44 pb-24 md:pb-32 min-h-[100svh] flex flex-col">
         <div className="grid grid-cols-12 gap-6 md:gap-8 mt-auto">
           <div className="col-span-12 md:col-span-8 lg:col-span-7">
-            <p className="text-[12px] md:text-[13px] tracking-[0.2em] uppercase text-bh-graphite mb-6 md:mb-10 inline-flex items-center gap-3">
-              <span className="inline-block w-2 h-2 rounded-full bg-bh-orange align-middle" />
+            <Reveal as="p" className="text-[12px] md:text-[13px] tracking-[0.2em] uppercase text-bh-graphite mb-6 md:mb-10 inline-flex items-center gap-3" duration={700}>
+              <span className="relative inline-flex items-center justify-center w-2 h-2">
+                <span className="absolute inset-0 rounded-full bg-bh-orange bh-pulse" />
+                <span className="relative inline-block w-2 h-2 rounded-full bg-bh-orange" />
+              </span>
               <span className="text-bh-orange font-semibold">25 years</span>
               <span className="inline-block w-px h-3 bg-bh-steel/70" />
               <span>Residential construction</span>
-            </p>
-            <h1 className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-black text-[56px] sm:text-[80px] md:text-[112px] lg:text-[148px]">
+            </Reveal>
+            <Reveal as="h1" className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-black text-[56px] sm:text-[80px] md:text-[112px] lg:text-[148px]" duration={900} delay={120}>
               Precision Estimating.
               <br />
               <span className="text-bh-orange">Disciplined Delivery.</span>
-            </h1>
-            <p className="mt-8 max-w-xl text-bh-graphite text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.01em]">
+            </Reveal>
+            <Reveal as="p" className="mt-8 max-w-xl text-bh-graphite text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.01em]" duration={700} delay={300}>
               Twenty-five years inside Australian residential construction.
               The back-end partner for builders, developers, and owner-builders.
               We protect margins, control costs, and strengthen execution from
               tender through completion.
-            </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Button href="#intake">Start Your Brief</Button>
-              <Button href="#services" variant="secondary">
-                Explore Services
+            </Reveal>
+            <Reveal as="div" className="mt-10 flex flex-wrap items-center gap-3" duration={700} delay={420}>
+              <Magnetic pull={6}>
+                <Button href="#intake">Start Your Brief</Button>
+              </Magnetic>
+              <Button href="#hawktress" variant="secondary">
+                Explore Hawktress
               </Button>
-            </div>
+            </Reveal>
           </div>
         </div>
 

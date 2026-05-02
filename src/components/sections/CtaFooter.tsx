@@ -3,6 +3,8 @@
 import { useEffect, useRef } from "react";
 import BrandLockup from "@/components/BrandLockup";
 import Button from "@/components/Button";
+import Magnetic from "@/components/motion/Magnetic";
+import Reveal from "@/components/motion/Reveal";
 
 export default function CtaFooter() {
   const sweepRef = useRef<HTMLDivElement>(null);
@@ -56,7 +58,7 @@ export default function CtaFooter() {
               06 / Engage
             </p>
           </div>
-          <div className="col-span-12 md:col-span-9">
+          <Reveal as="div" className="col-span-12 md:col-span-9" duration={800}>
             <h2 className="font-medium tracking-[-0.03em] leading-[0.95] text-[44px] sm:text-[64px] md:text-[88px] lg:text-[112px]">
               Where every build
               <br />
@@ -68,12 +70,14 @@ export default function CtaFooter() {
               a call.
             </p>
             <div className="mt-10 flex flex-wrap items-center gap-3">
-              <Button href="#intake">Start Your Brief</Button>
+              <Magnetic pull={6}>
+                <Button href="#intake">Start Your Brief</Button>
+              </Magnetic>
               <Button href="tel:+61433366607" variant="ghost-dark">
                 Call +61 433 366 607
               </Button>
             </div>
-          </div>
+          </Reveal>
         </div>
 
         {/* Highlighted contact panel */}

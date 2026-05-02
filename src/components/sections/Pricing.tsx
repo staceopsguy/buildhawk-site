@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import Tilt from "@/components/motion/Tilt";
+import Reveal from "@/components/motion/Reveal";
 
 type Audience = "builders" | "trades" | "suppliers";
 
@@ -205,7 +207,8 @@ export default function Pricing() {
 
         {/* Tier cards */}
         <div
-          className={`grid gap-6 ${
+          key={audience}
+          className={`grid gap-6 bh-pricing-grid ${
             tiers.length === 4
               ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4"
               : tiers.length === 3
@@ -213,14 +216,18 @@ export default function Pricing() {
               : "grid-cols-1 md:grid-cols-2"
           }`}
         >
-          {tiers.map((t) => (
-            <article
+          {tiers.map((t, i) => (
+            <Tilt
+              as="article"
               key={t.name}
-              className={`relative flex flex-col p-6 md:p-7 min-h-[420px] border transition-colors ${
+              max={3}
+              lift={4}
+              className={`relative flex flex-col p-6 md:p-7 min-h-[420px] border transition-colors bh-pricing-card ${
                 t.featured
-                  ? "bg-bh-black text-bh-white border-bh-black"
+                  ? "bg-bh-black text-bh-white border-bh-black shadow-[0_30px_60px_-20px_rgba(222,81,35,0.25)]"
                   : "bg-bh-white text-bh-black border-bh-steel/60 hover:border-bh-graphite/60"
               }`}
+              style={{ animationDelay: `${i * 80}ms` }}
             >
               {t.featured && (
                 <span className="absolute -top-3 left-6 inline-flex items-center h-6 px-2.5 rounded-full bg-bh-orange text-bh-white text-[10px] tracking-[0.18em] uppercase font-medium">
@@ -315,7 +322,7 @@ export default function Pricing() {
                   </svg>
                 </span>
               </a>
-            </article>
+            </Tilt>
           ))}
         </div>
 

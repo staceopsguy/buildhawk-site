@@ -101,9 +101,9 @@ export default function HouseFrame({ progress = 1 }: { progress?: number }) {
   useFrame((state) => {
     const t = state.clock.elapsedTime;
     if (group.current) {
-      // very slow, deliberate orbit
-      group.current.rotation.y = Math.sin(t * 0.08) * 0.15 - 0.35;
-      group.current.rotation.x = -0.1 + Math.sin(t * 0.05) * 0.02;
+      // House barely breathes; the camera rig drives parallax instead.
+      group.current.rotation.y = -0.18 + Math.sin(t * 0.06) * 0.025;
+      group.current.rotation.x = -0.05 + Math.sin(t * 0.04) * 0.012;
     }
     if (traceRef.current) {
       const mat = traceRef.current.material as THREE.LineDashedMaterial & {

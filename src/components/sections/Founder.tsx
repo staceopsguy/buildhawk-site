@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Reveal from "@/components/motion/Reveal";
 
 export default function Founder() {
   return (
@@ -6,7 +7,7 @@ export default function Founder() {
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           {/* Photo column */}
-          <div className="col-span-12 md:col-span-5">
+          <Reveal as="div" className="col-span-12 md:col-span-5" duration={800}>
             <figure className="relative aspect-[4/5] overflow-hidden bg-bh-white border border-bh-steel/40">
               <Image
                 src="/images/architect-plans.webp"
@@ -29,10 +30,10 @@ export default function Founder() {
                 Geelong, VIC
               </p>
             </figcaption>
-          </div>
+          </Reveal>
 
           {/* Quote + story */}
-          <div className="col-span-12 md:col-span-7 flex flex-col">
+          <Reveal as="div" className="col-span-12 md:col-span-7 flex flex-col" duration={800} delay={150}>
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-5">
               Founder's vision
             </p>
@@ -92,7 +93,7 @@ export default function Founder() {
                 </a>
               </div>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

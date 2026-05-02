@@ -1,27 +1,28 @@
 import Image from "next/image";
+import Reveal from "@/components/motion/Reveal";
 
 export default function Portfolio() {
   return (
     <section className="relative bg-bh-white py-24 md:py-36">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-12 md:mb-16">
-          <div className="col-span-12 md:col-span-3">
+          <Reveal as="div" className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
               Built For
             </p>
-          </div>
-          <div className="col-span-12 md:col-span-9">
+          </Reveal>
+          <Reveal as="div" className="col-span-12 md:col-span-9" delay={100}>
             <h2 className="font-medium tracking-[-0.03em] leading-[1.05] text-[32px] md:text-[48px] lg:text-[60px] text-bh-black">
               Australian residential.
               <br />
               <span className="text-bh-graphite">Engineered for margin.</span>
             </h2>
-          </div>
+          </Reveal>
         </div>
 
         <div className="grid grid-cols-12 gap-6">
           {/* Left: tall residential portrait */}
-          <figure className="col-span-12 md:col-span-7 relative aspect-[4/5] md:aspect-[5/6] overflow-hidden bg-bh-cloud">
+          <Reveal as="figure" duration={900} className="col-span-12 md:col-span-7 relative aspect-[4/5] md:aspect-[5/6] overflow-hidden bg-bh-cloud">
             <Image
               src="/images/residential-gable.webp"
               alt="Residential gable roof under clear sky"
@@ -41,10 +42,10 @@ export default function Portfolio() {
                 </p>
               </div>
             </figcaption>
-          </figure>
+          </Reveal>
 
           {/* Right column: stacked */}
-          <div className="col-span-12 md:col-span-5 flex flex-col gap-6">
+          <Reveal as="div" className="col-span-12 md:col-span-5 flex flex-col gap-6" delay={200} duration={900}>
             <figure className="relative aspect-[4/3] overflow-hidden bg-bh-cloud">
               <Image
                 src="/images/modern-build.webp"
@@ -82,7 +83,7 @@ export default function Portfolio() {
                 25 years on site
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
