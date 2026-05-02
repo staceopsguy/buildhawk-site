@@ -38,12 +38,12 @@ export default function Hero() {
           <div className="col-span-12 md:col-span-8 lg:col-span-7">
             <p className="text-[12px] md:text-[13px] tracking-[0.2em] uppercase text-bh-graphite mb-6 md:mb-10">
               <span className="inline-block w-2 h-2 rounded-full bg-bh-orange mr-3 align-middle" />
-              Precision Estimating. Disciplined Delivery.
+              Estimate to Execution
             </p>
             <h1 className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-black text-[44px] sm:text-[64px] md:text-[88px] lg:text-[112px]">
-              Structured Estimates.
+              Precision Estimating.
               <br />
-              <span className="text-bh-orange">Stronger Builds.</span>
+              <span className="text-bh-orange">Disciplined Delivery.</span>
             </h1>
             <p className="mt-8 max-w-xl text-bh-graphite text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.01em]">
               The back-end partner for builders, developers, and owner-builders.
