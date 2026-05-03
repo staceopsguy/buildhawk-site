@@ -4,9 +4,9 @@ import ArticleCard from "@/components/blog/ArticleCard";
 import { getSortedArticles } from "@/lib/articles";
 
 export const metadata: Metadata = {
-  title: "Insights · BuildHawk · Hawktress",
+  title: "Hawktress Field Notes · BuildHawk Insights",
   description:
-    "Field-tested writing on residential construction estimating, contract administration, variation control and the data behind margin protection. From the BuildHawk team and the Hawktress platform.",
+    "Field notes from inside Australian residential construction. Estimating, contract administration, variation control and the data behind margin protection — written by the BuildHawk team and the Hawktress™ platform.",
 };
 
 export default function InsightsPage() {
@@ -21,23 +21,24 @@ export default function InsightsPage() {
         <div className="mx-auto max-w-[1480px] px-6 md:px-10">
           <div className="grid grid-cols-12 gap-6 md:gap-8 mb-12 md:mb-16">
             <div className="col-span-12 md:col-span-3">
-              <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
-                Insights
+              <p className="inline-flex items-center gap-2.5 text-[11px] tracking-[0.2em] uppercase text-bh-orange">
+                <span className="inline-block w-3 h-px bg-bh-orange" />
+                Hawktress<sup className="text-[0.55em] align-super">™</sup> Field Notes
               </p>
             </div>
             <div className="col-span-12 md:col-span-9">
               <h1 className="font-medium tracking-[-0.03em] leading-[1.0] text-[44px] md:text-[68px] lg:text-[88px] text-bh-black">
-                Field-tested writing.
+                Written on the tools.
                 <br />
                 <span className="text-bh-graphite">
-                  From operators, on operators.
+                  Not from a desk.
                 </span>
               </h1>
               <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.005em] text-bh-graphite">
-                Methodology, field notes and operator playbooks from the
-                BuildHawk team and the Hawktress platform. Written by people who
-                actually estimate and administer construction contracts for a
-                living.
+                Methodology, field notes and operator handbooks from the
+                BuildHawk team and the Hawktress<sup className="text-[0.5em] align-super">™</sup>{" "}
+                platform. Written by people who run estimating and contract
+                administration on live Australian residential jobs.
               </p>
             </div>
           </div>
