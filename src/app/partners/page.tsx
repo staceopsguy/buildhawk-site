@@ -200,7 +200,9 @@ export default function PartnersPage() {
                 </>
               );
               const tileClass =
-                "group relative aspect-[5/3] border-r border-b border-bh-steel/40 bg-bh-paper hover:brightness-95 transition-[filter] block";
+                `group relative aspect-[5/3] border-r border-b border-bh-steel/40 hover:brightness-95 transition-[filter] block ${
+                  p.darkTile ? "bg-bh-ink" : "bg-bh-paper"
+                }`;
               return p.url ? (
                 <li key={p.name} className="contents">
                   <a

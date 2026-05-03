@@ -5,6 +5,10 @@ export type Partner = {
   height: number;
   url?: string;
   badge?: string;
+  /** When the partner's source logo is designed for dark backgrounds
+   * (white elements on transparent), the tile uses bg-bh-ink so the
+   * logo stays legible. Otherwise the tile is always-light bh-paper. */
+  darkTile?: boolean;
 };
 
 export type Owner = {
@@ -62,8 +66,20 @@ export const featuredCaseStudy: FeaturedCaseStudy = {
 };
 
 export const partners: Partner[] = [
-  { name: "Homes By NH", src: "/logos/homes-by-nh.webp", width: 320, height: 120 },
-  { name: "Buena Vista Homes", src: "/logos/buena-vista-homes.png", width: 320, height: 120 },
+  {
+    name: "Homes By NH",
+    src: "/logos/homes-by-nh.webp",
+    width: 320,
+    height: 120,
+    darkTile: true,
+  },
+  {
+    name: "Buena Vista Homes",
+    src: "/logos/buena-vista-homes.png",
+    width: 320,
+    height: 120,
+    darkTile: true,
+  },
   {
     name: "Built On It",
     src: "/logos/built-on-it.png",
@@ -71,6 +87,7 @@ export const partners: Partner[] = [
     height: 120,
     url: "https://www.builtonit.com.au/",
     badge: "Cybersecurity",
+    darkTile: true,
   },
   { name: "Uprise Projects", src: "/logos/uprise-projects.jpg", width: 320, height: 120 },
   {
@@ -88,6 +105,7 @@ export const partners: Partner[] = [
     height: 80,
     url: "https://www.buildxact.com/us/",
     badge: "Integration",
+    darkTile: true,
   },
   { name: "Softriver", src: "/logos/softriver.svg", width: 320, height: 80 },
   { name: "Tapang Group", src: "/logos/tapang-group.svg", width: 320, height: 80 },
