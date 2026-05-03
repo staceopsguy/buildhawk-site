@@ -23,7 +23,7 @@ const hawktressIncludes = [
 
 export default function ValueCase() {
   return (
-    <section className="relative bg-bh-cloud py-24 md:py-36">
+    <section className="relative bg-bh-cloud py-16 md:py-36">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         {/* Header */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-14 md:mb-20">

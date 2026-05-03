@@ -77,14 +77,14 @@ export default function InsightsPage() {
         </div>
       </section>
 
-      <footer className="bg-bh-black text-bh-white py-16">
+      <footer className="bg-bh-ink text-bh-paper py-16">
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <p className="text-[14px] tracking-[-0.005em] text-bh-steel/80">
             © {new Date().getFullYear()} BuildHawk Pty Ltd · Geelong, VIC
           </p>
           <a
             href="/"
-            className="text-[13px] tracking-[-0.005em] text-bh-white hover:text-bh-orange transition-colors"
+            className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors"
           >
             ← Back to BuildHawk
           </a>

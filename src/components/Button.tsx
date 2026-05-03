@@ -8,19 +8,19 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-bh-orange text-bh-white hover:bg-bh-orange-700 active:bg-bh-orange-900",
+    "bg-bh-orange text-bh-paper hover:bg-bh-orange-700 active:bg-bh-orange-900",
   secondary:
     "bg-transparent border border-bh-orange text-bh-orange hover:bg-bh-orange-50",
   "ghost-dark":
-    "bg-transparent border border-bh-steel/30 text-bh-white hover:border-bh-white",
+    "bg-transparent border border-bh-steel/30 text-bh-paper hover:border-bh-paper",
 };
 
 function ArrowChip({ tone }: { tone: "light" | "dark" }) {
   const bg =
     tone === "light"
-      ? "bg-bh-white/20 group-hover:bg-bh-white/30"
+      ? "bg-bh-paper/20 group-hover:bg-bh-paper/30"
       : "bg-bh-orange/15 group-hover:bg-bh-orange/25";
-  const stroke = tone === "light" ? "stroke-bh-white" : "stroke-bh-orange";
+  const stroke = tone === "light" ? "stroke-bh-paper" : "stroke-bh-orange";
   return (
     <span
       className={`inline-flex items-center justify-center rounded-full w-8 h-8 md:w-9 md:h-9 ${bg} transition-colors`}

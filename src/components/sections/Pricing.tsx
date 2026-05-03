@@ -196,18 +196,18 @@ export default function Pricing() {
   return (
     <section
       id="pricing"
-      className="relative bg-bh-white py-24 md:py-36 scroll-mt-20"
+      className="relative bg-bh-white py-16 md:py-36 scroll-mt-20"
     >
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+      <div className="mx-auto max-w-[1480px] px-5 md:px-10">
         {/* Header */}
-        <div className="grid grid-cols-12 gap-6 md:gap-8 mb-10 md:mb-14">
+        <div className="grid grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-14">
           <div className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
               Pricing
             </p>
           </div>
           <div className="col-span-12 md:col-span-9">
-            <h2 className="font-medium tracking-[-0.03em] leading-[1.05] text-[36px] md:text-[56px] lg:text-[72px] text-bh-black">
+            <h2 className="font-medium tracking-[-0.03em] leading-[1.05] text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] text-bh-black">
               Three audiences.
               <br />
               <span className="text-bh-graphite">One platform.</span>
@@ -216,42 +216,47 @@ export default function Pricing() {
         </div>
 
         {/* Audience tabs */}
-        <div className="mb-10 md:mb-12">
+        <div className="mb-8 md:mb-12">
           <div
             role="tablist"
             aria-label="Pricing audience"
-            className="inline-flex p-1 rounded-[10px] bg-bh-cloud border border-bh-steel/60"
+            className="-mx-5 md:mx-0 px-5 md:px-0 overflow-x-auto md:overflow-visible flex md:inline-flex md:p-1 md:rounded-[10px] md:bg-bh-cloud md:border md:border-bh-steel/60 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
-            {tabs.map((t) => {
-              const selected = audience === t.id;
-              return (
-                <button
-                  key={t.id}
-                  role="tab"
-                  aria-selected={selected}
-                  onClick={() => setAudience(t.id)}
-                  className={`px-5 md:px-7 h-11 rounded-[8px] text-[13px] tracking-[-0.005em] font-medium transition-colors ${
-                    selected
-                      ? "bg-bh-black text-bh-white"
-                      : "bg-transparent text-bh-graphite hover:text-bh-black"
-                  }`}
-                >
-                  {t.label}
-                </button>
-              );
-            })}
+            <div
+              role="presentation"
+              className="inline-flex p-1 rounded-[10px] bg-bh-cloud border border-bh-steel/60 md:p-0 md:rounded-none md:bg-transparent md:border-0"
+            >
+              {tabs.map((t) => {
+                const selected = audience === t.id;
+                return (
+                  <button
+                    key={t.id}
+                    role="tab"
+                    aria-selected={selected}
+                    onClick={() => setAudience(t.id)}
+                    className={`px-4 sm:px-5 md:px-7 h-11 rounded-[8px] text-[13px] tracking-[-0.005em] font-medium transition-colors whitespace-nowrap ${
+                      selected
+                        ? "bg-bh-ink text-bh-paper"
+                        : "bg-transparent text-bh-graphite hover:text-bh-black"
+                    }`}
+                  >
+                    {t.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-          <p className="mt-5 max-w-2xl text-[15px] md:text-[17px] leading-[1.5] tracking-[-0.005em] text-bh-graphite">
+          <p className="mt-5 max-w-2xl text-[14px] md:text-[17px] leading-[1.5] tracking-[-0.005em] text-bh-graphite">
             {active.tagline}
           </p>
 
           {/* Annual / Monthly toggle */}
           {supportsBilling && (
-            <div className="mt-6 inline-flex items-center gap-3">
+            <div className="mt-5 md:mt-6 flex flex-col sm:flex-row sm:items-center gap-3">
               <div
                 role="tablist"
                 aria-label="Billing cadence"
-                className="inline-flex p-1 rounded-[10px] bg-bh-cloud border border-bh-steel/60"
+                className="inline-flex p-1 rounded-[10px] bg-bh-cloud border border-bh-steel/60 self-start"
               >
                 {(["annual", "monthly"] as BillingMode[]).map((b) => {
                   const selected = billing === b;
@@ -263,7 +268,7 @@ export default function Pricing() {
                       onClick={() => setBilling(b)}
                       className={`px-4 md:px-5 h-9 rounded-[8px] text-[12px] tracking-[-0.005em] font-medium transition-colors ${
                         selected
-                          ? "bg-bh-black text-bh-white"
+                          ? "bg-bh-ink text-bh-paper"
                           : "bg-transparent text-bh-graphite hover:text-bh-black"
                       }`}
                     >
@@ -305,19 +310,19 @@ export default function Pricing() {
               lift={4}
               className={`relative flex flex-col p-6 md:p-7 min-h-[420px] border transition-colors bh-pricing-card ${
                 t.featured
-                  ? "bg-bh-black text-bh-white border-bh-black shadow-[0_30px_60px_-20px_rgba(222,81,35,0.25)]"
+                  ? "bg-bh-ink text-bh-paper border-bh-ink shadow-[0_30px_60px_-20px_rgba(222,81,35,0.25)]"
                   : "bg-bh-white text-bh-black border-bh-steel/60 hover:border-bh-graphite/60"
               }`}
               style={{ animationDelay: `${i * 80}ms` }}
             >
               {t.featured && (
-                <span className="absolute -top-3 left-6 inline-flex items-center h-6 px-2.5 rounded-full bg-bh-orange text-bh-white text-[10px] tracking-[0.18em] uppercase font-medium">
+                <span className="absolute -top-3 left-6 inline-flex items-center h-6 px-2.5 rounded-full bg-bh-orange text-bh-paper text-[10px] tracking-[0.18em] uppercase font-medium">
                   Recommended
                 </span>
               )}
               <h3
                 className={`text-[18px] md:text-[20px] font-medium tracking-[-0.015em] mb-5 ${
-                  t.featured ? "text-bh-white" : "text-bh-black"
+                  t.featured ? "text-bh-paper" : "text-bh-black"
                 }`}
               >
                 {t.name}
@@ -385,14 +390,14 @@ export default function Pricing() {
                 href={t.href}
                 className={`mt-auto inline-flex items-center justify-between gap-4 rounded-[8px] pl-5 pr-2 h-11 text-[13px] tracking-[-0.005em] font-medium transition-colors ${
                   t.featured
-                    ? "bg-bh-orange text-bh-white hover:bg-bh-orange-700"
-                    : "bg-bh-black text-bh-white hover:bg-bh-orange"
+                    ? "bg-bh-orange text-bh-paper hover:bg-bh-orange-700"
+                    : "bg-bh-ink text-bh-paper hover:bg-bh-orange"
                 }`}
               >
                 {t.cta}
                 <span
                   className={`inline-flex items-center justify-center rounded-full w-7 h-7 ${
-                    t.featured ? "bg-bh-white/20" : "bg-bh-white/15"
+                    t.featured ? "bg-bh-paper/20" : "bg-bh-paper/15"
                   }`}
                 >
                   <svg

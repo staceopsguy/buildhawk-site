@@ -3,7 +3,7 @@ import Reveal from "@/components/motion/Reveal";
 
 export default function Founder() {
   return (
-    <section className="relative bg-bh-cloud py-24 md:py-36">
+    <section className="relative bg-bh-cloud py-16 md:py-36">
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         <div className="grid grid-cols-12 gap-6 md:gap-10">
           {/* Photo column */}

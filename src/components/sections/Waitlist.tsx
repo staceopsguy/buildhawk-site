@@ -56,7 +56,7 @@ export default function Waitlist() {
   return (
     <section
       id="waitlist"
-      className="relative bg-bh-black text-bh-white py-20 md:py-28 overflow-hidden"
+      className="relative bg-bh-ink text-bh-paper py-20 md:py-28 overflow-hidden"
     >
       {/* Subtle grain + emblem accent */}
       <div
@@ -80,12 +80,12 @@ export default function Waitlist() {
             <Reveal as="h2" className="text-[34px] md:text-[44px] lg:text-[56px] leading-[1.05] tracking-[-0.025em] font-medium">
               Join the Hawktress<sup className="text-[0.45em] align-super">™</sup> waitlist.
             </Reveal>
-            <Reveal as="p" className="mt-5 text-bh-white/70 text-[16px] md:text-[18px] leading-[1.55] tracking-[-0.005em] max-w-md" delay={120}>
+            <Reveal as="p" className="mt-5 text-bh-paper/70 text-[16px] md:text-[18px] leading-[1.55] tracking-[-0.005em] max-w-md" delay={120}>
               Early access for builders, trades, suppliers and owner-builders
               who want the discipline behind every cost decision. Limited
               cohorts. We onboard the operators who fit.
             </Reveal>
-            <Reveal as="ul" className="mt-8 space-y-3 text-[14px] text-bh-white/65" delay={200}>
+            <Reveal as="ul" className="mt-8 space-y-3 text-[14px] text-bh-paper/65" delay={200}>
               <li className="flex items-start gap-3">
                 <span className="mt-2 inline-block w-3 h-px bg-bh-orange flex-none" />
                 Cost intelligence built from active Australian residential jobs
@@ -152,7 +152,7 @@ export default function Waitlist() {
                           aria-pressed={audience === opt.value}
                           className={`h-10 px-4 rounded-[8px] text-[13px] tracking-[-0.005em] border transition-colors ${
                             audience === opt.value
-                              ? "bg-bh-black text-bh-white border-bh-black"
+                              ? "bg-bh-ink text-bh-paper border-bh-black"
                               : "bg-bh-white text-bh-black border-bh-steel hover:border-bh-graphite"
                           }`}
                         >
@@ -223,7 +223,7 @@ export default function Waitlist() {
                       <button
                         type="submit"
                         disabled={status === "submitting"}
-                        className="group inline-flex items-center justify-between gap-4 rounded-[8px] pl-6 pr-2 h-12 text-[14px] tracking-[-0.005em] font-medium bg-bh-orange text-bh-white hover:bg-bh-orange-700 active:bg-bh-orange-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+                        className="group inline-flex items-center justify-between gap-4 rounded-[8px] pl-6 pr-2 h-12 text-[14px] tracking-[-0.005em] font-medium bg-bh-orange text-bh-paper hover:bg-bh-orange-700 active:bg-bh-orange-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
                       >
                         <span>
                           {status === "submitting" ? "Saving…" : "Join the waitlist"}

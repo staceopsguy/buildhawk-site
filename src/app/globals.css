@@ -1,10 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-  /* Primary palette */
+  /* Primary palette — page surfaces + text. These flip in dark mode. */
   --color-bh-white: #ffffff;
   --color-bh-black: #111111;
   --color-bh-orange: #de5123;
+
+  /* Anchor tokens — locked across modes. Use for panels that must
+     remain dark (CtaFooter, Waitlist) or text that must remain light
+     on those panels regardless of system theme. */
+  --color-bh-ink: #111111;
+  --color-bh-paper: #ffffff;
 
   /* Secondary palette */
   --color-bh-graphite: #6e7180;
@@ -51,11 +57,32 @@
   --background: var(--color-bh-white);
   --foreground: var(--color-bh-black);
   --font-display: var(--font-suisse), "Inter", "Helvetica Neue", system-ui, sans-serif;
+
+  color-scheme: light dark;
+}
+
+/* Dark mode — token role swap. Surfaces darken, text lightens; the
+   ink/paper anchors keep their values so inverted panels stay dark. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Page surfaces (flipped) */
+    --color-bh-white: #0c0d11;   /* surface 1 — page bg */
+    --color-bh-cloud: #15171d;   /* surface 2 — section/card bg */
+    --color-bh-smoke: #1c1f28;   /* surface 3 — softer divider */
+    --color-bh-steel: #262932;   /* border on dark */
+    --color-bh-space: #6f7488;   /* low-emphasis muted */
+    --color-bh-graphite: #a8acbc; /* mid-emphasis muted text */
+    --color-bh-black: #f1f3fa;   /* primary text (inverted role) */
+
+    /* Orange ramp tweaks for dark mode legibility */
+    --color-bh-orange-50: #2a140f;   /* dark tint, replaces #fff0eb */
+    --color-bh-orange-200: #5a2418;  /* dark mid-tint, replaces #ffcebe */
+  }
 }
 
 html, body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-bh-white);
+  color: var(--color-bh-black);
   font-family: var(--font-display);
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
@@ -64,7 +91,7 @@ html, body {
 
 ::selection {
   background: var(--color-bh-orange);
-  color: var(--color-bh-white);
+  color: var(--color-bh-paper);
 }
 
 /* Hide scrollbar visual only — keep scrolling */

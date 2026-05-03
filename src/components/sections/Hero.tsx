@@ -35,10 +35,10 @@ export default function Hero() {
         />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1480px] px-6 md:px-10 pt-32 md:pt-44 pb-24 md:pb-32 min-h-[100svh] flex flex-col">
+      <div className="relative z-10 mx-auto max-w-[1480px] px-5 md:px-10 pt-24 md:pt-44 pb-14 md:pb-32 min-h-[100svh] flex flex-col">
         <div className="grid grid-cols-12 gap-6 md:gap-8 mt-auto">
           <div className="col-span-12 md:col-span-8 lg:col-span-7">
-            <Reveal as="p" className="text-[12px] md:text-[13px] tracking-[0.2em] uppercase text-bh-graphite mb-6 md:mb-10 inline-flex items-center gap-3" duration={700}>
+            <Reveal as="p" className="text-[11px] md:text-[13px] tracking-[0.2em] uppercase text-bh-graphite mb-5 md:mb-10 inline-flex items-center gap-2.5 md:gap-3 flex-wrap" duration={700}>
               <span className="relative inline-flex items-center justify-center w-2 h-2">
                 <span className="absolute inset-0 rounded-full bg-bh-orange bh-pulse" />
                 <span className="relative inline-block w-2 h-2 rounded-full bg-bh-orange" />
@@ -47,19 +47,19 @@ export default function Hero() {
               <span className="inline-block w-px h-3 bg-bh-steel/70" />
               <span>Residential construction</span>
             </Reveal>
-            <Reveal as="h1" className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-black text-[56px] sm:text-[80px] md:text-[112px] lg:text-[148px]" duration={900} delay={120}>
+            <Reveal as="h1" className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-black text-[44px] min-[420px]:text-[52px] sm:text-[80px] md:text-[112px] lg:text-[148px]" duration={900} delay={120}>
               Precision Estimating.
               <br />
               <span className="text-bh-orange">Disciplined Delivery.</span>
             </Reveal>
-            <Reveal as="p" className="mt-8 max-w-xl text-bh-graphite text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.01em]" duration={700} delay={300}>
+            <Reveal as="p" className="mt-6 md:mt-8 max-w-xl text-bh-graphite text-[15px] md:text-[19px] leading-[1.5] tracking-[-0.01em]" duration={700} delay={300}>
               Twenty-five years inside Australian residential construction.
               The back-end partner for builders, developers and owner-builders.
               We protect margins, control costs and strengthen execution from
               tender through completion.
             </Reveal>
-            <Reveal as="div" className="mt-10 flex flex-wrap items-center gap-3" duration={700} delay={420}>
-              <Magnetic pull={6}>
+            <Reveal as="div" className="mt-7 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 w-full sm:w-auto" duration={700} delay={420}>
+              <Magnetic pull={6} className="w-full sm:w-auto">
                 <Button href="#intake">Start Your Brief</Button>
               </Magnetic>
               <Button href="#hawktress" variant="secondary">
@@ -70,33 +70,33 @@ export default function Hero() {
         </div>
 
         {/* Bottom meta strip */}
-        <div className="mt-auto pt-16 md:pt-24 grid grid-cols-12 gap-6 md:gap-8 items-end">
-          <div className="col-span-6 md:col-span-3">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">
+        <div className="mt-auto pt-10 md:pt-24 grid grid-cols-2 md:grid-cols-12 gap-y-5 gap-x-4 md:gap-6 lg:gap-8 items-end">
+          <div className="md:col-span-3">
+            <p className="text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-1.5 md:mb-2">
               Experience
             </p>
-            <p className="text-bh-black text-[14px] md:text-[15px] tracking-[-0.01em]">
+            <p className="text-bh-black text-[13px] md:text-[15px] tracking-[-0.01em]">
               <span className="text-bh-orange font-semibold">25 yrs</span>{" "}
               residential construction
             </p>
           </div>
-          <div className="col-span-6 md:col-span-3">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">
+          <div className="md:col-span-3">
+            <p className="text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-1.5 md:mb-2">
               Office
             </p>
-            <p className="text-bh-black text-[14px] md:text-[15px] tracking-[-0.01em]">
+            <p className="text-bh-black text-[13px] md:text-[15px] tracking-[-0.01em]">
               Geelong, VIC · Australia
             </p>
           </div>
-          <div className="col-span-6 md:col-span-3">
-            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">
+          <div className="md:col-span-3">
+            <p className="text-[10px] md:text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-1.5 md:mb-2">
               Stage
             </p>
-            <p className="text-bh-black text-[14px] md:text-[15px] tracking-[-0.01em]">
+            <p className="text-bh-black text-[13px] md:text-[15px] tracking-[-0.01em]">
               Tender → Completion
             </p>
           </div>
-          <div className="col-span-6 md:col-span-3 text-right">
+          <div className="hidden md:block md:col-span-3 md:text-right">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
               Scroll
             </p>

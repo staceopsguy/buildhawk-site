@@ -50,7 +50,7 @@ export default function Lifecycle() {
   return (
     <section
       id="hawktress"
-      className="relative bg-bh-white py-24 md:py-36 scroll-mt-20"
+      className="relative bg-bh-white py-16 md:py-36 scroll-mt-20"
     >
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         {/* Section header */}

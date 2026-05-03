@@ -31,7 +31,7 @@ export default function CtaFooter() {
     <section
       id="contact"
       ref={sweepRef}
-      className="relative overflow-hidden bg-bh-black text-bh-white"
+      className="relative overflow-hidden bg-bh-ink text-bh-paper"
     >
       <div
         aria-hidden
@@ -51,7 +51,7 @@ export default function CtaFooter() {
         }}
       />
 
-      <div className="relative mx-auto max-w-[1480px] px-6 md:px-10 py-24 md:py-36">
+      <div className="relative mx-auto max-w-[1480px] px-5 md:px-10 py-16 md:py-36">
         <div className="grid grid-cols-12 gap-6 md:gap-8">
           <div className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/70">
@@ -59,17 +59,17 @@ export default function CtaFooter() {
             </p>
           </div>
           <Reveal as="div" className="col-span-12 md:col-span-9" duration={800}>
-            <h2 className="font-medium tracking-[-0.03em] leading-[0.95] text-[44px] sm:text-[64px] md:text-[88px] lg:text-[112px]">
+            <h2 className="font-medium tracking-[-0.03em] leading-[0.95] text-[36px] min-[420px]:text-[44px] sm:text-[64px] md:text-[88px] lg:text-[112px]">
               Where every build
               <br />
               <span className="text-bh-orange">starts with clarity.</span>
             </h2>
-            <p className="mt-8 max-w-2xl text-bh-steel text-[17px] md:text-[19px] leading-[1.55] tracking-[-0.01em]">
+            <p className="mt-6 md:mt-8 max-w-2xl text-bh-steel text-[15px] md:text-[19px] leading-[1.55] tracking-[-0.01em]">
               We work with a deliberate number of operators each year. If
               margin protection is a priority on your next project, start with
               a call.
             </p>
-            <div className="mt-10 flex flex-wrap items-center gap-3">
+            <div className="mt-7 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3">
               <Magnetic pull={6}>
                 <Button href="#intake">Start Your Brief</Button>
               </Magnetic>
@@ -96,7 +96,7 @@ export default function CtaFooter() {
                 <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/80">
                   Email
                 </p>
-                <p className="mt-1 text-bh-white text-[18px] md:text-[20px] tracking-[-0.01em] group-hover:text-bh-orange transition-colors">
+                <p className="mt-1 text-bh-paper text-[18px] md:text-[20px] tracking-[-0.01em] group-hover:text-bh-orange transition-colors">
                   info@buildhawk.com.au
                 </p>
               </div>
@@ -121,7 +121,7 @@ export default function CtaFooter() {
                 <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/80">
                   Phone
                 </p>
-                <p className="mt-1 text-bh-white text-[18px] md:text-[20px] tracking-[-0.01em] group-hover:text-bh-orange transition-colors">
+                <p className="mt-1 text-bh-paper text-[18px] md:text-[20px] tracking-[-0.01em] group-hover:text-bh-orange transition-colors">
                   +61 433 366 607
                 </p>
               </div>
@@ -141,7 +141,7 @@ export default function CtaFooter() {
                 <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/80">
                   Brief intake
                 </p>
-                <p className="mt-1 text-bh-white text-[18px] md:text-[20px] tracking-[-0.01em] group-hover:text-bh-orange transition-colors">
+                <p className="mt-1 text-bh-paper text-[18px] md:text-[20px] tracking-[-0.01em] group-hover:text-bh-orange transition-colors">
                   Open the form
                 </p>
               </div>
@@ -164,12 +164,12 @@ export default function CtaFooter() {
               Hawktress
             </p>
             <ul className="space-y-2 text-[13px] tracking-[-0.005em]">
-              <li><a href="/#hawktress" className="text-bh-white hover:text-bh-orange transition-colors">Lifecycle</a></li>
-              <li><a href="/#how" className="text-bh-white hover:text-bh-orange transition-colors">How it works</a></li>
-              <li><a href="/#pricing" className="text-bh-white hover:text-bh-orange transition-colors">Pricing</a></li>
-              <li><a href="/insights" className="text-bh-white hover:text-bh-orange transition-colors">Insights</a></li>
-              <li><a href="/#about" className="text-bh-white hover:text-bh-orange transition-colors">About</a></li>
-              <li><a href="/#intake" className="text-bh-white hover:text-bh-orange transition-colors">Start a brief</a></li>
+              <li><a href="/#hawktress" className="text-bh-paper hover:text-bh-orange transition-colors">Lifecycle</a></li>
+              <li><a href="/#how" className="text-bh-paper hover:text-bh-orange transition-colors">How it works</a></li>
+              <li><a href="/#pricing" className="text-bh-paper hover:text-bh-orange transition-colors">Pricing</a></li>
+              <li><a href="/insights" className="text-bh-paper hover:text-bh-orange transition-colors">Insights</a></li>
+              <li><a href="/#about" className="text-bh-paper hover:text-bh-orange transition-colors">About</a></li>
+              <li><a href="/#intake" className="text-bh-paper hover:text-bh-orange transition-colors">Start a brief</a></li>
             </ul>
           </div>
 
@@ -178,17 +178,17 @@ export default function CtaFooter() {
               Legal
             </p>
             <ul className="space-y-2 text-[13px] tracking-[-0.005em]">
-              <li><a href="/terms-builders" className="text-bh-white hover:text-bh-orange transition-colors">Builder terms</a></li>
-              <li><a href="/terms-trades" className="text-bh-white hover:text-bh-orange transition-colors">Trade terms</a></li>
-              <li><a href="/terms-suppliers" className="text-bh-white hover:text-bh-orange transition-colors">Supplier terms</a></li>
-              <li><a href="/data-policy" className="text-bh-white hover:text-bh-orange transition-colors">Data policy</a></li>
+              <li><a href="/terms-builders" className="text-bh-paper hover:text-bh-orange transition-colors">Builder terms</a></li>
+              <li><a href="/terms-trades" className="text-bh-paper hover:text-bh-orange transition-colors">Trade terms</a></li>
+              <li><a href="/terms-suppliers" className="text-bh-paper hover:text-bh-orange transition-colors">Supplier terms</a></li>
+              <li><a href="/data-policy" className="text-bh-paper hover:text-bh-orange transition-colors">Data policy</a></li>
             </ul>
           </div>
 
           <div className="col-span-12 pt-8 border-t border-bh-graphite/40 flex flex-col md:flex-row items-start md:items-end justify-between gap-3 text-[12px] tracking-[-0.005em] text-bh-steel/70">
             <p>© {new Date().getFullYear()} BuildHawk Pty Ltd · Geelong, VIC · Australia</p>
             <p>Governing law · Victoria, Australia</p>
-            <a className="hover:text-bh-white" href="#top">Back to top ↑</a>
+            <a className="hover:text-bh-paper" href="#top">Back to top ↑</a>
           </div>
         </div>
       </div>

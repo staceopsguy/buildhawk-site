@@ -77,7 +77,7 @@ export default function IntakeForm() {
   return (
     <section
       id="intake"
-      className="relative bg-bh-white py-24 md:py-36 scroll-mt-20"
+      className="relative bg-bh-white py-16 md:py-36 scroll-mt-20"
     >
       <div className="mx-auto max-w-[1480px] px-6 md:px-10">
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-12 md:mb-16">
@@ -219,18 +219,18 @@ export default function IntakeForm() {
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="group inline-flex items-center justify-between gap-4 rounded-[8px] pl-6 pr-2 h-12 text-[14px] tracking-[-0.005em] bg-bh-orange text-bh-white hover:bg-bh-orange-700 active:bg-bh-orange-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
+                    className="group inline-flex items-center justify-between gap-4 rounded-[8px] pl-6 pr-2 h-12 text-[14px] tracking-[-0.005em] bg-bh-orange text-bh-paper hover:bg-bh-orange-700 active:bg-bh-orange-900 disabled:opacity-60 disabled:cursor-not-allowed transition-colors"
                   >
                     <span className="font-medium">
                       {status === "submitting" ? "Sending..." : "Send Brief"}
                     </span>
-                    <span className="inline-flex items-center justify-center rounded-full w-9 h-9 bg-bh-white/20 group-hover:bg-bh-white/30 transition-colors">
+                    <span className="inline-flex items-center justify-center rounded-full w-9 h-9 bg-bh-paper/20 group-hover:bg-bh-paper/30 transition-colors">
                       <svg
                         width="14"
                         height="14"
                         viewBox="0 0 14 14"
                         fill="none"
-                        className="stroke-bh-white"
+                        className="stroke-bh-paper"
                         aria-hidden
                       >
                         <path

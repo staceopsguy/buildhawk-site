@@ -149,10 +149,10 @@ export default async function ArticlePage({ params }: { params: Params }) {
             </div>
             <a
               href="/#intake"
-              className="inline-flex items-center justify-between gap-4 rounded-[8px] pl-5 pr-2 h-11 text-[13px] tracking-[-0.005em] font-medium bg-bh-orange text-bh-white hover:bg-bh-orange-700 transition-colors"
+              className="inline-flex items-center justify-between gap-4 rounded-[8px] pl-5 pr-2 h-11 text-[13px] tracking-[-0.005em] font-medium bg-bh-orange text-bh-paper hover:bg-bh-orange-700 transition-colors"
             >
               Start your brief
-              <span className="inline-flex items-center justify-center rounded-full w-7 h-7 bg-bh-white/20">
+              <span className="inline-flex items-center justify-center rounded-full w-7 h-7 bg-bh-paper/20">
                 <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden>
                   <path
                     d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
@@ -192,14 +192,14 @@ export default async function ArticlePage({ params }: { params: Params }) {
         </section>
       )}
 
-      <footer className="bg-bh-black text-bh-white py-12">
+      <footer className="bg-bh-ink text-bh-paper py-12">
         <div className="mx-auto max-w-[1480px] px-6 md:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
           <p className="text-[13px] tracking-[-0.005em] text-bh-steel/80">
             © {new Date().getFullYear()} BuildHawk Pty Ltd · Geelong, VIC
           </p>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-[13px] tracking-[-0.005em]">
-            <Link href="/insights" className="text-bh-white hover:text-bh-orange transition-colors">All insights</Link>
-            <Link href="/" className="text-bh-white hover:text-bh-orange transition-colors">Back to BuildHawk</Link>
+            <Link href="/insights" className="text-bh-paper hover:text-bh-orange transition-colors">All insights</Link>
+            <Link href="/" className="text-bh-paper hover:text-bh-orange transition-colors">Back to BuildHawk</Link>
           </div>
         </div>
         <div className="h-3 md:h-4 bg-bh-orange mt-12" />

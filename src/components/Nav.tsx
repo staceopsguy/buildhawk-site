@@ -128,7 +128,7 @@ export default function Nav() {
           </a>
           <a
             href="/#intake"
-            className="hidden sm:inline-flex items-center h-10 px-5 rounded-[8px] bg-bh-black text-bh-white text-[13px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
+            className="hidden sm:inline-flex items-center h-10 px-5 rounded-[8px] bg-bh-ink text-bh-paper text-[13px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
           >
             Start Brief
           </a>
@@ -213,7 +213,7 @@ export default function Nav() {
             <a
               href="/#intake"
               onClick={() => setMobileOpen(false)}
-              className="inline-flex items-center justify-center h-12 rounded-[8px] bg-bh-black text-bh-white text-[14px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
+              className="inline-flex items-center justify-center h-12 rounded-[8px] bg-bh-ink text-bh-paper text-[14px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
             >
               Start Brief
             </a>
