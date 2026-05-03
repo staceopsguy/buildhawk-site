@@ -25,7 +25,9 @@ export type Article = {
   body: string;
   videoPoster?: string;
   videoLabel?: string;
-  videoSrc?: string; // optional MP4 URL when added later
+  videoSrc?: string; // optional MP4 URL
+  youtubeId?: string; // optional YouTube video ID
+  videoCredit?: string; // e.g. "Featured talk · Will Spaulding"
 };
 
 export const authors: Record<Author["id"], Author> = {
@@ -52,6 +54,9 @@ export const articles: Article[] = [
     readingTime: 7,
     category: "Methodology",
     cover: "/images/architect-plans.webp",
+    youtubeId: "o9X5uA-pVWA",
+    videoLabel: "Construction Contract Variations and Claims with Peter Mallett",
+    videoCredit: "Featured talk · 32 min",
     body: `Every builder loses margin in the same three places. The estimate that goes out optimistic. The variation that gets waved through. The PO that closes 10% over without a phone call. None of these failures look catastrophic in the moment. They look like single line items on a single job. But across a year of work they add up to the difference between profit and break-even.
 
 We built the 5% variance threshold to put a hard line under all three.
@@ -118,6 +123,9 @@ If you are a builder reading this and you have ever finished a project knowing y
     readingTime: 6,
     category: "Operator Playbook",
     cover: "/images/site-aerial.webp",
+    youtubeId: "bFloySBOcp8",
+    videoLabel: "How to start a House Build in Australia · Pre-construction Guide",
+    videoCredit: "Featured walkthrough · CourtneyBraz",
     body: `Sitework is the line item that ruins more first-region builds than any other. Frames are easy to estimate. Cabinetry is easy. Roofing is easy. Sitework is the one that hides.
 
 I have worked across Geelong, the Bellarine Peninsula, and the western Melbourne fringe for over two decades. Every time we open a job in a suburb we have not built in before, the first sitework estimate is wrong. Not by a small amount.
@@ -184,14 +192,17 @@ If your business is moving into a new postcode this year, the single most expens
     title: "Variation Control: Three Questions Before You Approve",
     dek:
       "Most variations are not fraudulent. They are sloppy. The CA who runs a variation through three specific questions before approval will catch nine out of ten cost creep events before they hit the books.",
-    authorId: "jc",
+    authorId: "nathan",
     date: "2025-07-22",
     readingTime: 5,
     category: "Operator Playbook",
     cover: "/images/architect-plans.webp",
+    youtubeId: "qN8QOmChcxY",
+    videoLabel: "Contract variation procedure with worked example",
+    videoCredit: "Featured walkthrough · 26 min",
     body: `Contract administrators are not paid to be hard. They are paid to be accurate. The difference between a CA who protects margin and a CA who erodes it is usually three questions.
 
-I run the contract administration function for the Hawktress platform. I see roughly 40 to 60 variation claims a week across the active builder book. The pattern is consistent. Around 70% of variations are legitimate and well-documented. Around 25% are legitimate but underspecified. Around 5% are wrong, either through sloppy paperwork or, occasionally, through deliberate inflation.
+I review every escalated variation that comes through the Hawktress platform. Across the active builder book the team processes roughly 40 to 60 variation claims a week. The pattern is consistent. Around 70% of variations are legitimate and well-documented. Around 25% are legitimate but underspecified. Around 5% are wrong, either through sloppy paperwork or, occasionally, through deliberate inflation.
 
 The three questions catch the 25 plus the 5.
 
@@ -246,13 +257,14 @@ If you are running a CA function inside a builder, write the three questions on 
     title: "Reading the Monthly Director Report: A Walkthrough",
     dek:
       "Every active job, every committed cost, every flagged variation, every dollar of cash position, in one report by the 5th of the month. Here is how to read it in 90 seconds, and what to act on first.",
-    authorId: "jc",
+    authorId: "nathan",
     date: "2026-02-04",
     readingTime: 8,
     category: "Methodology",
     cover: "/images/modern-build.webp",
-    videoPoster: "/images/modern-build.webp",
-    videoLabel: "4-minute walkthrough · Director Report",
+    youtubeId: "42PcHNSOSEg",
+    videoLabel: "Construction Cost Estimating · Step-by-step guide",
+    videoCredit: "Featured walkthrough",
     body: `The monthly director report is the most important single artefact Hawktress produces. It runs to between three and seven pages depending on the size of the builder's active book. It lands in the director's inbox by the 5th of every month. Read correctly, it gives you 90 seconds of certainty about whether the business is on track.
 
 This piece walks through how to read it.
@@ -273,7 +285,7 @@ Every report has the same five sections in the same order.
 
 ## How to read it in 90 seconds
 
-I tell every director who onboards onto the platform to read the report in this order, with a stopwatch.
+Every director who onboards onto the platform gets the same instruction from me. Read the report in this order, with a stopwatch.
 
 **0 to 15 seconds.** Read section 1 only. Look at three numbers. Portfolio gross margin. Cash position relative to commitments. 30-day forecast revenue. If those three numbers are inside the bands you set at the start of the year, the business is on track and you can read the rest at your own pace. If any of the three are outside the band, you have a real meeting to run this morning.
 
@@ -347,8 +359,9 @@ Run the report on the 5th. Hold the structure. The business will follow.`,
     readingTime: 9,
     category: "Founder",
     cover: "/images/architect-plans.webp",
-    videoPoster: "/images/architect-plans.webp",
-    videoLabel: "Founder talk · 6 min",
+    youtubeId: "cbCZbaIoBm4",
+    videoLabel: "How To Estimate Jobs For Contractors · Estimating 101",
+    videoCredit: "Featured talk · Will Spaulding",
     body: `Most construction software is built by people who have never run a site. The product managers have read about residential construction. The engineers have visited a site once for a customer tour. The designers have never sat in a contract administrator's chair at the end of a Friday afternoon trying to reconcile a $14,000 variation against a quote document that has gone through three revisions.
 
 The result is software that looks good in a demo and dies on a real job.

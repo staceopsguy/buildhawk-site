@@ -111,7 +111,7 @@ export default function ArticleBody({ article }: { article: Article }) {
 
   // Insert video embed after the first H2 if article has video metadata.
   let withVideo = blocks;
-  if (article.videoLabel) {
+  if (article.videoLabel || article.youtubeId) {
     const firstH2Index = blocks.findIndex((b: React.ReactNode) => {
       if (typeof b === "object" && b && "type" in b) {
         return (b as React.ReactElement).type === "h2";
@@ -124,8 +124,10 @@ export default function ArticleBody({ article }: { article: Article }) {
       <div key="video-embed" className="my-12 md:my-14">
         <VideoEmbed
           poster={article.videoPoster ?? article.cover}
-          label={article.videoLabel}
+          label={article.videoLabel ?? "Featured walkthrough"}
           src={article.videoSrc}
+          youtubeId={article.youtubeId}
+          credit={article.videoCredit}
           alt=""
         />
       </div>,

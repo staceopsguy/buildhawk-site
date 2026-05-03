@@ -6,29 +6,57 @@ import Image from "next/image";
 type Props = {
   poster: string;
   label: string;
-  /** Optional MP4 URL. When omitted, the player shows a "request walkthrough" CTA. */
+  /** Optional MP4 URL. */
   src?: string;
+  /** Optional YouTube ID (preferred for "real people" content). */
+  youtubeId?: string;
   /** Alt text for the poster image. */
   alt?: string;
+  /** Optional credit line shown under the label. */
+  credit?: string;
 };
 
-export default function VideoEmbed({ poster, label, src, alt = "" }: Props) {
+function youtubeThumb(id: string): string {
+  return `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+}
+
+export default function VideoEmbed({
+  poster,
+  label,
+  src,
+  youtubeId,
+  alt = "",
+  credit,
+}: Props) {
   const [playing, setPlaying] = useState(false);
+
+  // Prefer YouTube thumb if available and no custom poster set
+  const effectivePoster = poster || (youtubeId ? youtubeThumb(youtubeId) : "");
+  const hasMedia = Boolean(src || youtubeId);
 
   return (
     <figure className="relative w-full aspect-video overflow-hidden bg-bh-black border border-bh-steel/40 group">
-      {playing && src ? (
+      {playing && youtubeId ? (
+        <iframe
+          className="absolute inset-0 w-full h-full"
+          src={`https://www.youtube.com/embed/${youtubeId}?autoplay=1&rel=0&modestbranding=1`}
+          title={label}
+          loading="lazy"
+          allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      ) : playing && src ? (
         <video
           className="absolute inset-0 w-full h-full object-cover"
           src={src}
           controls
           autoPlay
-          poster={poster}
+          poster={effectivePoster}
         />
       ) : (
         <>
           <Image
-            src={poster}
+            src={effectivePoster}
             alt={alt}
             fill
             sizes="(min-width: 1024px) 800px, 100vw"
@@ -41,9 +69,9 @@ export default function VideoEmbed({ poster, label, src, alt = "" }: Props) {
           <button
             type="button"
             onClick={() => {
-              if (src) setPlaying(true);
+              if (hasMedia) setPlaying(true);
             }}
-            aria-label={src ? "Play video" : "Request walkthrough"}
+            aria-label={hasMedia ? "Play video" : "Request walkthrough"}
             className="absolute inset-0 flex items-center justify-center cursor-pointer"
           >
             <span className="relative inline-flex items-center justify-center w-16 h-16 md:w-20 md:h-20 rounded-full bg-bh-orange text-bh-white transition-transform duration-300 group-hover:scale-105">
@@ -64,12 +92,17 @@ export default function VideoEmbed({ poster, label, src, alt = "" }: Props) {
           {/* label */}
           <div className="absolute bottom-0 left-0 right-0 p-5 md:p-6 text-bh-white">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/85 mb-1">
-              {src ? "Watch" : "Walkthrough"}
+              {hasMedia ? "Watch" : "Walkthrough"}
             </p>
             <p className="text-[16px] md:text-[18px] tracking-[-0.01em] font-medium">
               {label}
             </p>
-            {!src && (
+            {credit && (
+              <p className="mt-1 text-[12px] tracking-[-0.005em] text-bh-steel/75">
+                {credit}
+              </p>
+            )}
+            {!hasMedia && !credit && (
               <p className="mt-1 text-[12px] tracking-[-0.005em] text-bh-steel/75">
                 Available on request · email{" "}
                 <a
