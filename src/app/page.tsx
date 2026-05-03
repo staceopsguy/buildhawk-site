@@ -7,6 +7,7 @@ import Pricing from "@/components/sections/Pricing";
 import Portfolio from "@/components/sections/Portfolio";
 import Founder from "@/components/sections/Founder";
 import WhoWeAre from "@/components/sections/WhoWeAre";
+import Insights from "@/components/sections/Insights";
 import IntakeForm from "@/components/sections/IntakeForm";
 import CtaFooter from "@/components/sections/CtaFooter";
 
@@ -22,6 +23,7 @@ export default function Home() {
       <Portfolio />
       <Founder />
       <WhoWeAre />
+      <Insights />
       <IntakeForm />
       <CtaFooter />
     </main>

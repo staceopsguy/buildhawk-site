@@ -164,11 +164,12 @@ export default function CtaFooter() {
               Hawktress
             </p>
             <ul className="space-y-2 text-[13px] tracking-[-0.005em]">
-              <li><a href="#hawktress" className="text-bh-white hover:text-bh-orange transition-colors">Lifecycle</a></li>
-              <li><a href="#how" className="text-bh-white hover:text-bh-orange transition-colors">How it works</a></li>
-              <li><a href="#pricing" className="text-bh-white hover:text-bh-orange transition-colors">Pricing</a></li>
-              <li><a href="#about" className="text-bh-white hover:text-bh-orange transition-colors">About</a></li>
-              <li><a href="#intake" className="text-bh-white hover:text-bh-orange transition-colors">Start a brief</a></li>
+              <li><a href="/#hawktress" className="text-bh-white hover:text-bh-orange transition-colors">Lifecycle</a></li>
+              <li><a href="/#how" className="text-bh-white hover:text-bh-orange transition-colors">How it works</a></li>
+              <li><a href="/#pricing" className="text-bh-white hover:text-bh-orange transition-colors">Pricing</a></li>
+              <li><a href="/insights" className="text-bh-white hover:text-bh-orange transition-colors">Insights</a></li>
+              <li><a href="/#about" className="text-bh-white hover:text-bh-orange transition-colors">About</a></li>
+              <li><a href="/#intake" className="text-bh-white hover:text-bh-orange transition-colors">Start a brief</a></li>
             </ul>
           </div>
 

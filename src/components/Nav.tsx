@@ -4,10 +4,11 @@ import { useEffect, useState } from "react";
 import BrandLockup from "@/components/BrandLockup";
 
 const links = [
-  { href: "#hawktress", label: "Hawktress" },
-  { href: "#how", label: "How It Works" },
-  { href: "#pricing", label: "Pricing" },
-  { href: "#about", label: "About" },
+  { href: "/#hawktress", label: "Hawktress" },
+  { href: "/#how", label: "How It Works" },
+  { href: "/#pricing", label: "Pricing" },
+  { href: "/insights", label: "Insights" },
+  { href: "/#about", label: "About" },
 ];
 
 export default function Nav() {
@@ -58,7 +59,7 @@ export default function Nav() {
             +61 433 366 607
           </a>
           <a
-            href="#intake"
+            href="/#intake"
             className="inline-flex items-center h-10 px-5 rounded-[8px] bg-bh-black text-bh-white text-[13px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
           >
             Start Brief
