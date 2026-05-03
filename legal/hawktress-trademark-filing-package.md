@@ -16,8 +16,10 @@ If/when a logo lock-up is finalised, file a second application as a composite (l
 ## 2. Applicant
 
 - **Name:** BuildHawk Pty Ltd
-- **ACN:** [confirm from ASIC record before lodging]
-- **Address for service:** BuildHawk's registered office (or attorney address if engaging one)
+- **ACN:** 695 023 664
+- **Registered:** Queensland, Australia (Feb 2026)
+- **Operating base:** Geelong, Victoria
+- **Address for service:** BuildHawk's QLD registered office (or attorney address if engaging one) — confirm registered office is actively monitored for legal correspondence; missed opposition notices can default the application
 - **Entity type:** Australian private company
 
 Assignment to a future IP holding entity is straightforward post-grant — file Form TM ASS with the new owner's details. Priority date is preserved.
@@ -28,7 +30,12 @@ Assignment to a future IP holding entity is straightforward post-grant — file 
 
 Picklist-compliant specification:
 
-> Software as a service (SaaS) featuring software for use in construction cost estimation; software as a service (SaaS) featuring software for construction project management; software as a service (SaaS) featuring software for cost data analytics; providing online non-downloadable software for construction cost estimation; providing online non-downloadable software for construction project management; providing online non-downloadable software for cost data analytics; platform as a service (PaaS) featuring software for construction cost estimation and project execution.
+> Software as a service (SaaS) services featuring software for cost estimation, cost management, project management, and workflow management in the construction industry; providing online non-downloadable software for use by builders, contractors, and construction professionals for preparing bills of quantities, issuing requests for quotation, coordinating suppliers and subcontractors, and tracking project budgets and progress; providing temporary use of online non-downloadable software for cost data analysis, benchmarking, and reporting in the residential and commercial construction sectors.
+
+Drafting notes:
+- Avoids "estimating service" (drifts toward Class 37/35).
+- Avoids "platform" / "proprietary platform" given GHL stack underneath; "software as a service" is accurate regardless of back end.
+- Broader than current v3.0 product but every clause maps to actual or near-roadmap function — defensible against examiner overclaiming objection.
 
 **Hold for now (revisit at launch):**
 - **Class 9** — only if a downloadable native app ships. Web-only does not require Class 9.
@@ -38,14 +45,14 @@ Single-class filing keeps fees and prosecution risk low. Adding classes later re
 
 ## 4. Filing Pathway
 
-**Recommended: TM Headstart (pre-application assessment) → standard application.**
+**Recommended: direct filing (skip Headstart).**
 
-- **TM Headstart:** AU$200 per class. Examiner does a preliminary assessment in ~5 business days and flags issues before priority date locks. If clean, convert to standard application within 5 business days for an additional AU$130 (Part 2 fee).
-- **Standard direct filing:** AU$250 per class (picklist). Faster but no early examiner feedback — any objection costs time and amendment fees.
+HAWKTRESS is a coined word — highly distinctive, no descriptive overlap with construction or estimating. Section 41 distinctiveness risk is near zero. Headstart's pre-assessment value is for borderline-distinctive marks or known conflict zones; neither applies here.
 
-For a pre-launch SaaS where the priority date is the asset, Headstart is the safer path. Cost delta is negligible (~AU$80) versus avoiding a refused application that resets priority.
+- **Direct standard filing:** AU$250/class (picklist) — locks priority date immediately.
+- **Headstart pathway:** $200 (Part 1) + $130 (Part 2) = $330 with 5+ business day delay before priority locks. Higher cost, slower priority, value-add doesn't apply to a coined word.
 
-**Alternative: direct standard filing at AU$250** if Nathan wants the priority date locked immediately and is willing to handle any examiner objection during prosecution.
+Direct filing is the right call **contingent on the clearance search coming back clean**.
 
 ## 5. Use Status
 
@@ -68,43 +75,58 @@ A formal availability search by an attorney (~AU$500–$1,500) is recommended be
 
 | Item | Cost |
 |---|---|
-| TM Headstart Part 1 (1 class) | $200 |
-| TM Headstart Part 2 (convert to application) | $130 |
-| **Total to filed application** | **$330** |
-| Optional attorney availability search | $500–$1,500 |
-| Optional attorney drafting/lodgement | $800–$2,000 |
+| Direct filing, 1 class, picklist | $250 |
+| **IP Australia government fee total** | **$250** |
+| Attorney engagement (clearance search + filing + standard prosecution) | $1,500–$3,500 |
 | Registration certificate (after acceptance + 2-month opposition window) | $0 (included) |
 | Renewal (every 10 years, per class) | $400 |
 
-Standard direct path (skip Headstart): $250 total to filed application.
+Attorney engagement is the recommended path — Hawktress is a moat asset, not a $250 form-filing exercise. Fixed-fee TM filing packages from AU SaaS-friendly firms run in this range and include clearance, drafting, and objection handling.
 
 ## 8. Timeline
 
-- **Day 0:** Lodge Headstart application
-- **~Day 5–10:** Examiner pre-assessment returned
-- **Day 10–15:** Convert to standard application (Part 2 fee)
+- **Day 0:** Direct filing lodged; priority date locks
 - **~Month 3–4:** Examination report (acceptance or objection)
-- **~Month 7–9:** Acceptance + advertisement
+- **~Month 7–9:** Acceptance + advertisement for opposition
 - **~Month 9–11:** End of opposition period; registration issued
 - **Total to registration if unopposed:** ~7–11 months
 
-## 9. Action Items — what's needed from you
+## 9. Decisions Locked
 
-1. **Confirm applicant entity:** BuildHawk Pty Ltd, ACN, registered address.
-2. **Confirm filing pathway:** Headstart (recommended) or direct standard.
-3. **Confirm goods/services scope:** sign off on the Class 42 specification above, decide whether to add Class 9 / 35.
-4. **Decide on attorney engagement:** DIY via IP Australia portal, or brief an attorney (recommended once Nathan signs off on scope).
-5. **Lodgement:** done at https://services.ipaustralia.gov.au — requires applicant login, signature, and credit card.
+| Decision | Status |
+|---|---|
+| Applicant | ✅ BuildHawk Pty Ltd, ACN 695 023 664 |
+| Filing pathway | ✅ Direct filing (skip Headstart) |
+| Goods/services scope | ✅ Class 42, single class — spec in §3 |
+| Lodgement method | ✅ Attorney engagement |
+| Jurisdiction | ✅ IP Australia only (USPTO + Madrid deferred 12+ months) |
+| Use status | ✅ Intent-to-use |
 
-## 10. What I cannot do
+## 10. Outstanding — to action
+
+1. **Confirm QLD registered office is actively monitored** for legal correspondence (opposition notices come here; missed notice = default).
+2. **Pick the IP attorney.** No firm selected yet. Three AU options worth shortlisting: Spruson & Ferguson (large, SaaS-heavy), POF / Phillips Ormonde Fitzpatrick (mid, fixed-fee TM packages), Mark Williams Solicitors (boutique, builder-friendly fees). Can shortlist properly once you confirm budget and preferred firm size.
+3. **Brief the attorney.** Package below ready to send.
+4. **Domain + handle defence** (parallel to filing): lock hawktress.com.au, hawktress.com, hawktress.ai, and social handles before any public reveal. Cheap insurance vs UDRP recovery.
+
+## 11. Attorney Brief (ready to send)
+
+> **Mark:** HAWKTRESS (word mark, plain text, no logo)
+> **Applicant:** BuildHawk Pty Ltd, ACN 695 023 664, registered Queensland
+> **Class:** 42 (single class)
+> **Specification:** see §3 — please review and tune for examiner approval
+> **Filing basis:** intent-to-use
+> **Jurisdiction:** IP Australia, direct filing (skip Headstart)
+> **Pre-filing requirement:** clearance search across IP Australia, USPTO (defensive), NZ IPO, Madrid, plus common-law search
+> **Strategic context:** Hawktress is the IP backbone for a SaaS platform serving AU/NZ residential builders. Filing under operating entity now; assignment to a future IP holding entity within 12 months is anticipated. Madrid Protocol revisit at 12-month mark contingent on US/UK commercialisation roadmap.
+> **Stack note:** platform built on GoHighLevel (GHL) infrastructure. Specification deliberately uses "software as a service" rather than "platform" to remain accurate regardless of underlying stack.
+
+## 12. What I cannot do
 
 - File the application on your behalf — requires applicant signature, payment, and is a legal act.
 - Provide legal advice on enforceability or infringement strategy — engage an attorney for that.
-- Run a formal trademark availability search beyond knockout level.
+- Run a formal trademark availability search beyond knockout level (clean per §6).
 
-## 11. Next-best step
+## 13. Next-best step
 
-Confirm applicant entity details + pathway choice. Once confirmed, I can:
-- Draft the engagement brief for a TM attorney (Mark Williams Solicitors, POF, Spruson & Ferguson, or similar AU TM firms)
-- Pre-fill the IP Australia application form with the spec above so lodgement is a 10-minute task
-- Diary the use-by-3-years date and renewal date for the operations calendar
+Pick the attorney. Brief in §11 ships the moment a firm is selected. Domain/handle lock can run in parallel today.

@@ -353,7 +353,7 @@ Run the report on the 5th. Hold the structure. The business will follow.`,
     slug: "building-hawktress-builder-builds-software",
     title: "Building Hawktress: How a Builder Builds Software",
     dek:
-      "We did not hire a developer to build a construction platform. We built it ourselves, in Airtable, on top of live jobs we were running. Here is what we learned about why builder-owned software is the only kind that survives contact with a real site.",
+      "We did not hire a developer to build a construction platform. We built it ourselves, in GoHighLevel, on top of live jobs we were running. Here is what we learned about why builder-owned software is the only kind that survives contact with a real site.",
     authorId: "nathan",
     date: "2026-05-01",
     readingTime: 9,
@@ -370,13 +370,13 @@ I have been a builder for 25 years. I have run contract administration for two d
 
 The answer turned out to be smaller and more disciplined than the existing market.
 
-## The first decision was Airtable, not custom code
+## The first decision was GoHighLevel, not custom code
 
-When I told people we were building Hawktress in Airtable, the responses split cleanly. Software people thought it was a temporary scaffolding decision before we built "real" software. Builders thought it was the only sensible decision we could have made.
+When I told people we were building Hawktress in GoHighLevel, the responses split cleanly. Software people thought it was a temporary scaffolding decision before we built "real" software. Builders thought it was the only sensible decision we could have made.
 
-Airtable was the right answer because it forced us to define the data model before we worried about the interface. Construction is a data problem disguised as a workflow problem. The variations are records. The quotes are records. The actuals are records. The relationships between them are the entire game. Build the records and the relationships first. The interface follows.
+GoHighLevel was the right answer because it forced us to define the data model before we worried about the interface. Construction is a data problem disguised as a workflow problem. The variations are records. The quotes are records. The actuals are records. The relationships between them are the entire game. Build the records and the relationships first. The interface follows.
 
-The other reason was velocity. JC, our head of operations, can change a field type in Airtable in under a minute. A custom application would have required a deployment cycle for the same change. In the first six months of building Hawktress we changed the schema 34 times. If we had built on a custom stack we would have shipped one schema change a month and it would have been the wrong one.
+The other reason was velocity. JC, our head of operations, can change a field type in GoHighLevel in under a minute. A custom application would have required a deployment cycle for the same change. In the first six months of building Hawktress we changed the schema 34 times. If we had built on a custom stack we would have shipped one schema change a month and it would have been the wrong one.
 
 > Software you can change inside a single morning is software that survives the first contact with a real job. Software that takes a sprint to change is software that fossilises.
 
@@ -400,7 +400,7 @@ We will not commit to a feature publicly until the feature has run for at least 
 
 ## The data is the product, not the interface
 
-The Hawktress interface is not impressive by software standards. It is an Airtable workspace with carefully built views and a layer of custom interface components. There are no animations. There is no AI assistant. There is no dashboard with rotating charts.
+The Hawktress interface is not impressive by software standards. It is a GoHighLevel workspace with carefully built views and a layer of custom interface components. There are no animations. There is no AI assistant. There is no dashboard with rotating charts.
 
 What there is, is data. Real quote-to-actual variance data on every trade across every region we have built in. Real variation approval data with reasons attached. Real supplier performance data tied to quote accuracy and delivery consistency. Real margin position by job, by builder, by region, over time.
 
@@ -420,7 +420,7 @@ We are not in a hurry. The construction software graveyard is full of companies 
 
 If you are a builder and you have looked at the construction software market and concluded that none of it fits your business, you are not wrong. None of it fits. The software is built for the average. Your business is not the average.
 
-The answer is not to wait for someone else to build the right software. The answer is to start treating your own jobs as data. Set up an Airtable workspace. Capture every quote, every variation, every actual. Run a CA function that escalates anything outside a threshold. Produce a monthly director report against a discipline.
+The answer is not to wait for someone else to build the right software. The answer is to start treating your own jobs as data. Set up a GoHighLevel workspace. Capture every quote, every variation, every actual. Run a CA function that escalates anything outside a threshold. Produce a monthly director report against a discipline.
 
 You do not need Hawktress to do this. You need the discipline to do this. Hawktress is what happens when the discipline runs for long enough across enough jobs that the data starts answering questions before you ask them.
 

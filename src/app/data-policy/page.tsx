@@ -106,7 +106,7 @@ export default function DataPolicyPage() {
 
       <h2>4. Data storage</h2>
       <p>
-        Hawktress data is stored in Airtable. Platform hosting arrangements are
+        Hawktress data is stored in GoHighLevel. Platform hosting arrangements are
         subject to confirmation and will be communicated to subscribers when
         finalised. BuildHawk takes reasonable steps to ensure that any hosting
         provider meets appropriate data security standards.
