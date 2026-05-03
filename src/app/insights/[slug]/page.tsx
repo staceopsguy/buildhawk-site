@@ -94,7 +94,7 @@ export default async function ArticlePage({ params }: { params: Params }) {
           <div className="mt-8 flex items-center gap-4 pt-8 border-t border-bh-steel/60">
             <div className="relative w-12 h-12 rounded-full overflow-hidden bg-bh-cloud border border-bh-steel/60">
               <Image
-                src="/brand/emblem-1.svg"
+                src="/brand/emblem-bh.svg"
                 alt=""
                 width={28}
                 height={22}

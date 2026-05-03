@@ -11,14 +11,15 @@ export default function BrandLockup({
   size?: "sm" | "md" | "lg";
   showTagline?: boolean;
 }) {
-  const emblem = tone === "dark" ? "/brand/emblem-3.svg" : "/brand/emblem-1.svg";
+  const emblem = tone === "dark" ? "/brand/emblem-3.svg" : "/brand/emblem-bh.svg";
   const wordColor = tone === "dark" ? "text-bh-white" : "text-bh-black";
+  const endorseColor = tone === "dark" ? "text-bh-white/60" : "text-bh-graphite";
   const taglineColor = "text-bh-orange";
 
   const dims = {
-    sm: { h: 22, fontSize: 13, gap: 1, tagline: 8.5, letterSpacing: "0.18em" },
-    md: { h: 28, fontSize: 17, gap: 2, tagline: 10, letterSpacing: "0.16em" },
-    lg: { h: 40, fontSize: 24, gap: 3, tagline: 11, letterSpacing: "0.16em" },
+    sm: { h: 22, fontSize: 13, gap: 1, endorse: 8, tagline: 8.5, letterSpacing: "0.18em" },
+    md: { h: 28, fontSize: 17, gap: 2, endorse: 9.5, tagline: 10, letterSpacing: "0.16em" },
+    lg: { h: 40, fontSize: 24, gap: 3, endorse: 10.5, tagline: 11, letterSpacing: "0.16em" },
   }[size];
 
   return (
@@ -41,6 +42,15 @@ export default function BrandLockup({
           }}
         >
           BUILDHAWK
+        </span>
+        <span
+          className={`${endorseColor} mt-1 uppercase`}
+          style={{
+            fontSize: dims.endorse,
+            letterSpacing: "0.16em",
+          }}
+        >
+          Powered by Hawktress<sup style={{ fontSize: "0.7em", marginLeft: "0.1em" }}>™</sup>
         </span>
         {showTagline && (
           <span

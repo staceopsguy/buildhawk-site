@@ -12,8 +12,10 @@ export default function WhoWeAre() {
           </div>
           <div className="col-span-12 md:col-span-9">
             <p className="text-[28px] md:text-[40px] lg:text-[52px] leading-[1.15] tracking-[-0.025em] text-bh-black font-medium">
-              BuildHawk is a back-end partner for builders, developers, and
-              owner-builders. We{" "}
+              BuildHawk is a back-end partner for builders, developers and
+              owner-builders, delivered through the{" "}
+              <span className="whitespace-nowrap">Hawktress<sup className="text-[0.5em] align-super">™</sup></span>{" "}
+              platform. We{" "}
               <span className="text-bh-orange">protect profit margins</span>,
               control project costs and strengthen execution.
             </p>

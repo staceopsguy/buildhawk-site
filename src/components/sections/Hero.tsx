@@ -22,12 +22,12 @@ export default function Hero() {
       {/* Top hairline */}
       <div className="absolute top-20 md:top-24 left-0 right-0 h-px bg-bh-steel/50" />
 
-      {/* Hawk silhouette accent in the corner field — recurring brand motif */}
-      <div className="hidden md:block absolute right-[-4%] top-[18%] w-[34vw] max-w-[520px] aspect-[255/196] opacity-[0.07] pointer-events-none">
+      {/* Hawk emblem accent in the corner field — recurring brand motif */}
+      <div className="hidden md:block absolute right-[-4%] top-[14%] w-[36vw] max-w-[560px] aspect-[255/196] opacity-[0.16] pointer-events-none">
         <div
           className="w-full h-full"
           style={{
-            backgroundImage: "url(/brand/emblem-1.svg)",
+            backgroundImage: "url(/brand/emblem-bh.svg)",
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "right center",
