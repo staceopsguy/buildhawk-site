@@ -57,7 +57,7 @@ export default function Partners() {
                       alt={p.name}
                       width={p.width}
                       height={p.height}
-                      className="max-h-full max-w-full w-auto h-auto object-contain transition-[filter,opacity] duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:opacity-60 [@media(hover:hover)]:group-hover:grayscale-0 [@media(hover:hover)]:group-hover:opacity-100"
+                      className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                   </div>
                   {p.badge && (
@@ -65,13 +65,13 @@ export default function Partners() {
                       {p.badge}
                     </span>
                   )}
-                  <span className="absolute bottom-3 left-4 text-[10px] tracking-[0.2em] uppercase text-bh-graphite opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="absolute bottom-3 left-4 text-[10px] tracking-[0.2em] uppercase text-[#6e7180] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {p.name}
                   </span>
                 </>
               );
               const tileClass =
-                "group relative aspect-[5/3] border-r border-b border-bh-steel/40 bg-bh-white hover:bg-bh-cloud transition-colors block";
+                "group relative aspect-[5/3] border-r border-b border-bh-steel/40 bg-bh-paper hover:brightness-95 transition-[filter] block";
               return p.url ? (
                 <li key={p.name} className="contents">
                   <a

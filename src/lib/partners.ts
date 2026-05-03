@@ -34,6 +34,7 @@ export type Accreditation = {
   height: number;
   through: string; // partner who provides this credential link
   throughUrl: string;
+  kind?: "award" | "partner-program";
 };
 
 export const featuredCaseStudy: FeaturedCaseStudy = {
@@ -102,6 +103,7 @@ export const accreditations: Accreditation[] = [
     height: 400,
     through: "Xact Accounting",
     throughUrl: "https://xactaccounting.com.au/",
+    kind: "award",
   },
   {
     name: "Financial Review Top 100 Accounting Firms 2025",
@@ -112,6 +114,7 @@ export const accreditations: Accreditation[] = [
     height: 400,
     through: "Xact Accounting",
     throughUrl: "https://xactaccounting.com.au/",
+    kind: "award",
   },
   {
     name: "Commercial Finance Awards · Accounting Practice of the Year 2025",
@@ -122,5 +125,39 @@ export const accreditations: Accreditation[] = [
     height: 400,
     through: "Xact Accounting",
     throughUrl: "https://xactaccounting.com.au/",
+    kind: "award",
+  },
+  {
+    name: "Microsoft 365 Partner",
+    description:
+      "Microsoft 365 cloud productivity and identity stack delivered through our cybersecurity partner Built On It.",
+    src: "/images/builtonit-microsoft365.png",
+    width: 283,
+    height: 60,
+    through: "Built On It",
+    throughUrl: "https://www.builtonit.com.au/",
+    kind: "partner-program",
+  },
+  {
+    name: "Datto Professional Global Partner Program",
+    description:
+      "Datto Professional Global Partner — backup, business continuity and managed cybersecurity coverage via Built On It.",
+    src: "/images/builtonit-datto.png",
+    width: 193,
+    height: 151,
+    through: "Built On It",
+    throughUrl: "https://www.builtonit.com.au/",
+    kind: "partner-program",
+  },
+  {
+    name: "Access4 Partner",
+    description:
+      "Access4 unified cloud communications and Teams calling, integrated through Built On It.",
+    src: "/images/builtonit-access4.png",
+    width: 290,
+    height: 57,
+    through: "Built On It",
+    throughUrl: "https://www.builtonit.com.au/",
+    kind: "partner-program",
   },
 ];

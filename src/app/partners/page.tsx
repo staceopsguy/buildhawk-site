@@ -74,7 +74,7 @@ export default function PartnersPage() {
             aria-label={`${featuredCaseStudy.name} — case study (opens in new tab)`}
             className="group relative grid grid-cols-12 border border-bh-steel/40 bg-bh-cloud hover:border-bh-orange/60 transition-colors overflow-hidden"
           >
-            <div className="col-span-12 md:col-span-5 relative bg-bh-white p-8 md:p-12 flex items-center justify-center min-h-[200px] md:min-h-[420px] border-b md:border-b-0 md:border-r border-bh-steel/40">
+            <div className="col-span-12 md:col-span-5 relative bg-bh-paper p-8 md:p-12 flex items-center justify-center min-h-[200px] md:min-h-[420px] border-b md:border-b-0 md:border-r border-bh-steel/40">
               <span className="absolute top-4 left-4 inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-bh-orange">
                 <span className="inline-block w-3 h-px bg-bh-orange" />
                 {featuredCaseStudy.category}
@@ -176,7 +176,7 @@ export default function PartnersPage() {
             </div>
           </div>
 
-          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 border-t border-l border-bh-steel/40 bg-bh-white">
+          <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 border-t border-l border-bh-steel/40 bg-bh-paper">
             {partners.map((p) => {
               const inner = (
                 <>
@@ -186,7 +186,7 @@ export default function PartnersPage() {
                       alt={p.name}
                       width={p.width}
                       height={p.height}
-                      className="max-h-full max-w-full w-auto h-auto object-contain transition-[filter,opacity] duration-500 [@media(hover:hover)]:grayscale [@media(hover:hover)]:opacity-60 [@media(hover:hover)]:group-hover:grayscale-0 [@media(hover:hover)]:group-hover:opacity-100"
+                      className="max-h-full max-w-full w-auto h-auto object-contain transition-transform duration-500 group-hover:scale-[1.04]"
                     />
                   </div>
                   {p.badge && (
@@ -194,13 +194,13 @@ export default function PartnersPage() {
                       {p.badge}
                     </span>
                   )}
-                  <span className="absolute bottom-3 left-4 text-[10px] tracking-[0.2em] uppercase text-bh-graphite opacity-100 [@media(hover:hover)]:opacity-0 [@media(hover:hover)]:group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="absolute bottom-3 left-4 text-[10px] tracking-[0.2em] uppercase text-[#6e7180] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     {p.name}
                   </span>
                 </>
               );
               const tileClass =
-                "group relative aspect-[5/3] border-r border-b border-bh-steel/40 bg-bh-white hover:bg-bh-cloud transition-colors block";
+                "group relative aspect-[5/3] border-r border-b border-bh-steel/40 bg-bh-paper hover:brightness-95 transition-[filter] block";
               return p.url ? (
                 <li key={p.name} className="contents">
                   <a
@@ -234,12 +234,11 @@ export default function PartnersPage() {
             </div>
             <div className="col-span-12 md:col-span-9">
               <Reveal as="h2" className="text-[28px] md:text-[40px] lg:text-[48px] leading-[1.15] tracking-[-0.025em] text-bh-black font-medium">
-                Credentials behind the finance stack.
+                Credentials behind the stack.
               </Reveal>
               <Reveal as="p" className="mt-4 max-w-2xl text-[16px] md:text-[18px] leading-[1.55] tracking-[-0.005em] text-bh-graphite" delay={120}>
-                Awards and recognition held by the partners we engage. Carried
-                through to BuildHawk projects via our integrated finance
-                workflow with{" "}
+                Awards and partnerships held by the operators inside the
+                BuildHawk stack. Finance through{" "}
                 <a
                   href="https://xactaccounting.com.au/"
                   target="_blank"
@@ -247,6 +246,15 @@ export default function PartnersPage() {
                   className="text-bh-black underline underline-offset-4 hover:text-bh-orange transition-colors"
                 >
                   Xact Accounting
+                </a>
+                ; cybersecurity through{" "}
+                <a
+                  href="https://www.builtonit.com.au/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-bh-black underline underline-offset-4 hover:text-bh-orange transition-colors"
+                >
+                  Built On It
                 </a>
                 .
               </Reveal>
@@ -277,7 +285,7 @@ export default function PartnersPage() {
                     director report.
                   </p>
                 </div>
-                <div className="col-span-12 md:col-span-8 relative bg-bh-cloud">
+                <div className="col-span-12 md:col-span-8 relative bg-bh-paper">
                   <Image
                     src="/images/xact-awards-2025.png"
                     alt="Xact Accounting 2025 awards: Australian Accounting Awards Firm of the Year, Financial Review Top 100 Accounting Firms, Commercial Finance Awards Accounting Practice of the Year"
@@ -290,13 +298,72 @@ export default function PartnersPage() {
             </a>
           </Reveal>
 
+          {/* Partner badge strip — Built On It cybersecurity stack */}
+          <Reveal>
+            <a
+              href="https://www.builtonit.com.au/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Built On It cybersecurity partner programs (opens in new tab)"
+              className="group block bg-bh-white border border-bh-steel/40 hover:border-bh-orange/60 transition-colors p-6 md:p-10 mt-6"
+            >
+              <div className="grid grid-cols-12 gap-6 md:gap-8 items-center">
+                <div className="col-span-12 md:col-span-4">
+                  <p className="text-[11px] tracking-[0.18em] uppercase text-bh-orange mb-3">
+                    Through Built On It · Cybersecurity
+                  </p>
+                  <h3 className="text-[22px] md:text-[26px] tracking-[-0.02em] text-bh-black font-medium leading-[1.2]">
+                    Three vendor programs.{" "}
+                    <span className="text-bh-graphite">One security partner.</span>
+                  </h3>
+                  <p className="mt-3 text-[14px] leading-[1.55] text-bh-graphite max-w-xs">
+                    Microsoft 365 · Datto Professional Global Partner ·
+                    Access4. Identity, backup and unified communications behind
+                    every BuildHawk environment.
+                  </p>
+                </div>
+                <div className="col-span-12 md:col-span-8">
+                  <ul className="grid grid-cols-3 gap-px bg-bh-steel/40 border border-bh-steel/40">
+                    <li className="bg-bh-paper aspect-[5/3] flex items-center justify-center p-5 md:p-7">
+                      <Image
+                        src="/images/builtonit-microsoft365.png"
+                        alt="Microsoft 365 partner"
+                        width={283}
+                        height={60}
+                        className="max-w-full max-h-full w-auto h-auto object-contain"
+                      />
+                    </li>
+                    <li className="bg-bh-paper aspect-[5/3] flex items-center justify-center p-5 md:p-7">
+                      <Image
+                        src="/images/builtonit-datto.png"
+                        alt="Datto Professional Global Partner Program"
+                        width={193}
+                        height={151}
+                        className="max-w-full max-h-full w-auto h-auto object-contain"
+                      />
+                    </li>
+                    <li className="bg-bh-paper aspect-[5/3] flex items-center justify-center p-5 md:p-7">
+                      <Image
+                        src="/images/builtonit-access4.png"
+                        alt="Access4 partner"
+                        width={290}
+                        height={57}
+                        className="max-w-full max-h-full w-auto h-auto object-contain"
+                      />
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </a>
+          </Reveal>
+
           {/* Itemised list of accreditations */}
-          <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-px bg-bh-steel/40 border border-bh-steel/40">
+          <ul className="mt-10 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-bh-steel/40 border border-bh-steel/40">
             {accreditations.map((a) => (
               <li key={a.name} className="bg-bh-white p-6 md:p-7 flex flex-col">
                 <span className="inline-flex items-center gap-2 text-[10px] tracking-[0.18em] uppercase text-bh-orange mb-3">
                   <span className="inline-block w-3 h-px bg-bh-orange" />
-                  Award · 2025
+                  {a.kind === "partner-program" ? "Partner program" : "Award · 2025"}
                 </span>
                 <p className="text-[15px] md:text-[16px] tracking-[-0.01em] text-bh-black font-medium leading-[1.35]">
                   {a.name}
