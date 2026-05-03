@@ -10,11 +10,11 @@ export default function Founder() {
           <Reveal as="div" className="col-span-12 md:col-span-5" duration={800}>
             <figure className="relative aspect-[4/5] overflow-hidden bg-bh-white border border-bh-steel/40">
               <Image
-                src="/images/nathan-holloway.webp"
-                alt="Nathan Holloway, Founder of BuildHawk and Hawktress"
+                src="/images/nathan-holloway-portrait.webp"
+                alt="Nathan Holloway, Founder of BuildHawk and Hawktress, outside a Geelong West custom home"
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"
-                className="object-cover object-[center_30%]"
+                className="object-cover object-[55%_25%]"
                 priority
               />
             </figure>
