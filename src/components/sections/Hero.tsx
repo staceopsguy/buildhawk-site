@@ -54,8 +54,8 @@ export default function Hero() {
             </Reveal>
             <Reveal as="p" className="mt-8 max-w-xl text-bh-graphite text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.01em]" duration={700} delay={300}>
               Twenty-five years inside Australian residential construction.
-              The back-end partner for builders, developers, and owner-builders.
-              We protect margins, control costs, and strengthen execution from
+              The back-end partner for builders, developers and owner-builders.
+              We protect margins, control costs and strengthen execution from
               tender through completion.
             </Reveal>
             <Reveal as="div" className="mt-10 flex flex-wrap items-center gap-3" duration={700} delay={420}>

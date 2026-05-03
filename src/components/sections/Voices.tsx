@@ -55,7 +55,7 @@ export default function Voices() {
           <div className="col-span-12 md:col-span-5 md:text-right">
             <p className="text-[14px] tracking-[-0.005em] text-bh-graphite max-w-md md:ml-auto">
               Curated talks and walkthroughs from the people who actually
-              estimate, administer, and run residential construction. Watch any
+              estimate, administer and run residential construction. Watch any
               clip in place.
             </p>
           </div>

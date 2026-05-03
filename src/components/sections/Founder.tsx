@@ -35,31 +35,35 @@ export default function Founder() {
           {/* Quote + story */}
           <Reveal as="div" className="col-span-12 md:col-span-7 flex flex-col" duration={800} delay={150}>
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-5">
-              Founder's vision
+              From the Director
             </p>
             <blockquote className="font-medium tracking-[-0.025em] leading-[1.15] text-[28px] md:text-[40px] lg:text-[48px] text-bh-black">
-              Hawktress exists to give builders the intelligence layer they have
-              never had. <span className="text-bh-orange">Real data. Real projects. Real decisions.</span>{" "}
-              At every stage.
+              Hawktress runs inside our own jobs.{" "}
+              <span className="text-bh-orange">
+                We open it to operators who run a tight book and want the same
+                discipline behind every decision.
+              </span>
             </blockquote>
 
             <div className="mt-10 space-y-5 max-w-2xl text-[16px] md:text-[17px] leading-[1.55] tracking-[-0.005em] text-bh-graphite">
               <p>
-                Residential builders in Australia and New Zealand are making
-                pricing and project decisions based on gut feel, outdated
-                benchmarks, and quotes they cannot verify. The result is margin
-                leakage at every stage.
+                Residential building is a precision craft administered, too
+                often, by gut feel. Decisions get made on outdated benchmarks
+                and quotes nobody can verify. Margin leaks quietly at every
+                stage and the team that allowed it carries the weight.
               </p>
               <p>
-                Hawktress is the only system built from the ground up on live
-                Australian and New Zealand construction data, operated by people
-                who actually estimate and administer construction contracts for a
-                living. That is the moat.
+                Hawktress is built from the ground up on live Australian and
+                New Zealand construction data, operated by people who estimate
+                and administer construction contracts for a living. It exists
+                because nothing in the market does what it does, and because
+                the operators who run the best builds in the country deserve
+                the operating standard the rest of the world already has.
               </p>
               <p className="text-bh-black">
-                In three years, Hawktress is the most trusted source of
-                residential construction cost intelligence in Australia and New
-                Zealand.
+                We do not chase a market position. We choose the operators we
+                work with. The builders, trades and suppliers inside Hawktress
+                hold the same standard that we hold ourselves.
               </p>
             </div>
 

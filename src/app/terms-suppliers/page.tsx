@@ -64,13 +64,16 @@ export default function SupplierTermsPage() {
         </li>
         <li>
           Recommendations to relevant builder subscribers based on regional
-          coverage, trade category, and performance data
+          coverage, trade category and performance data
         </li>
         <li>
-          <strong>Buyers group participation rights.</strong> BuildHawk reserves
-          the right to establish a construction buyers group and may leverage
-          Supplier participation for group procurement negotiations. Suppliers
-          in the buyers group receive preferred platform placement
+          <strong>Hawktress Alliance participation rights.</strong> BuildHawk
+          reserves the right to convene the Hawktress Alliance, a procurement
+          collective of vetted Suppliers operating under shared commercial
+          standards. Member Suppliers may be invited to participate in
+          collective procurement negotiations on behalf of the Hawktress
+          builder network. Members receive preferred platform placement and
+          recommendation priority.
         </li>
         <li>
           Performance rating displayed on the Supplier profile, based on quote
@@ -88,7 +91,7 @@ export default function SupplierTermsPage() {
       <p>
         Hawktress monitors supplier performance against a 5% variance threshold
         across all stages of the project lifecycle, including initial quotes,
-        variation claims, and final invoiced amounts versus PO values. A
+        variation claims and final invoiced amounts versus PO values. A
         Supplier whose pricing consistently exceeds the threshold will be
         flagged internally and notified before any action is taken. BuildHawk
         reserves the right to add a performance note to the Supplier profile,

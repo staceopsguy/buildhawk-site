@@ -45,8 +45,8 @@ export default function TradeTermsPage() {
           </tr>
           <tr>
             <td>Regional coverage</td>
-            <td>All AU states, territories, and NZ regions</td>
-            <td>All AU states, territories, and NZ regions</td>
+            <td>All AU states, territories and NZ regions</td>
+            <td>All AU states, territories and NZ regions</td>
           </tr>
           <tr>
             <td>Builder contact access</td>
@@ -71,7 +71,7 @@ export default function TradeTermsPage() {
       <ul>
         <li>
           <strong>Regional cost benchmarks:</strong> rates by region, build
-          type, and rate type (per m², per lm, lump sum, per item, per unit)
+          type and rate type (per m², per lm, lump sum, per item, per unit)
         </li>
         <li>
           <strong>Market trend data:</strong> how trade pricing is moving over

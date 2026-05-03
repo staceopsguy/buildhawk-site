@@ -48,7 +48,7 @@ export const articles: Article[] = [
     slug: "five-percent-variance-threshold",
     title: "The 5% Variance Threshold: Why It Saves Margin",
     dek:
-      "A single rule that decides whether a quote, a variation, or an actual cost gets approved or escalated. We use it on every job. Here is why 5%, and what happens when you ignore it.",
+      "A single rule that decides whether a quote, a variation, or an actual cost gets approved or escalated. We use it on every job. Here is why 5% and what happens when you ignore it.",
     authorId: "nathan",
     date: "2025-03-12",
     readingTime: 7,
@@ -77,7 +77,7 @@ The point is not to refuse variances. The point is to make sure no variance ever
 
 I get this question constantly. Why not give the team a wider band? Builders run hot and cold on price. Trades change their rates. Inflation alone moves things 3 to 4% a year. A 5% threshold is going to flag a lot of records. Is that not just noise?
 
-The answer is in the maths. If your average margin on a residential build is 18%, and you let trades drift 10% above your committed value across the job, you have eaten 1.8% of your gross margin in cost creep alone. On a $2.5 million build that is $45,000. You have lost a year of one staff member's super for nothing.
+The answer is in the maths. If your average margin on a residential build is 18% and you let trades drift 10% above your committed value across the job, you have eaten 1.8% of your gross margin in cost creep alone. On a $2.5 million build that is $45,000. You have lost a year of one staff member's super for nothing.
 
 5% is the threshold where margin protection still works. 10% is the threshold where margin protection becomes wishful thinking.
 
@@ -117,7 +117,7 @@ If you are a builder reading this and you have ever finished a project knowing y
     slug: "underpricing-sitework-year-one",
     title: "Why Every Builder Underprices Sitework in Year One",
     dek:
-      "Excavation, drainage, retaining, and site clean. Together they are usually 4 to 7% of the contract. Builders almost universally get them wrong on the first job in a new region. Here is what to actually budget.",
+      "Excavation, drainage, retaining and site clean. Together they are usually 4 to 7% of the contract. Builders almost universally get them wrong on the first job in a new region. Here is what to actually budget.",
     authorId: "nathan",
     date: "2024-10-08",
     readingTime: 6,
@@ -128,7 +128,7 @@ If you are a builder reading this and you have ever finished a project knowing y
     videoCredit: "Featured walkthrough · CourtneyBraz",
     body: `Sitework is the line item that ruins more first-region builds than any other. Frames are easy to estimate. Cabinetry is easy. Roofing is easy. Sitework is the one that hides.
 
-I have worked across Geelong, the Bellarine Peninsula, and the western Melbourne fringe for over two decades. Every time we open a job in a suburb we have not built in before, the first sitework estimate is wrong. Not by a small amount.
+I have worked across Geelong, the Bellarine Peninsula and the western Melbourne fringe for over two decades. Every time we open a job in a suburb we have not built in before, the first sitework estimate is wrong. Not by a small amount.
 
 ## What sitework actually contains
 
@@ -139,7 +139,7 @@ When estimators talk about sitework they usually mean four things bundled togeth
 • Retaining walls, where required by site fall
 • Site clean and disposal at completion
 
-In urban infill blocks across Melbourne and Geelong, these four items together usually run between 4% and 7% of the contract value on a custom home. On a knockdown rebuild the percentage is higher because of demolition, asbestos clearance, and sometimes contaminated soil.
+In urban infill blocks across Melbourne and Geelong, these four items together usually run between 4% and 7% of the contract value on a custom home. On a knockdown rebuild the percentage is higher because of demolition, asbestos clearance and sometimes contaminated soil.
 
 The trap is not the average. The trap is the variance between sites.
 
@@ -171,7 +171,7 @@ We use a three-step process for any job in a region we have not previously built
 
 **Two.** Add a regional unfamiliarity loading on the four sitework line items. The loading is 8% to 15% depending on how confident we are in the data set. The loading is visible to the client and explained in the assumption log.
 
-**Three.** Caveat the sitework allowance in the contract until soil reports, surveys, and council connection points are confirmed. The caveat language gives both sides the right to revise the sitework allowance based on actual site conditions before slab.
+**Three.** Caveat the sitework allowance in the contract until soil reports, surveys and council connection points are confirmed. The caveat language gives both sides the right to revise the sitework allowance based on actual site conditions before slab.
 
 We have not lost a job to this loading. We have stopped losing margin to sitework.
 
@@ -212,7 +212,7 @@ This is the single most common variation failure. A trade prices a variation as 
 
 Concrete example. A bricklayer issues a variation for $2,400 to "supply and lay extra brickwork to feature wall as marked." The drawing change adds 8 m² of brickwork to a feature wall that was already part of the original scope at 24 m². The original quote was $4,800 for the 24 m². At $200 per m² placed, the additional 8 m² should be priced at $1,600. The trade has priced $300 per m² for the variation. They have used the variation as an opportunity to lift the rate, not just to capture the additional quantity.
 
-The question to ask is: what was the contract rate for this exact item, and is the variation rate consistent with the contract rate? If it is not, escalate.
+The question to ask is: what was the contract rate for this exact item and is the variation rate consistent with the contract rate? If it is not, escalate.
 
 ## Question two. Could this variation have been anticipated at tender stage?
 
@@ -256,7 +256,7 @@ If you are running a CA function inside a builder, write the three questions on 
     slug: "monthly-director-report-walkthrough",
     title: "Reading the Monthly Director Report: A Walkthrough",
     dek:
-      "Every active job, every committed cost, every flagged variation, every dollar of cash position, in one report by the 5th of the month. Here is how to read it in 90 seconds, and what to act on first.",
+      "Every active job, every committed cost, every flagged variation, every dollar of cash position, in one report by the 5th of the month. Here is how to read it in 90 seconds and what to act on first.",
     authorId: "nathan",
     date: "2026-02-04",
     readingTime: 8,
@@ -273,9 +273,9 @@ This piece walks through how to read it.
 
 Every report has the same five sections in the same order.
 
-**Section 1. Portfolio summary.** One page. Total contracted revenue, total revenue received this period, total committed costs, portfolio gross margin, cash position relative to project commitments, and 30 / 60 / 90-day forecast revenue.
+**Section 1. Portfolio summary.** One page. Total contracted revenue, total revenue received this period, total committed costs, portfolio gross margin, cash position relative to project commitments and 30 / 60 / 90-day forecast revenue.
 
-**Section 2. Job tracking grid.** One row per active job. Original contract value, current contract value, committed costs, forecast final cost, gross margin forecast, variations approved this month, programme status, and an alert column.
+**Section 2. Job tracking grid.** One row per active job. Original contract value, current contract value, committed costs, forecast final cost, gross margin forecast, variations approved this month, programme status and an alert column.
 
 **Section 3. Flagged items.** Every line that triggered the 5% variance threshold across every active job in the previous month, with current status.
 
@@ -293,7 +293,7 @@ Every director who onboards onto the platform gets the same instruction from me.
 
 **45 to 75 seconds.** Read section 3's status column. Approved with note. Pushed back. Awaiting director decision. The "awaiting director decision" rows are the ones that block the CA from moving forward. They are the highest-leverage 30 seconds of your week.
 
-**75 to 90 seconds.** Read section 5. These are the items that need your decision in the next 14 days. They are pre-formatted with the question, the recommendation from the CA, and the option set. Most of them can be approved or actioned in under a minute each.
+**75 to 90 seconds.** Read section 5. These are the items that need your decision in the next 14 days. They are pre-formatted with the question, the recommendation from the CA and the option set. Most of them can be approved or actioned in under a minute each.
 
 The other pages are for context. The first 90 seconds is for action.
 
@@ -321,7 +321,7 @@ The estimator knows that any quote outside the 5% threshold will appear in secti
 
 The CA knows that any unapproved variation backlog over five items will turn the alert column amber. They clear variations weekly.
 
-The site team knows that any programme slippage over five days will turn amber, and over fifteen days will turn red. They flag programme risk early instead of hiding it.
+The site team knows that any programme slippage over five days will turn amber and over fifteen days will turn red. They flag programme risk early instead of hiding it.
 
 The director knows that any decision they have not made within 14 days will roll forward into section 5 of next month's report and be highlighted. They make decisions on time.
 
@@ -339,7 +339,7 @@ If you are new to Hawktress and the report has just landed for the first time, l
 
 **Two.** Are the alert states in section 2 consistent with your gut feel about each job? Where the alert disagrees with your gut, the alert is usually right.
 
-**Three.** Are there flagged items in section 3 that you would have approved without question if they had not been flagged? If there are, that is the value of the threshold. Those are the items that would have eaten your margin invisibly. Make a note of which ones, why they were flagged, and what you decided.
+**Three.** Are there flagged items in section 3 that you would have approved without question if they had not been flagged? If there are, that is the value of the threshold. Those are the items that would have eaten your margin invisibly. Make a note of which ones, why they were flagged and what you decided.
 
 By the third monthly report, the rhythm is set. By the sixth, the report is your single most reliable source of truth about the business.
 
@@ -386,7 +386,7 @@ We did not open Hawktress to a single external builder for the first nine months
 
 The reason was simple. If we could not trust the platform to run our own jobs we had no business asking another builder to trust it with theirs.
 
-The internal-first phase taught us things no external customer would ever have told us. The CA needed a different default sort on the variations view than I did. The estimator needed quote documents attached to records, not linked from a shared drive. The supplier performance view needed a per-region cut, not a global one. None of these things would have come up in a customer interview. They came up because the people using the system were the people complaining about the system, and they were sitting two desks from the people building the system.
+The internal-first phase taught us things no external customer would ever have told us. The CA needed a different default sort on the variations view than I did. The estimator needed quote documents attached to records, not linked from a shared drive. The supplier performance view needed a per-region cut, not a global one. None of these things would have come up in a customer interview. They came up because the people using the system were the people complaining about the system and they were sitting two desks from the people building the system.
 
 This is the closed loop that builder-owned software has and external software does not.
 

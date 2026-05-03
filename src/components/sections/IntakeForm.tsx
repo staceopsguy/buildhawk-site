@@ -113,7 +113,7 @@ export default function IntakeForm() {
             <div className="space-y-5 text-[14px] tracking-[-0.005em] text-bh-graphite">
               <p>
                 Tell us about the project. We come back with a scope, a fixed
-                fee, and a timeline. No proposal theatre.
+                fee and a timeline. No proposal theatre.
               </p>
               <div className="pt-5 border-t border-bh-steel/60">
                 <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-2">

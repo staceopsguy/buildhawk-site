@@ -70,7 +70,7 @@ export default function BuilderTermsPage() {
           <tr>
             <td>7. Reporting</td>
             <td>Monthly director report: job tracking and company financial snapshot</td>
-            <td>Single report covering all active jobs, margin position, variations, committed costs, forecast revenue, and business cash position</td>
+            <td>Single report covering all active jobs, margin position, variations, committed costs, forecast revenue and business cash position</td>
           </tr>
         </tbody>
       </table>
@@ -134,7 +134,7 @@ export default function BuilderTermsPage() {
         costs between $95,000 and $130,000 per year in base salary, excluding
         superannuation and leave entitlements. Hawktress delivers cost
         intelligence, pre-construction benchmarking, variation control, live
-        project cost tracking, and monthly commercial reporting across multiple
+        project cost tracking and monthly commercial reporting across multiple
         active projects at a materially lower total cost.
       </p>
 
@@ -153,7 +153,7 @@ export default function BuilderTermsPage() {
           the BuildHawk Director for approval before the CA can proceed
         </li>
         <li>
-          All variations, POs, and committed costs are tracked in Hawktress in
+          All variations, POs and committed costs are tracked in Hawktress in
           real time
         </li>
         <li>
@@ -168,12 +168,12 @@ export default function BuilderTermsPage() {
         <li>
           Each active job: original contract value, current contract value,
           committed costs, forecast final cost, gross margin, variations
-          approved that month, and programme status
+          approved that month and programme status
         </li>
         <li>
           Company financial snapshot: total contracted revenue, total revenue
           received, total committed costs, portfolio gross margin, outstanding
-          invoices, aged debtors, and 30, 60, and 90-day revenue forecast
+          invoices, aged debtors and 30, 60 and 90-day revenue forecast
         </li>
         <li>Escalation items requiring Builder decision or approval</li>
       </ul>
@@ -235,7 +235,7 @@ export default function BuilderTermsPage() {
       <h2>10. Intellectual property</h2>
       <p>
         The Hawktress platform, including its data model, intelligence layer,
-        benchmarking methodology, and all outputs, is the intellectual property
+        benchmarking methodology and all outputs, is the intellectual property
         of BuildHawk Pty Ltd. The Builder is granted a non-exclusive,
         non-transferable licence to use Hawktress outputs for their own internal
         business purposes during the subscription period. The Builder may not

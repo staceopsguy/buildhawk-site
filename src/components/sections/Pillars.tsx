@@ -19,14 +19,14 @@ const pillars = [
     n: "02",
     title: "Systems & Implementation",
     body:
-      "Embedded operating systems for cost control, procurement, and reporting. Replace ad-hoc spreadsheets with workflows that scale with your business.",
+      "Embedded operating systems for cost control, procurement and reporting. Replace ad-hoc spreadsheets with workflows that scale with your business.",
     variant: "lattice" as const,
   },
   {
     n: "03",
     title: "Execution Support",
     body:
-      "Hands-on partnership through contract administration, variation tracking, and progress claim discipline. Margin protection survives the full project life.",
+      "Hands-on partnership through contract administration, variation tracking and progress claim discipline. Margin protection survives the full project life.",
     variant: "plinth" as const,
   },
 ];

@@ -6,7 +6,7 @@ import { getSortedArticles } from "@/lib/articles";
 export const metadata: Metadata = {
   title: "Insights · BuildHawk · Hawktress",
   description:
-    "Field-tested writing on residential construction estimating, contract administration, variation control, and the data behind margin protection. From the BuildHawk team and the Hawktress platform.",
+    "Field-tested writing on residential construction estimating, contract administration, variation control and the data behind margin protection. From the BuildHawk team and the Hawktress platform.",
 };
 
 export default function InsightsPage() {
@@ -34,7 +34,7 @@ export default function InsightsPage() {
                 </span>
               </h1>
               <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.005em] text-bh-graphite">
-                Methodology, field notes, and operator playbooks from the
+                Methodology, field notes and operator playbooks from the
                 BuildHawk team and the Hawktress platform. Written by people who
                 actually estimate and administer construction contracts for a
                 living.

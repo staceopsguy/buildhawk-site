@@ -15,7 +15,7 @@ export default function WhoWeAre() {
               BuildHawk is a back-end partner for builders, developers, and
               owner-builders. We{" "}
               <span className="text-bh-orange">protect profit margins</span>,
-              control project costs, and strengthen execution.
+              control project costs and strengthen execution.
             </p>
 
             {/* Photo + supporting copy */}
@@ -36,7 +36,7 @@ export default function WhoWeAre() {
                   deliver them successfully from tender through completion.
                 </p>
                 <p className="mt-6 text-[17px] md:text-[19px] leading-[1.55] tracking-[-0.01em] text-bh-graphite">
-                  The brand stands for structure, clarity, and operational
+                  The brand stands for structure, clarity and operational
                   confidence. Calm authority, not hype.
                 </p>
               </div>

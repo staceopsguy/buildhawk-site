@@ -75,7 +75,7 @@ export default function Portfolio() {
                 </p>
                 <p className="mt-3 text-bh-black text-[18px] md:text-[20px] tracking-[-0.01em] leading-[1.35]">
                   Custom homes, knockdown rebuilds, dual occupancy,
-                  townhouse developments, and luxury fit-outs across
+                  townhouse developments and luxury fit-outs across
                   Australia &amp; New Zealand.
                 </p>
               </div>

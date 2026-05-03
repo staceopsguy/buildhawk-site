@@ -29,38 +29,22 @@ export default function ValueCase() {
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-14 md:mb-20">
           <Reveal as="div" className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
-              The numbers
+              The capability gap
             </p>
           </Reveal>
           <Reveal as="div" className="col-span-12 md:col-span-9" delay={80}>
             <h2 className="font-medium tracking-[-0.03em] leading-[1.0] text-[36px] md:text-[56px] lg:text-[72px] text-bh-black">
-              Cheaper than one estimator.
+              An intelligence layer.
               <br />
               <span className="text-bh-graphite">
-                Smarter than two.
+                Not a headcount.
               </span>
             </h2>
-          </Reveal>
-        </div>
-
-        {/* Headline saving */}
-        <div className="grid grid-cols-12 gap-6 md:gap-8 mb-16 md:mb-20 items-end">
-          <Reveal as="div" className="col-span-12 md:col-span-7" duration={900}>
-            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite mb-3">
-              Year-one saving · Base subscription
-            </p>
-            <p className="font-medium tracking-[-0.04em] leading-[0.9] text-bh-orange text-[88px] md:text-[140px] lg:text-[180px] tabular-nums">
-              <Counter to={303600} prefix="$" duration={1600} />
-            </p>
-          </Reveal>
-          <Reveal as="div" className="col-span-12 md:col-span-5" delay={200}>
-            <p className="text-[18px] md:text-[20px] leading-[1.5] tracking-[-0.01em] text-bh-graphite">
-              Hawktress replaces the cost of a senior estimator and a contract
-              administrator and adds an intelligence layer neither of them can
-              provide.
-            </p>
-            <p className="mt-4 text-[13px] tracking-[-0.005em] text-bh-graphite">
-              All figures ex GST. Based on Australian market salaries.
+            <p className="mt-6 max-w-2xl text-[17px] md:text-[19px] leading-[1.5] tracking-[-0.005em] text-bh-graphite">
+              A senior estimator gives you one head. A contract administrator
+              gives you another. Hawktress gives you the operating standard,
+              the regional benchmarks and the discipline beneath every decision.
+              The kind of capability you cannot hire for.
             </p>
           </Reveal>
         </div>
@@ -71,10 +55,10 @@ export default function ValueCase() {
           <Reveal as="div" className="bg-bh-white border border-bh-steel/60 p-7 md:p-9" duration={800} delay={100}>
             <div className="flex items-baseline justify-between mb-7 pb-5 border-b border-bh-steel/60">
               <h3 className="text-[20px] md:text-[24px] font-medium tracking-[-0.015em] text-bh-black">
-                Two internal hires
+                Two senior hires
               </h3>
               <p className="text-[11px] tracking-[0.18em] uppercase text-bh-graphite">
-                Year 1
+                Year 1 · cost of capacity
               </p>
             </div>
             <ul className="divide-y divide-bh-steel/40">
@@ -97,8 +81,8 @@ export default function ValueCase() {
               </span>
             </div>
             <p className="mt-5 text-[13px] text-bh-graphite leading-[1.5]">
-              Two people. No intelligence layer. No benchmarking. No cost
-              database.
+              Two heads of overhead. No regional intelligence layer. No
+              benchmarking. No record that compounds across jobs.
             </p>
           </Reveal>
 
@@ -110,7 +94,7 @@ export default function ValueCase() {
                 Hawktress · Base
               </h3>
               <p className="text-[11px] tracking-[0.18em] uppercase text-bh-steel/80">
-                Year 1
+                Year 1 · operating standard
               </p>
             </div>
             <ul className="space-y-2.5">
@@ -151,6 +135,24 @@ export default function ValueCase() {
             </p>
           </Reveal>
         </div>
+
+        {/* Reframed savings as a footnote, not a hero number */}
+        <Reveal
+          as="div"
+          className="mt-12 md:mt-16 max-w-3xl text-[14px] md:text-[15px] tracking-[-0.005em] text-bh-graphite leading-[1.55]"
+          duration={700}
+          delay={400}
+        >
+          <p>
+            Operators who replace internal estimating and CA capacity with
+            Hawktress reallocate{" "}
+            <span className="text-bh-black">
+              <Counter to={303600} prefix="$" duration={1500} /> in year one
+            </span>{" "}
+            toward delivery, not overhead. The capability gap is the headline.
+            The cost differential is the consequence.
+          </p>
+        </Reveal>
       </div>
     </section>
   );

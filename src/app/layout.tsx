@@ -12,7 +12,7 @@ const suisse = Inter({
 export const metadata: Metadata = {
   title: "BuildHawk · Precision Estimating. Disciplined Delivery.",
   description:
-    "BuildHawk is a back-end partner for builders, developers, and owner-builders. We protect profit margins, control project costs, and strengthen construction execution from tender through completion.",
+    "BuildHawk is a back-end partner for builders, developers and owner-builders. We protect profit margins, control project costs and strengthen construction execution from tender through completion.",
   icons: {
     icon: "/brand/favicon-32.png",
   },
