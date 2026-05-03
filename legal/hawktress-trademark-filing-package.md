@@ -75,13 +75,12 @@ A formal availability search by an attorney (~AU$500–$1,500) is recommended be
 
 | Item | Cost |
 |---|---|
-| Direct filing, 1 class, picklist | $250 |
-| **IP Australia government fee total** | **$250** |
-| Attorney engagement (clearance search + filing + standard prosecution) | $1,500–$3,500 |
+| Direct filing, 1 class, picklist (DIY via IP Australia portal) | $250 |
+| **Total to filed application** | **$250** |
 | Registration certificate (after acceptance + 2-month opposition window) | $0 (included) |
 | Renewal (every 10 years, per class) | $400 |
 
-Attorney engagement is the recommended path — Hawktress is a moat asset, not a $250 form-filing exercise. Fixed-fee TM filing packages from AU SaaS-friendly firms run in this range and include clearance, drafting, and objection handling.
+DIY self-lodgement. No attorney engagement.
 
 ## 8. Timeline
 
@@ -98,35 +97,92 @@ Attorney engagement is the recommended path — Hawktress is a moat asset, not a
 | Applicant | ✅ BuildHawk Pty Ltd, ACN 695 023 664 |
 | Filing pathway | ✅ Direct filing (skip Headstart) |
 | Goods/services scope | ✅ Class 42, single class — spec in §3 |
-| Lodgement method | ✅ Attorney engagement |
+| Lodgement method | ✅ DIY self-lodgement (no attorney) |
 | Jurisdiction | ✅ IP Australia only (USPTO + Madrid deferred 12+ months) |
 | Use status | ✅ Intent-to-use |
 
-## 10. Outstanding — to action
+## 10. DIY Lodgement — step-by-step
 
-1. **Confirm QLD registered office is actively monitored** for legal correspondence (opposition notices come here; missed notice = default).
-2. **Pick the IP attorney.** No firm selected yet. Three AU options worth shortlisting: Spruson & Ferguson (large, SaaS-heavy), POF / Phillips Ormonde Fitzpatrick (mid, fixed-fee TM packages), Mark Williams Solicitors (boutique, builder-friendly fees). Can shortlist properly once you confirm budget and preferred firm size.
-3. **Brief the attorney.** Package below ready to send.
-4. **Domain + handle defence** (parallel to filing): lock hawktress.com.au, hawktress.com, hawktress.ai, and social handles before any public reveal. Cheap insurance vs UDRP recovery.
+**Portal:** https://services.ipaustralia.gov.au — IP Australia online services. Log in with myGovID linked to BuildHawk Pty Ltd, or create a customer account.
 
-## 11. Attorney Brief (ready to send)
+**Step 1 — Customer account & ABN linkage (one-time, ~10 min)**
+- Sign in via myGovID or create an IP Australia customer account
+- Link BuildHawk Pty Ltd ABN/ACN under "Manage organisations"
+- Set BuildHawk as the applicant entity for this application
 
-> **Mark:** HAWKTRESS (word mark, plain text, no logo)
-> **Applicant:** BuildHawk Pty Ltd, ACN 695 023 664, registered Queensland
-> **Class:** 42 (single class)
-> **Specification:** see §3 — please review and tune for examiner approval
-> **Filing basis:** intent-to-use
-> **Jurisdiction:** IP Australia, direct filing (skip Headstart)
-> **Pre-filing requirement:** clearance search across IP Australia, USPTO (defensive), NZ IPO, Madrid, plus common-law search
-> **Strategic context:** Hawktress is the IP backbone for a SaaS platform serving AU/NZ residential builders. Filing under operating entity now; assignment to a future IP holding entity within 12 months is anticipated. Madrid Protocol revisit at 12-month mark contingent on US/UK commercialisation roadmap.
-> **Stack note:** platform built on GoHighLevel (GHL) infrastructure. Specification deliberately uses "software as a service" rather than "platform" to remain accurate regardless of underlying stack.
+**Step 2 — Start trade mark application (~20 min)**
+- Choose "Apply for a trade mark" → "Standard application" (NOT Headstart)
+- Choose **picklist** path (gives the $250 fee, not $400)
+- Mark type: **Word**
+- Mark text: **HAWKTRESS** (all caps; the registration covers any case use)
+- Endorsements: leave blank
+- Series: no (single mark)
+- Colour claim: no
+- Convention/priority claim: no
 
-## 12. What I cannot do
+**Step 3 — Goods/services (the critical step)**
+- Class: **42** only
+- Use the picklist search to assemble a specification matching §3 of this doc as closely as the picklist allows. Search and add picklist terms covering:
+  - "Software as a service [SaaS]" — pick the SaaS hosting/providing terms
+  - "Cost estimation" / "construction cost estimation"
+  - "Project management" / "construction project management"
+  - "Workflow management"
+  - "Cost data analysis" / "benchmarking" / "reporting"
+- If a needed term isn't in the picklist, you can add custom wording — but it bumps the fee from $250 to $400/class. **Stay inside the picklist.** Pick the closest matching picklist terms; the spec doesn't need to be word-for-word from §3 to cover the same scope.
+- Industry context: tag "construction industry" / "residential and commercial construction" via the picklist where available
 
-- File the application on your behalf — requires applicant signature, payment, and is a legal act.
-- Provide legal advice on enforceability or infringement strategy — engage an attorney for that.
-- Run a formal trademark availability search beyond knockout level (clean per §6).
+**Step 4 — Applicant details**
+- Name: **BuildHawk Pty Ltd**
+- ACN: **695 023 664**
+- Address for service: BuildHawk's QLD registered office (must be monitored — see flag below)
+- Email: a monitored inbox (this is where examiner reports and opposition notices land)
 
-## 13. Next-best step
+**Step 5 — Declaration & payment**
+- Declare intent to use (no use evidence required at filing in AU)
+- Pay $250 by card
+- Application number issued immediately; **priority date locks at this moment**
 
-Pick the attorney. Brief in §11 ships the moment a firm is selected. Domain/handle lock can run in parallel today.
+**Total time end-to-end:** ~45–60 min for first-time filer. Save progress at any step and return.
+
+## 11. Critical risks of DIY (read before lodging)
+
+DIY is viable for HAWKTRESS specifically because the mark is coined and Class 42 is well-trodden. But these are the failure modes that burn the $250 and the priority date:
+
+1. **Specification too narrow** — if you only tick "SaaS for construction project management" and the platform later adds supplier procurement, the trademark doesn't cover it. Be inclusive within picklist limits.
+2. **Specification too broad / non-picklist** — drafting your own goods/services language outside the picklist bumps the fee to $400 and risks examiner objection on overclaiming. Stick to picklist.
+3. **Wrong applicant** — if BuildHawk Pty Ltd isn't the entity that will commercialise Hawktress, the application is vulnerable to non-use removal. Confirm BuildHawk Pty Ltd is the licensing/operating entity, not Homes By NH.
+4. **Missed examiner correspondence** — examiner reports require response within 15 months or the application lapses. Set a calendar diary for month 3, 6, 9 to check the IP Australia portal for any examiner activity.
+5. **Missed opposition notice** — once advertised (~month 7–9), there's a 2-month window where any third party can oppose. Notices go to the address for service. Monitor that inbox/address.
+6. **Use-by-3-years rule** — once registered, the mark must be used in commerce within 3 years or it's vulnerable to s.92 non-use removal. Diary the use-by date.
+
+## 12. Pre-flight checklist (do these before clicking lodge)
+
+- [ ] Confirm BuildHawk Pty Ltd ACN 695 023 664 is current and active on ASIC
+- [ ] Confirm QLD registered office is monitored for legal mail
+- [ ] Confirm a monitored email address for examiner correspondence
+- [ ] Run one final ATMOSS/IP Australia search on "Hawktress" + variants (Hawktrss, Hawktres, Hawk Tress, Hawk-Tress) the day of filing — knockout was clean as of 2026-05-04, but re-check before commit
+- [ ] Have credit card ready for $250 payment
+- [ ] Screenshot or PDF every step of the application before submission for record
+- [ ] Save the application number + priority date the moment they're issued
+
+## 13. Domain + handle defence (do TODAY, parallel to filing)
+
+Lock these before any public reveal — UDRP recovery later costs more than registration today:
+- hawktress.com.au (auDA, requires ABN — BuildHawk's qualifies)
+- hawktress.com
+- hawktress.ai
+- hawktress.io (defensive)
+- hawktress.app (defensive)
+- @hawktress on X, Instagram, LinkedIn, TikTok, YouTube, Threads
+- /hawktress on Facebook
+
+Total cost: ~AU$200–400/year across domains, free on social handles.
+
+## 14. What I cannot do for you
+
+- Submit the application — requires your myGovID login, applicant signature, and credit card.
+- Provide legal advice on enforceability or infringement strategy.
+
+## 15. Next action
+
+Open https://services.ipaustralia.gov.au, log in with myGovID linked to BuildHawk Pty Ltd, and walk through §10. Lock domains and handles in parallel today (§13). Re-run the ATMOSS check the morning of filing as the final clearance pass.

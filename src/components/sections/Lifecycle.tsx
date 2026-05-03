@@ -1,48 +1,85 @@
+import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
 import Counter from "@/components/motion/Counter";
 
-const stages = [
+type Stage = {
+  n: string;
+  name: string;
+  function: string;
+  role: string;
+  read: { slug: string; label: string };
+};
+
+const stages: Stage[] = [
   {
     n: "01",
     name: "Estimating",
     function: "Trade quotes, BOQ, scope, RFQ management",
     role: "Captures all quote data. Flags costs outside the 5% regional threshold before the estimate is issued.",
+    read: {
+      slug: "five-percent-variance-threshold",
+      label: "The 5% variance threshold",
+    },
   },
   {
     n: "02",
     name: "Pre-construction",
     function: "Feasibility, budget confirmation, procurement strategy",
     role: "Real market benchmarks validate the budget. Margin position locked before contract signed.",
+    read: {
+      slug: "underpricing-sitework-year-one",
+      label: "Why builders underprice sitework",
+    },
   },
   {
     n: "03",
     name: "Contract admin",
     function: "Variation control, PO tracking, cost commitments",
     role: "Every variation checked against 5%. Out-of-threshold items referred to the Director.",
+    read: {
+      slug: "variation-control-three-questions",
+      label: "Three questions before you approve",
+    },
   },
   {
     n: "04",
     name: "Project execution",
     function: "Live cost tracking, supplier performance, programme",
     role: "Actual costs monitored against committed values. Margin erosion flagged in real time.",
+    read: {
+      slug: "five-percent-variance-threshold",
+      label: "Holding the line on live cost",
+    },
   },
   {
     n: "05",
     name: "Practical completion",
     function: "Final cost reconciliation, defects liability, handover",
     role: "Final report. Quote vs. actual reconciled trade by trade and supplier by supplier.",
+    read: {
+      slug: "monthly-director-report-walkthrough",
+      label: "How the final report reconciles",
+    },
   },
   {
     n: "06",
     name: "Intelligence layer",
     function: "Data feeds back into the system",
     role: "Every completed job sharpens the benchmarks. The system gets more accurate with every project.",
+    read: {
+      slug: "building-hawktress-builder-builds-software",
+      label: "How a builder builds the data layer",
+    },
   },
   {
     n: "07",
     name: "Reporting",
     function: "Monthly Director report",
     role: "All active jobs, margin position, variations, committed costs, forecast revenue, cash position.",
+    read: {
+      slug: "monthly-director-report-walkthrough",
+      label: "Reading the monthly Director report",
+    },
   },
 ];
 
@@ -113,9 +150,25 @@ export default function Lifecycle() {
                 <p className="text-[12px] tracking-[0.005em] text-bh-graphite mb-4 leading-[1.4]">
                   {s.function}
                 </p>
-                <p className="mt-auto text-[13px] leading-[1.45] tracking-[-0.005em] text-bh-black/85">
+                <p className="text-[13px] leading-[1.45] tracking-[-0.005em] text-bh-black/85">
                   {s.role}
                 </p>
+                <Link
+                  href={`/insights/${s.read.slug}`}
+                  className="mt-auto pt-5 inline-flex items-baseline gap-2 text-[11px] tracking-[0.16em] uppercase text-bh-orange hover:text-bh-orange-700 transition-colors"
+                >
+                  <span aria-hidden className="inline-block w-3 h-px bg-bh-orange translate-y-[-3px]" />
+                  <span className="leading-snug">{s.read.label}</span>
+                  <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden className="self-center flex-none">
+                    <path
+                      d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </Link>
               </Reveal>
             ))}
           </div>
