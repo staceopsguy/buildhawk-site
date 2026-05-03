@@ -12,7 +12,7 @@ export default function BuilderTermsPage() {
     <LegalLayout
       eyebrow="Hawktress · Client-facing"
       title="Builder Terms of Use"
-      version="v2.0"
+      version="v3.0"
       date="1 May 2026"
     >
       <h2>1. Agreement</h2>
@@ -81,61 +81,84 @@ export default function BuilderTermsPage() {
         A one-off onboarding fee of <strong>$3,500 AUD (ex GST)</strong> is
         payable before onboarding commences. Non-refundable.
       </p>
-      <h3>3.2 Subscription tiers</h3>
+      <h3>3.2 Subscription tiers and payment options</h3>
+      <p>
+        All subscriptions are available as <strong>annual (paid upfront)</strong>{" "}
+        or <strong>monthly instalments</strong>. The monthly instalment option
+        carries a modest premium to reflect the flexibility of not committing to
+        an annual payment.
+      </p>
       <table>
         <thead>
           <tr>
             <th></th>
-            <th>Monthly</th>
-            <th>Annual</th>
+            <th>Annual (paid upfront)</th>
+            <th>Monthly instalments</th>
+            <th>Effective annual (monthly)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Base subscription</td>
-            <td>$4,500/month (ex GST)</td>
-            <td>$35,000/year (ex GST)</td>
+            <td>Onboarding fee (one-off, all tiers)</td>
+            <td>$3,500</td>
+            <td>$3,500</td>
+            <td>N/A</td>
           </tr>
           <tr>
-            <td>Active projects included</td>
-            <td>2 projects</td>
-            <td>2 projects</td>
+            <td>Base subscription (2 active projects)</td>
+            <td>$35,000/year</td>
+            <td>$3,100/month</td>
+            <td>$37,200/year</td>
           </tr>
           <tr>
-            <td>Additional projects</td>
-            <td>$1,850 per project (flat fee, ex GST)</td>
-            <td>$1,200 per project (flat fee, ex GST)</td>
+            <td>Additional projects (Base, flat fee per project)</td>
+            <td>$1,850</td>
+            <td>$1,850</td>
+            <td>N/A</td>
           </tr>
           <tr>
-            <td>Estimating</td>
+            <td>Estimating (Base)</td>
             <td>Quoted separately</td>
             <td>Quoted separately</td>
+            <td>—</td>
           </tr>
           <tr>
-            <td>Unlimited subscription</td>
-            <td>$9,500/month (ex GST)</td>
-            <td>$85,000/year (ex GST)</td>
+            <td>Unlimited subscription (up to 5 projects)</td>
+            <td>$85,000/year</td>
+            <td>$7,500/month</td>
+            <td>$90,000/year</td>
           </tr>
           <tr>
-            <td>Active projects included</td>
-            <td>Up to 5 projects</td>
-            <td>Up to 5 projects</td>
-          </tr>
-          <tr>
-            <td>Estimating</td>
-            <td>Quoted separately</td>
+            <td>Additional projects (Unlimited)</td>
             <td>Included</td>
+            <td>Included</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Estimating (Unlimited)</td>
+            <td>Included (Annual only)</td>
+            <td>Quoted separately</td>
+            <td>—</td>
           </tr>
         </tbody>
       </table>
-      <h3>3.3 Value reference</h3>
+      <h3>3.3 Additional project fee</h3>
       <p>
-        A full-time experienced estimator or quantity surveyor in Australia
-        costs between $95,000 and $130,000 per year in base salary, excluding
-        superannuation and leave entitlements. Hawktress delivers cost
-        intelligence, pre-construction benchmarking, variation control, live
-        project cost tracking and monthly commercial reporting across multiple
-        active projects at a materially lower total cost.
+        The additional project fee of $1,850 is a flat fee charged per project
+        when a new active project is created beyond the included allowance. It
+        applies equally to annual and monthly subscribers and is not subject to
+        discount. A project is considered active from the date it is created
+        until BuildHawk marks it as Completed.
+      </p>
+      <h3>3.4 Value reference</h3>
+      <p>
+        A full-time senior estimator and contract administrator in Australia
+        costs between $280,000 and $342,000 per year in combined salary,
+        superannuation at 12.5%, WorkCover at 4%, leave entitlements and
+        recruitment fees. Hawktress delivers estimating intelligence,
+        pre-construction benchmarking, variation control, live project cost
+        tracking and monthly commercial reporting across multiple active
+        projects at a materially lower total cost.
       </p>
 
       <h2>4. Contract administration and variation control</h2>
@@ -207,12 +230,12 @@ export default function BuilderTermsPage() {
       <ul>
         <li>Onboarding fee payable in full before onboarding commences</li>
         <li>
-          Monthly subscription fees invoiced in advance at the start of each
-          calendar month
+          Annual subscriptions invoiced in full at the start of the subscription
+          period
         </li>
         <li>
-          Annual subscription fees invoiced in full at the start of the
-          subscription period
+          Monthly instalments invoiced in advance at the start of each calendar
+          month
         </li>
         <li>
           Additional project fees invoiced when a new project is created beyond
@@ -225,11 +248,11 @@ export default function BuilderTermsPage() {
 
       <h2>9. Term and termination</h2>
       <p>
-        Monthly subscriptions continue month-to-month until terminated by either
-        party with 30 days written notice. Annual subscriptions run for 12
-        months and renew automatically unless either party provides 30 days
-        written notice of non-renewal. No refunds for unused portions of a
-        subscription period.
+        Annual subscriptions run for 12 months and renew automatically unless
+        either party provides 30 days written notice of non-renewal. Monthly
+        subscriptions continue month-to-month until terminated with 30 days
+        written notice. No refunds for unused portions of any subscription
+        period.
       </p>
 
       <h2>10. Intellectual property</h2>

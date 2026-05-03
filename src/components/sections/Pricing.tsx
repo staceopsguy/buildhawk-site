@@ -2,9 +2,23 @@
 
 import { useState } from "react";
 import Tilt from "@/components/motion/Tilt";
-import Reveal from "@/components/motion/Reveal";
 
 type Audience = "builders" | "trades" | "suppliers";
+type BillingMode = "annual" | "monthly";
+
+type Tier = {
+  name: string;
+  price: string;
+  cadence: string;
+  onboarding: string;
+  projects: string;
+  add: string;
+  estimating: string;
+  cta: string;
+  href: string;
+  featured: boolean;
+  effective?: string;
+};
 
 const tabs: { id: Audience; label: string; tagline: string }[] = [
   {
@@ -24,49 +38,66 @@ const tabs: { id: Audience; label: string; tagline: string }[] = [
   },
 ];
 
-const builderTiers = [
+const builderTiersAnnual: Tier[] = [
   {
-    name: "Base · Annual",
+    name: "Base",
     price: "$35,000",
     cadence: "/yr ex GST",
     onboarding: "+ $3,500 one-off onboarding",
     projects: "2 active projects included",
-    add: "$1,200 per additional project",
-    estimating: "Estimating engaged per project",
+    add: "$1,850 flat per additional project",
+    estimating: "Estimating quoted separately",
     cta: "Start brief",
     href: "#intake",
     featured: false,
   },
   {
-    name: "Unlimited · Annual",
+    name: "Unlimited",
     price: "$85,000",
     cadence: "/yr ex GST",
     onboarding: "+ $3,500 one-off onboarding",
     projects: "Up to 5 active projects",
-    add: "Estimating included",
-    estimating: "All lifecycle stages",
+    add: "Additional projects included",
+    estimating: "Estimating included (Annual only)",
     cta: "Talk to us",
     href: "#intake",
     featured: true,
   },
+];
+
+const builderTiersMonthly: Tier[] = [
   {
-    name: "Base · Monthly",
-    price: "$4,500",
+    name: "Base",
+    price: "$3,100",
     cadence: "/month ex GST",
     onboarding: "+ $3,500 one-off onboarding",
     projects: "2 active projects included",
-    add: "$1,850 per additional project",
-    estimating: "Estimating engaged per project",
+    add: "$1,850 flat per additional project",
+    estimating: "Estimating quoted separately",
     cta: "Start brief",
     href: "#intake",
     featured: false,
+    effective: "Effective $37,200/yr · slight premium for flexibility",
+  },
+  {
+    name: "Unlimited",
+    price: "$7,500",
+    cadence: "/month ex GST",
+    onboarding: "+ $3,500 one-off onboarding",
+    projects: "Up to 5 active projects",
+    add: "Additional projects included",
+    estimating: "Estimating quoted separately on Monthly",
+    cta: "Talk to us",
+    href: "#intake",
+    featured: true,
+    effective: "Effective $90,000/yr · slight premium for flexibility",
   },
 ];
 
-const tradeTiers = [
+const tradeTiersAnnual: Tier[] = [
   {
-    name: "Annual",
-    price: "$3,200",
+    name: "Trade · Annual",
+    price: "$4,800",
     cadence: "/yr ex GST",
     onboarding: "Single trade category",
     projects: "All AU states + NZ regions",
@@ -76,9 +107,12 @@ const tradeTiers = [
     href: "#intake",
     featured: true,
   },
+];
+
+const tradeTiersMonthly: Tier[] = [
   {
-    name: "Monthly",
-    price: "$350",
+    name: "Trade · Monthly",
+    price: "$430",
     cadence: "/month ex GST",
     onboarding: "Single trade category",
     projects: "All AU states + NZ regions",
@@ -86,11 +120,12 @@ const tradeTiers = [
     estimating: "Same intelligence, monthly cadence",
     cta: "Subscribe",
     href: "#intake",
-    featured: false,
+    featured: true,
+    effective: "Effective $5,160/yr · slight premium for flexibility",
   },
 ];
 
-const supplierTiers = [
+const supplierTiers: Tier[] = [
   {
     name: "Regional",
     price: "$4,500",
@@ -141,16 +176,22 @@ const supplierTiers = [
   },
 ];
 
-const tiersByAudience = {
-  builders: builderTiers,
-  trades: tradeTiers,
-  suppliers: supplierTiers,
-};
+function getTiers(audience: Audience, billing: BillingMode): Tier[] {
+  if (audience === "builders") {
+    return billing === "annual" ? builderTiersAnnual : builderTiersMonthly;
+  }
+  if (audience === "trades") {
+    return billing === "annual" ? tradeTiersAnnual : tradeTiersMonthly;
+  }
+  return supplierTiers;
+}
 
 export default function Pricing() {
   const [audience, setAudience] = useState<Audience>("builders");
-  const tiers = tiersByAudience[audience];
+  const [billing, setBilling] = useState<BillingMode>("annual");
+  const tiers = getTiers(audience, billing);
   const active = tabs.find((t) => t.id === audience)!;
+  const supportsBilling = audience !== "suppliers";
 
   return (
     <section
@@ -203,6 +244,46 @@ export default function Pricing() {
           <p className="mt-5 max-w-2xl text-[15px] md:text-[17px] leading-[1.5] tracking-[-0.005em] text-bh-graphite">
             {active.tagline}
           </p>
+
+          {/* Annual / Monthly toggle */}
+          {supportsBilling && (
+            <div className="mt-6 inline-flex items-center gap-3">
+              <div
+                role="tablist"
+                aria-label="Billing cadence"
+                className="inline-flex p-1 rounded-[10px] bg-bh-cloud border border-bh-steel/60"
+              >
+                {(["annual", "monthly"] as BillingMode[]).map((b) => {
+                  const selected = billing === b;
+                  return (
+                    <button
+                      key={b}
+                      role="tab"
+                      aria-selected={selected}
+                      onClick={() => setBilling(b)}
+                      className={`px-4 md:px-5 h-9 rounded-[8px] text-[12px] tracking-[-0.005em] font-medium transition-colors ${
+                        selected
+                          ? "bg-bh-black text-bh-white"
+                          : "bg-transparent text-bh-graphite hover:text-bh-black"
+                      }`}
+                    >
+                      {b === "annual" ? "Annual · upfront" : "Monthly instalments"}
+                    </button>
+                  );
+                })}
+              </div>
+              <span className="text-[11px] tracking-[0.16em] uppercase text-bh-graphite">
+                {billing === "annual"
+                  ? "Best value"
+                  : "Slight premium for flexibility"}
+              </span>
+            </div>
+          )}
+          {!supportsBilling && (
+            <p className="mt-6 text-[12px] tracking-[0.16em] uppercase text-bh-graphite">
+              Hawktress Alliance · Annual subscriptions only
+            </p>
+          )}
         </div>
 
         {/* Tier cards */}
@@ -265,6 +346,15 @@ export default function Pricing() {
                 >
                   {t.onboarding}
                 </p>
+                {t.effective && (
+                  <p
+                    className={`mt-1.5 text-[11px] tracking-[0.04em] ${
+                      t.featured ? "text-bh-orange" : "text-bh-orange-700"
+                    }`}
+                  >
+                    {t.effective}
+                  </p>
+                )}
               </div>
 
               <ul

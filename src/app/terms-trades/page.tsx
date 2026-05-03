@@ -12,7 +12,7 @@ export default function TradeTermsPage() {
     <LegalLayout
       eyebrow="Hawktress · Client-facing"
       title="Trade Subscriber Terms of Use"
-      version="v2.0"
+      version="v3.0"
       date="1 May 2026"
     >
       <h2>1. Agreement</h2>
@@ -28,38 +28,38 @@ export default function TradeTermsPage() {
         <thead>
           <tr>
             <th></th>
-            <th>Monthly</th>
-            <th>Annual</th>
+            <th>Annual (paid upfront)</th>
+            <th>Monthly instalments</th>
+            <th>Effective annual (monthly)</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Trade subscription</td>
-            <td>$350/month (ex GST)</td>
-            <td>$3,200/year (ex GST)</td>
+            <td>Trade subscription (single trade category, all AU and NZ regions)</td>
+            <td>$4,800/year</td>
+            <td>$430/month</td>
+            <td>$5,160/year</td>
           </tr>
           <tr>
-            <td>Trade category coverage</td>
-            <td>Single trade category</td>
-            <td>Single trade category</td>
-          </tr>
-          <tr>
-            <td>Regional coverage</td>
-            <td>All AU states, territories and NZ regions</td>
-            <td>All AU states, territories and NZ regions</td>
-          </tr>
-          <tr>
-            <td>Builder contact access</td>
+            <td>Builder exposure</td>
             <td>Not included</td>
             <td>Not included</td>
+            <td>—</td>
           </tr>
           <tr>
             <td>Supplier platform listing</td>
-            <td>Available as a separate add-on</td>
-            <td>Available as a separate add-on</td>
+            <td>Available as add-on</td>
+            <td>Available as add-on</td>
+            <td>—</td>
           </tr>
         </tbody>
       </table>
+      <p>
+        All fees are quoted in AUD exclusive of GST. GST of 10% is payable in
+        addition. Annual subscriptions are invoiced in full upfront. Monthly
+        instalments are invoiced in advance each calendar month and carry a
+        modest premium over the annual rate.
+      </p>
 
       <h2>3. What the subscription includes</h2>
       <p>

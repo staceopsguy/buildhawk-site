@@ -12,7 +12,7 @@ export default function SupplierTermsPage() {
     <LegalLayout
       eyebrow="Hawktress · Client-facing"
       title="Supplier Platform Terms and Conditions"
-      version="v2.0"
+      version="v3.0"
       date="1 May 2026"
     >
       <h2>1. Agreement</h2>
