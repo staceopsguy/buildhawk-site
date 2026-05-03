@@ -24,15 +24,7 @@ export default function Hero() {
 
       {/* Hawk emblem accent in the corner field — recurring brand motif */}
       <div className="hidden md:block absolute right-[-4%] top-[14%] w-[36vw] max-w-[560px] aspect-[255/196] opacity-[0.16] pointer-events-none">
-        <div
-          className="w-full h-full"
-          style={{
-            backgroundImage: "url(/brand/emblem-bh.svg)",
-            backgroundSize: "contain",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition: "right center",
-          }}
-        />
+        <div className="w-full h-full bh-emblem-bg" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1480px] px-5 md:px-10 pt-24 md:pt-44 pb-14 md:pb-32 min-h-[100svh] flex flex-col">

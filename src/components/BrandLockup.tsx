@@ -11,7 +11,10 @@ export default function BrandLockup({
   size?: "sm" | "md" | "lg";
   showTagline?: boolean;
 }) {
-  const emblem = "/brand/emblem-bh.svg";
+  // tone="dark" sits on always-dark surfaces (footer, etc.) → use the
+  // white+orange variant regardless of system theme.
+  // tone="light" follows the system theme: black+orange in light mode,
+  // white+orange in dark mode.
   const wordColor = tone === "dark" ? "text-bh-paper" : "text-bh-black";
   const endorseColor = tone === "dark" ? "text-bh-paper/60" : "text-bh-graphite";
   const taglineColor = "text-bh-orange";
@@ -22,17 +25,30 @@ export default function BrandLockup({
     lg: { h: 40, fontSize: 24, gap: 3, endorse: 10.5, tagline: 11, letterSpacing: "0.16em" },
   }[size];
 
+  const emblemWidth = Math.round((dims.h * 255.21) / 195.97);
+
+  const emblemImg = (src: string, className: string) => (
+    <Image
+      src={src}
+      alt=""
+      width={emblemWidth}
+      height={dims.h}
+      priority
+      style={{ height: dims.h, width: "auto" }}
+      className={className}
+    />
+  );
+
   return (
     <span className="inline-flex items-center gap-2.5">
-      <Image
-        src={emblem}
-        alt=""
-        width={Math.round((dims.h * 255.21) / 195.97)}
-        height={dims.h}
-        priority
-        style={{ height: dims.h, width: "auto" }}
-        className="block"
-      />
+      {tone === "dark" ? (
+        emblemImg("/brand/emblem-bh-dark.svg", "block")
+      ) : (
+        <>
+          {emblemImg("/brand/emblem-bh.svg", "block dark:hidden")}
+          {emblemImg("/brand/emblem-bh-dark.svg", "hidden dark:block")}
+        </>
+      )}
       <span className="flex flex-col leading-none">
         <span
           className={`${wordColor} font-semibold uppercase`}

@@ -58,12 +58,13 @@ export default function Waitlist() {
       id="waitlist"
       className="relative bg-bh-ink text-bh-paper py-20 md:py-28 overflow-hidden"
     >
-      {/* Subtle grain + emblem accent */}
+      {/* Subtle grain + emblem accent — section is always dark, so use the
+          white+orange variant directly (independent of system theme) */}
       <div
         aria-hidden
-        className="absolute inset-0 opacity-[0.06] pointer-events-none"
+        className="absolute inset-0 opacity-[0.10] pointer-events-none"
         style={{
-          backgroundImage: "url(/brand/emblem-bh.svg)",
+          backgroundImage: "url(/brand/emblem-bh-dark.svg)",
           backgroundSize: "560px",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "calc(100% + 80px) center",

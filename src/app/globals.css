@@ -114,6 +114,19 @@ html.lenis body {
   overflow: hidden;
 }
 
+/* Emblem accent — swaps to white+orange on dark backgrounds */
+.bh-emblem-bg {
+  background-image: url(/brand/emblem-bh.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+@media (prefers-color-scheme: dark) {
+  .bh-emblem-bg {
+    background-image: url(/brand/emblem-bh-dark.svg);
+  }
+}
+
 /* Hairline rule used across sections */
 .bh-hairline {
   background-image: linear-gradient(to right, var(--color-bh-steel) 0 100%);

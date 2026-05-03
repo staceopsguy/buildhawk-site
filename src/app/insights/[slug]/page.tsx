@@ -98,7 +98,14 @@ export default async function ArticlePage({ params }: { params: Params }) {
                 alt=""
                 width={28}
                 height={22}
-                className="absolute inset-0 m-auto"
+                className="absolute inset-0 m-auto block dark:hidden"
+              />
+              <Image
+                src="/brand/emblem-bh-dark.svg"
+                alt=""
+                width={28}
+                height={22}
+                className="absolute inset-0 m-auto hidden dark:block"
               />
             </div>
             <div>
