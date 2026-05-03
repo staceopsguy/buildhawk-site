@@ -48,18 +48,19 @@ export const featuredCaseStudy: FeaturedCaseStudy = {
   height: 180,
   url: "https://ockendengroup.com/",
   category: "Featured case study",
-  headline: "Margin discipline at scale.",
+  headline: "Margin locked in — not chased.",
   blurb:
-    "Ockenden Group runs Hawktress™ across an active residential book. Variation control, the 5% threshold and director-grade reporting embedded into how the business actually operates — not bolted on.",
+    "Ockenden run Hawktress™ across their live jobs. This isn't reporting after the fact — it's control built into how they operate day to day. Variations managed properly. Margins protected early. Decisions made with clarity, not guesswork. Nothing bolted on. It's how the job runs.",
   metrics: [
-    { k: "Threshold enforced", v: "5%" },
-    { k: "Reporting cadence", v: "Monthly" },
-    { k: "Engagement", v: "Tender → Completion" },
+    { k: "Margin threshold", v: "5% locked in" },
+    { k: "Reporting", v: "Monthly · accountable" },
+    { k: "Engagement", v: "Tender → Handover" },
   ],
   owners: [
     {
       name: "Ben Ockenden",
-      role: "Director · Master Builder · 25+ yrs",
+      role:
+        "Director · 25+ years on the tools — knows where jobs go wrong and how to stop it",
       src: "/images/ockenden-ben.jpg",
     },
   ],
