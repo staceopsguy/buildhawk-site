@@ -54,11 +54,12 @@ export default function Founder() {
               </p>
               <p>
                 Hawktress is built from the ground up on live Australian and
-                New Zealand construction data, operated by people who estimate
-                and administer construction contracts for a living. It exists
-                because nothing in the market does what it does, and because
-                the operators who run the best builds in the country deserve
-                the operating standard the rest of the world already has.
+                New Zealand construction data, run by people who estimate and
+                administer construction contracts on real residential jobs.
+                It exists because nothing in the market does what it does, and
+                because the operators who run the best builds in the country
+                deserve the operating standard the rest of the world already
+                has.
               </p>
               <p className="text-bh-black">
                 We do not chase a market position. We choose the operators we
