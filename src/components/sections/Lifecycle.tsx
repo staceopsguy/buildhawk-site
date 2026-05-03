@@ -124,23 +124,20 @@ export default function Lifecycle() {
           <Reveal
             as="div"
             duration={900}
-            className="mt-8 md:mt-10 grid grid-cols-12 gap-6 md:gap-8 items-center"
+            className="mt-8 md:mt-10 flex flex-col md:flex-row md:items-center gap-5 md:gap-10"
           >
-            <div className="col-span-12 md:col-span-2 lg:col-span-1">
-              <p className="font-medium tracking-[-0.03em] leading-[0.95] text-bh-orange text-[64px] md:text-[88px] tabular-nums">
-                <Counter to={5} suffix="%" duration={1100} />
-              </p>
-            </div>
-            <div className="col-span-12 md:col-span-9 lg:col-span-8">
-              <p className="text-[16px] md:text-[18px] leading-[1.5] tracking-[-0.01em] text-bh-black">
-                <span className="font-medium">The variance threshold.</span>{" "}
-                <span className="text-bh-graphite">
-                  Any quote, variation, or actual cost more than 5% outside the
-                  rolling regional average triggers an automatic flag. Out-of-threshold
-                  items require Director approval before the CA can proceed.
-                </span>
-              </p>
-            </div>
+            <p className="flex-none font-medium tracking-[-0.03em] leading-[0.95] text-bh-orange text-[64px] md:text-[88px] tabular-nums whitespace-nowrap">
+              <Counter to={5} suffix="%" duration={1100} />
+            </p>
+            <p className="flex-1 max-w-3xl text-[16px] md:text-[18px] leading-[1.5] tracking-[-0.01em] text-bh-black">
+              <span className="font-medium">The variance threshold.</span>{" "}
+              <span className="text-bh-graphite">
+                Any quote, variation, or actual cost more than 5% outside the
+                rolling regional average triggers an automatic flag.
+                Out-of-threshold items require Director approval before the CA
+                can proceed.
+              </span>
+            </p>
           </Reveal>
         </div>
       </div>

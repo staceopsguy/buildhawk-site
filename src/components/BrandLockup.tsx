@@ -11,7 +11,7 @@ export default function BrandLockup({
   size?: "sm" | "md" | "lg";
   showTagline?: boolean;
 }) {
-  const emblem = tone === "dark" ? "/brand/emblem-3.svg" : "/brand/emblem-bh.svg";
+  const emblem = "/brand/emblem-bh.svg";
   const wordColor = tone === "dark" ? "text-bh-white" : "text-bh-black";
   const endorseColor = tone === "dark" ? "text-bh-white/60" : "text-bh-graphite";
   const taglineColor = "text-bh-orange";

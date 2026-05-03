@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111111"/>
+      <stop offset="100%" stop-color="#1a1a1f"/>
+    </linearGradient>
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M 80 0 L 0 0 0 80" fill="none" stroke="#ffffff" stroke-width="0.6" opacity="0.06"/>
+    </pattern>
+  </defs>
+  <rect width="1600" height="1200" fill="url(#bg)"/>
+  <rect width="1600" height="1200" fill="url(#grid)"/>
+  <!-- Brand emblem motif, large, off-centre -->
+  <g transform="translate(820,260) scale(2.6)">
+    <path fill="#de5123" opacity="0.92" d="M248.58,87.27c3.72-19.49-12.19-23.39-32.82-20.97-31.46,3.7-73.92,22.12-74.65,22.43,37.44-30.15,74.53-41.23,74.53-41.23l-.93-2.64c1.88-.17,3.67-.3,5.39-.39-.21-3.19-2.51-6.4-7.61-9.54-22.92-14.12-56.85-13.31-76.88-11.21L103.04,1.14s90.09.96,121.13,28.03c4.71,4.11,5.89,9.36,4.48,15.3,44.14,2.28,19.93,42.8,19.93,42.8Z"/>
+    <path fill="#de5123" opacity="0.92" d="M196.99,45.97c-7.1-.99-11.61-7.08-11.05-13.62,0,0,10.61,7.32,17.82,7.94,0,0,.32,6.67-6.78,5.68Z"/>
+    <path fill="#ffffff" opacity="0.9" d="M169.6,84.82s.01,3.97.02,10.11h-37.61c-.92-4.3-1.86-7-1.86-7-13.05,8.83-35.14,4.84-35.14,4.84,9.62,10.38,12.03,26.31.75,33.52-11.28,7.22-25.26,4.51-25.26,4.51,5.15,8.37,10.32,15.69,15.4,22.07,41.22.12,48.41-24.66,47.87-43.64h35.88c.05,22.78.08,53.28-.05,53.28l34.16-13.89v-73.15l-34.16,9.34Z"/>
+    <path fill="#ffffff" opacity="0.9" d="M134.06,71.73c-14.44,25.73-43.31,8.41-51.72,8.41-5.03,0-16.67-.35-25.2-.42v42.36s-17.12-11.93-28-33.1c-4.15-8.06-7.39-17.46-8.44-28.05-.23-2.38-.36-4.82-.36-7.32v-22.82s36.8-.17,36.8,0v31.35h18.6c31.67,0,34.27-40.89-5.24-40.89H26.01C14.28,21.24,0,11.73,0,0h74.84c31.85,0,48.24,11.12,54.11,24.53,8.4,19.16-4.71,42.99-24.9,45.68,0,0,9.89,7.42,30.01,1.52Z"/>
+  </g>
+  <!-- Eyebrow text -->
+  <g fill="#de5123">
+    <rect x="160" y="280" width="40" height="3"/>
+    <text x="216" y="288" font-family="'Inter','Helvetica Neue',sans-serif" font-size="22" letter-spacing="6" font-weight="600">FOUNDER</text>
+  </g>
+  <!-- Headline-ish supporting text -->
+  <text x="160" y="380" fill="#ffffff" font-family="'Inter','Helvetica Neue',sans-serif" font-size="84" font-weight="500" letter-spacing="-2">From inside</text>
+  <text x="160" y="476" fill="#ffffff" font-family="'Inter','Helvetica Neue',sans-serif" font-size="84" font-weight="500" letter-spacing="-2">the build.</text>
+</svg>
