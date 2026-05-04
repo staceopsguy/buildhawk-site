@@ -46,72 +46,40 @@ export const authors: Record<Author["id"], Author> = {
 export const articles: Article[] = [
   {
     slug: "five-percent-variance-threshold",
-    title: "The 5% Variance Threshold: Why It Saves Margin",
+    title: "The 5% Variance Rule",
     dek:
-      "A single rule that decides whether a quote, a variation or an actual cost gets approved or escalated. We use it on every job. Here is why 5% and what happens when you ignore it.",
+      "Most builders find out a job is losing money too late to do anything about it. The 5% variance threshold is how you stop that from happening.",
     authorId: "nathan",
-    date: "2025-03-12",
-    readingTime: 7,
+    date: "2026-05-04",
+    readingTime: 4,
     category: "Methodology",
     cover: "/images/architect-plans.webp",
     youtubeId: "o9X5uA-pVWA",
     videoLabel: "Construction Contract Variations and Claims with Peter Mallett",
     videoCredit: "Featured talk · 32 min",
-    body: `Every builder loses margin in the same three places. The estimate that goes out optimistic. The variation that gets waved through. The PO that closes 10% over without a phone call. None of these failures look catastrophic in the moment. They look like single line items on a single job. But across a year of work they add up to the difference between profit and break-even.
+    body: `Most builders find out a job is losing money too late to do anything about it.
 
-We built the 5% variance threshold to put a hard line under all three.
+The 5% variance threshold is how you stop that from happening.
 
-## What the threshold actually is
+It is not a contingency, a markup buffer, or a pricing allowance. It is a monitoring trigger — a defined tolerance applied across each trade or BOQ section. When actual costs exceed your estimated allowance by 5% or more on any section, the job flags for review. That is the mechanism.
 
-Hawktress holds a rolling regional average for every trade rate it has data on. When a quote, a variation or an actual cost lands more than 5% outside that average, the record is automatically flagged. Flagged items cannot be approved by the contract administrator alone. They escalate to me, the director, before the CA can move forward.
+Here is what it looks like in practice.
 
-That is the whole rule.
+Your framing package is estimated at $48,000. Timber runs over on supply and the crew logs an extra day due to a structural change. You are now at $52,400 — 9.2% variance on a single section. Without a threshold in place, that number sits unreviewed until the final account. With it active, the flag triggers at $50,400. You still have time to assess whether the change warrants a variation claim, whether another section absorbs the gap, or whether margin needs to be re-baselined.
 
-The rule applies at every stage. A frame quote that comes in 12% above the regional rolling average for VIC custom builds gets flagged at the estimate stage. A variation claim that prices repointing brickwork at $180 per m² when the regional average is $128 gets flagged at the contract admin stage. A site clean PO that closes at $4,200 against an issued value of $3,000 gets flagged at the practical completion stage.
+The same applies to services. Electrical estimated at $22,000. The sparky invoices $23,200 after running additional circuits for a home office scope that was never formalised as a variation. That is 5.5%. Caught early, it is a conversation and a recoverable cost. Caught at Practical Completion, it is a write-off.
 
-Every flag is a conversation. Some flags are completely justified. The site had three trees that were not on the original survey. The supplier passed on a steel price hike that everyone in the market is wearing. Those flags get approved with a note explaining the variance. Other flags are not justified. The trade has padded the rate. The CA missed a duplicated line. Those flags get pushed back.
+Joinery is where it matters most. A $65,000 package with an additional overhead cupboard run and a revised island bench — neither processed as a variation — sits at 6.2% over. That number only surfaces when you are reconciling the job post-handover.
 
-The point is not to refuse variances. The point is to make sure no variance ever happens silently.
+The threshold creates a decision point while options still exist. At 5% variance on a single section, you have three choices: absorb it, recover it elsewhere, or escalate. At 15% across multiple sections no one caught, you have none.
 
-## Why 5%, not 10%
+> Builders who operate without a defined variance threshold are not managing cost. They are counting on the final account to tell them what happened.
 
-I get this question constantly. Why not give the team a wider band? Builders run hot and cold on price. Trades change their rates. Inflation alone moves things 3 to 4% a year. A 5% threshold is going to flag a lot of records. Is that not just noise?
+BuildHawk builds cost control into the estimate before construction starts. The threshold is one part of a structured financial framework that keeps your margin visible from the first trade package to Practical Completion.
 
-The answer is in the maths. If your average margin on a residential build is 18% and you let trades drift 10% above your committed value across the job, you have eaten 1.8% of your gross margin in cost creep alone. On a $2.5 million build that is $45,000. You have lost a year of one staff member's super for nothing.
+If that is a problem you are looking to solve, reply to this email or book a call below.
 
-5% is the threshold where margin protection still works. 10% is the threshold where margin protection becomes wishful thinking.
-
-There is also a behavioural reason. When the threshold is 5%, the team estimates inside the threshold. They sharpen their numbers, they call the supplier when something looks high, they push back on quotes early. When the threshold is 10%, the team uses the headroom. The threshold becomes the new ceiling.
-
-> The threshold you set is the discipline you get.
-
-## What happens when the threshold is ignored
-
-I worked on a custom home in Highton in 2022 where the contract administrator approved every variation that came across his desk for four months. The variations were not unreasonable on their own. A $4,800 framing change here, a $7,200 cabinetry adjustment there. None of them were 5% outside the regional average. Most of them were 6 to 8% above what the original quote had been.
-
-By the time we caught it the project had absorbed $94,000 in approved variations against a contract value of $1.65 million. The gross margin on the job was supposed to be 19%. It came in at 11%. The CA had not done anything wrong by the standards of the day. The standards of the day were the problem.
-
-That job is the reason the 5% threshold exists.
-
-## How it applies to a trade subscription
-
-If you are reading this as a trade contractor on the Hawktress platform, the threshold cuts both ways. Your own pricing gets benchmarked against the regional rolling average for your category. When your quote sits inside the band you are competitive. When it sits more than 5% above the band you get a notification. When it sits more than 5% below the band you also get a notification, because you are leaving money on the table and we want you sustainable on the platform.
-
-The threshold is not a stick. It is a ruler. It tells everyone where they sit so they can decide what to do about it.
-
-## How it applies to suppliers
-
-Suppliers see the same thing at the platform level. Their quote-to-actual variance is tracked across every job they work on with a Hawktress builder. Suppliers who consistently deliver inside the threshold rise in the recommendation list. Suppliers who consistently sit outside it have a conversation with us before they get put in front of more builders. We are not in the business of recommending suppliers who blow up budgets.
-
-## What this looks like in the monthly report
-
-The monthly director report I receive on the 5th of each month carries a flagged-items section. Every line that triggered the threshold across every active job in the previous month, with a director-decision column. Approved with note. Pushed back. Renegotiated. Resolved through scope clarification.
-
-It is the most useful page in the report. It is also the page that has saved us the most money over the last 18 months.
-
----
-
-If you are a builder reading this and you have ever finished a project knowing you lost margin you cannot quite explain, the answer is almost always uncontrolled variance. Set a threshold. Hold it. Have the awkward conversations early. The job will finish where you said it would.`,
+— BuildHawk`,
   },
   {
     slug: "underpricing-sitework-year-one",
@@ -189,68 +157,46 @@ If your business is moving into a new postcode this year, the single most expens
   },
   {
     slug: "variation-control-three-questions",
-    title: "Variation Control: Three Questions Before You Approve",
+    title: "Variation Control: The System That Removes Discretion",
     dek:
-      "Most variations are not fraudulent. They are sloppy. The CA who runs a variation through three specific questions before approval will catch nine out of ten cost creep events before they hit the books.",
+      "A builder can price a job accurately, manage trades well, and still finish in the red. In most cases, the cause is the same: variations that were completed but never properly controlled.",
     authorId: "nathan",
-    date: "2025-07-22",
+    date: "2026-05-04",
     readingTime: 5,
     category: "Operator Handbook",
     cover: "/images/residential-gable.webp",
     youtubeId: "qN8QOmChcxY",
     videoLabel: "Contract variation procedure with worked example",
     videoCredit: "Featured walkthrough · 26 min",
-    body: `Contract administrators are not paid to be hard. They are paid to be accurate. The difference between a CA who protects margin and a CA who erodes it is usually three questions.
+    body: `A builder can price a job accurately, manage trades well, and still finish in the red.
 
-I review every escalated variation that comes through the Hawktress platform. Across the active builder book the team processes roughly 40 to 60 variation claims a week. The pattern is consistent. Around 70% of variations are legitimate and well-documented. Around 25% are legitimate but underspecified. Around 5% are wrong, either through sloppy paperwork or, occasionally, through deliberate inflation.
+In most cases, the cause is the same: variations that were completed but never properly controlled.
 
-The three questions catch the 25 plus the 5.
+Variations are not the problem. Scope changes on a custom home are inevitable. The problem is the system around them, or more accurately, the absence of one.
 
-## Question one. Does the scope of the variation match the scope of the original contract item?
+Most variation failures follow the same pattern. A client requests a change on site. The project manager agrees to proceed because the change seems minor or stopping work to process paperwork feels disproportionate. The trade completes the work. The cost gets absorbed into the job. At the end of the project, the builder reconciles the final account and finds the job is short by an amount that correlates almost exactly with the unprocessed variations from the previous six months.
 
-This is the single most common variation failure. A trade prices a variation as if it is net new work, when half of it was already inside the original scope.
+The individual amounts rarely look significant in isolation. A $400 change to a tapware selection. An additional day of excavation after rock was struck. A revised balustrade detail that required custom fabrication. Separately, each one feels manageable. Cumulatively, across a $1.2 million project, they represent the difference between a healthy margin and a break-even job.
 
-Concrete example. A bricklayer issues a variation for $2,400 to "supply and lay extra brickwork to feature wall as marked." The drawing change adds 8 m² of brickwork to a feature wall that was already part of the original scope at 24 m². The original quote was $4,800 for the 24 m². At $200 per m² placed, the additional 8 m² should be priced at $1,600. The trade has priced $300 per m² for the variation. They have used the variation as an opportunity to lift the rate, not just to capture the additional quantity.
+The second failure point is verbal approval. A client says yes on site. Work proceeds. The variation is never formalised in writing. At the end of the project, the client disputes the charge because they don't remember approving it, or because the final account is higher than expected and they are looking for items to challenge. Without a signed variation order, the builder has no position to stand on.
 
-The question to ask is: what was the contract rate for this exact item and is the variation rate consistent with the contract rate? If it is not, escalate.
+The third failure point is underpricing. A builder prices a variation quickly, without applying the same rigour used in the original estimate. Preliminaries are not added. Margin is forgotten. The variation is issued at cost. This happens most often on small variations where the builder wants to appear reasonable, and most expensively on large variations where the time pressure is highest.
 
-## Question two. Could this variation have been anticipated at tender stage?
+A controlled variation process starts with one non-negotiable: no work proceeds on any change to contracted scope until a variation has been identified, priced, and submitted for approval. Not after. Not concurrently. Before.
 
-Variations come in three categories. Client-driven changes. Site-driven discoveries. Builder-driven mistakes.
+The pricing step is where discipline matters most. A variation is priced the same way as the original estimate: labour, materials, plant, subcontractor costs, site overheads, and margin. Preliminaries are applied where the change extends the programme. Margin is applied at the same rate as the contract. A variation is not a favour. It is a commercial transaction.
 
-The first two are normal and the contract handles them. The third is where margin disappears.
+Approval must be in writing before work proceeds. Verbal approval with nothing following it in writing is not a variation system. It is a dispute waiting to happen.
 
-A trade who issues a variation because they did not allow for a perfectly visible feature on the contract drawings is asking the builder to pay for their own estimating error. A subcontractor who claims a variation because the drawings did not specify a junction detail that any competent operator would have priced is doing the same thing.
+Variations should not be held and invoiced at Practical Completion as a lump sum. They should be invoiced progressively so the cash position of the project reflects actual cost at every stage. A builder who invoices $180,000 in unprocessed variations at the end of a job is not running a variation system. They are running a credit facility for their client, funded by their own cash flow.
 
-The question to ask is: was this scope visible on the documents at tender? If it was, the variation is not a variation. It is a bid revision after the contract has been signed. The right answer is to push back, not to approve.
+A residential builder running ten custom homes a year, averaging $900,000 per contract, with a 12% margin target, needs to recover $108,000 per project to hit plan. On a project where $60,000 in variations were completed but not recovered, the margin drops to 5.3%. That is not a rounding error. It is a business model problem that compounds across every project where variation discipline is absent.
 
-> A variation is for new scope. A bid revision is for the trade's own oversight. The two are not the same.
+> The builders who run clean final accounts are not the ones who have fewer variations. They are the ones who process every variation the same way, every time, regardless of the relationship, the size of the change, or the pressure to keep work moving.
 
-## Question three. Does approving this variation change the trade's incentive on the rest of the job?
+The system removes the discretion. That is precisely why it works.
 
-This is the one CAs miss most often. Variations do not just change the price of the work in front of you. They change the trade's behaviour on the work that comes next.
-
-If you approve a variation that covers the trade's mistake, the trade learns that mistakes get covered. Future quotes from that trade will be looser, knowing the variation pipeline is permissive. If you approve a variation that lets a trade walk back a competitive original quote, every future quote from that trade will be priced higher knowing the contract value can be revised after award.
-
-The question to ask is: what does this approval signal to this trade about how I run my business? If it signals weakness, the cost is not the variation itself. The cost is the next twelve months of quotes from this trade and from every other trade that talks to them.
-
-## What to do with the answers
-
-If the variation passes all three questions, approve it and move on. Most variations do.
-
-If the variation fails one of the three questions, do not approve it. Open a conversation with the trade. The conversation usually resolves with a revised variation that works for both parties. The trade walks away with a clear understanding of where the line is. You walk away with a margin that has not been quietly bled.
-
-If the variation fails two or more questions, escalate to the director. The hawktress 5% threshold catches most of these automatically. The judgement-based ones, where the rate looks reasonable but the scope or behaviour is wrong, need a human escalation path. Build it into your CA workflow.
-
-## What this is not
-
-This is not about being adversarial with trades. The trades who work with our network builders consistently are the ones who write tight variations and welcome the questions. Discipline at the variation desk is what makes those trades stay sustainable on the platform. The trades who push loose variations are the ones who eventually price themselves out of the work.
-
-> The CA who asks three questions is not the CA the trades complain about. They are the CA the trades respect.
-
-The cost of asking three questions on every variation is approximately 90 seconds. The cost of not asking is the gap between your forecast margin and your actual margin at handover.
-
-If you are running a CA function inside a builder, write the three questions on the wall above the desk. Hold the line.`,
+— BuildHawk`,
   },
   {
     slug: "monthly-director-report-walkthrough",
@@ -351,84 +297,48 @@ Run the report on the 5th. Hold the structure. The business will follow.`,
   },
   {
     slug: "building-hawktress-builder-builds-software",
-    title: "Building Hawktress: How a Builder Builds Software",
+    title: "Hawktress: Cost Data That Actually Matters",
     dek:
-      "We did not hire a developer to build a construction platform. We built it ourselves, in GoHighLevel, on top of live jobs we were running. Here is what we learned about why builder-owned software is the only kind that survives contact with a real site.",
+      "The cost data that actually matters in construction has never lived in a software platform. It lives in completed jobs. Hawktress is an attempt to fix that.",
     authorId: "nathan",
-    date: "2026-05-01",
-    readingTime: 9,
+    date: "2026-05-04",
+    readingTime: 5,
     category: "Founder",
     cover: "/images/founder-mark.svg",
     youtubeId: "cbCZbaIoBm4",
     videoLabel: "How To Estimate Jobs For Contractors · Estimating 101",
     videoCredit: "Featured talk · Will Spaulding",
-    body: `Most construction software is built by people who have never run a site. The product managers have read about residential construction. The engineers have visited a site once for a customer tour. The designers have never sat in a contract administrator's chair at the end of a Friday afternoon trying to reconcile a $14,000 variation against a quote document that has gone through three revisions.
+    body: `The cost data that actually matters in construction has never lived in a software platform. It lives in completed jobs.
 
-The result is software that looks good in a demo and dies on a real job.
+Hawktress is an attempt to fix that.
 
-I have been a builder for 25 years. I have run contract administration for two decades. I have approved or rejected approximately 11,000 variations across that time. When I started building Hawktress, the question I was answering was not "how do we make construction software better." The question was "what would the system look like if a builder had built it from scratch."
+Every estimating platform in the market is built on the same premise: give builders a place to input numbers. The assumption is that builders already know what those numbers should be. For a first-time estimate on an unfamiliar build type, in a market you haven't priced in six months, that assumption is where margin starts to erode.
 
-The answer turned out to be smaller and more disciplined than the existing market.
+The problem is not that builders lack tools. It is that the tools lack real data.
 
-## The first decision was GoHighLevel, not custom code
+Published cost guides, QS indices, and square metre rates are useful for feasibility. They are not useful for live estimating decisions. They are averages, smoothed across geographies, build types, and time periods that may no longer reflect current conditions. By the time that data is published, it is already historical.
 
-When I told people we were building Hawktress in GoHighLevel, the responses split cleanly. Software people thought it was a temporary scaffolding decision before we built "real" software. Builders thought it was the only sensible decision we could have made.
+The data that is actually reliable comes from one place: jobs that have been built and reconciled. What a concreter charged per square metre for a waffle pod slab in a specific postcode, in a specific month, with specific site conditions. What a joinery package cost for a 280m² custom home with stone benchtops, full-height cabinetry, and a butler's pantry. What the delta was between the estimated and actual cost, and why.
 
-GoHighLevel was the right answer because it forced us to define the data model before we worried about the interface. Construction is a data problem disguised as a workflow problem. The variations are records. The quotes are records. The actuals are records. The relationships between them are the entire game. Build the records and the relationships first. The interface follows.
+That data exists. It just has not been captured in a structured, queryable format. It sits in spreadsheets, in job files, in email threads, and in the memory of estimators who have priced enough work to develop a feel for what things actually cost. That feel is valuable. It does not scale, it does not transfer, and it disappears when a team member leaves.
 
-The other reason was velocity. JC, our head of operations, can change a field type in GoHighLevel in under a minute. A custom application would have required a deployment cycle for the same change. In the first six months of building Hawktress we changed the schema 34 times. If we had built on a custom stack we would have shipped one schema change a month and it would have been the wrong one.
+Hawktress started as a simple question: what if every job we completed fed data back into the next estimate?
 
-> Software you can change inside a single morning is software that survives the first contact with a real job. Software that takes a sprint to change is software that fossilises.
+The answer was not to build another estimating platform. The answer was to build a cost intelligence layer that sits behind the estimate, pulling from reconciled project data to validate allowances before they are locked in. A reference database, not a workflow tool.
 
-## The second decision was internal use first
+The architecture is straightforward. A record per trade package, per job, capturing estimated cost, actual cost, variance, postcode, build type, floor area, and completion date. Simple to input. Powerful to query.
 
-We did not open Hawktress to a single external builder for the first nine months. Every job we ran went through the platform. Every quote, every variation, every PO, every actual cost. The CA function used it daily. The estimating function used it weekly. The director report came out of it on the 5th of every month.
+The discipline was in what not to build. No dashboards before the data is dense enough to be meaningful. No automation before the input process is stable. Builders who build software the way they build houses, by starting with structure before finishes, end up with something that works.
 
-The reason was simple. If we could not trust the platform to run our own jobs we had no business asking another builder to trust it with theirs.
+In practice, an estimator pricing a structural steel package for a two-storey custom home in coastal Victoria can query Hawktress for comparable packages from the last twelve months and use the actual cost range to stress-test their allowance before the estimate is finalised. Not as a replacement for a trade quote. As a check against an allowance that might be sitting 8% below where the market has moved.
 
-The internal-first phase taught us things no external customer would ever have told us. The CA needed a different default sort on the variations view than I did. The estimator needed quote documents attached to records, not linked from a shared drive. The supplier performance view needed a per-region cut, not a global one. None of these things would have come up in a customer interview. They came up because the people using the system were the people complaining about the system and they were sitting two desks from the people building the system.
+> That is the function. Not prediction. Not automation. A structured reference that reduces the gap between what an estimator thinks something costs and what a subcontractor is going to charge for it.
 
-This is the closed loop that builder-owned software has and external software does not.
+The value of the database compounds with every job that feeds it. At fifty reconciled projects, it is a useful reference. At five hundred, it becomes a pricing intelligence asset that no published cost guide can replicate, because no published cost guide is built from the jobs you actually built.
 
-## The third decision was no roadmap public commitments
+For now, Hawktress is how BuildHawk makes the next estimate more accurate than the last one.
 
-We did not publish a roadmap. We did not pre-sell features. We did not tell anyone the system would do anything until the system actually did it on a real job.
-
-The decision was deliberate. The construction industry has been promised software solutions by every venture-backed company in the sector for the last decade. Most of those promises have not been delivered. Builders have learned to discount roadmaps to zero. The only currency that matters is what the software does today, on a job today, in your CA's hands today.
-
-We will not commit to a feature publicly until the feature has run for at least three months on internal jobs and produced the outcomes we promised. That is the rule.
-
-## The data is the product, not the interface
-
-The Hawktress interface is not impressive by software standards. It is a GoHighLevel workspace with carefully built views and a layer of custom interface components. There are no animations. There is no AI assistant. There is no dashboard with rotating charts.
-
-What there is, is data. Real quote-to-actual variance data on every trade across every region we have built in. Real variation approval data with reasons attached. Real supplier performance data tied to quote accuracy and delivery consistency. Real margin position by job, by builder, by region, over time.
-
-The interface is the layer you use to read the data. The data is the moat.
-
-> Builders do not buy interfaces. Builders buy decisions. The interface is just the vehicle.
-
-This is also why the platform gets stronger the more jobs it sees. Every completed job sharpens the regional benchmarks. Every variation closed adds another data point to the rolling average. Every supplier transaction adds to the performance record. The system that opens to external builders next year will be materially more accurate than the system that opened to internal jobs last year, simply because it has seen more data.
-
-## What this means for the next twelve months
-
-The plan is simple and it is paced. We continue to run the platform on internal jobs through the rest of this year. We open to a small number of external builders next quarter, on annual subscriptions, on the explicit understanding that they are working with a system that has been seasoned on real jobs but is still being shaped by their feedback. We bring trade subscribers on once we have enough builder activity to make the trade benchmarks meaningful in their categories. We open the supplier platform last, once we have the builder and trade data dense enough to support real recommendations.
-
-We are not in a hurry. The construction software graveyard is full of companies that were in a hurry. We would rather be the platform that the industry trusts in three years than the platform that did a big launch this year and disappeared next year.
-
-## What I would tell a builder thinking about software
-
-If you are a builder and you have looked at the construction software market and concluded that none of it fits your business, you are not wrong. None of it fits. The software is built for the average. Your business is not the average.
-
-The answer is not to wait for someone else to build the right software. The answer is to start treating your own jobs as data. Set up a GoHighLevel workspace. Capture every quote, every variation, every actual. Run a CA function that escalates anything outside a threshold. Produce a monthly director report against a discipline.
-
-You do not need Hawktress to do this. You need the discipline to do this. Hawktress is what happens when the discipline runs for long enough across enough jobs that the data starts answering questions before you ask them.
-
-The discipline is the thing. The software is the leverage on the discipline.
-
----
-
-Hawktress goes to market when it is ready. Until then, every job we run sharpens it. If you are a builder reading this and you want to be one of the early external subscribers when we open the platform, the way in is the same as the way in to anything we do. Email the address at the bottom of the site. Have a real conversation. We work with operators who are serious about margin protection. The rest of the market can keep buying interfaces.`,
+— BuildHawk`,
   },
 ];
 

@@ -14,7 +14,7 @@ export default function Founder() {
                 alt="Nathan Holloway, Founder of BuildHawk and Hawktress, outside a Geelong West custom home"
                 fill
                 sizes="(min-width: 768px) 40vw, 100vw"
-                className="object-cover object-[55%_25%]"
+                className="object-cover object-[50%_30%]"
                 priority
               />
             </figure>
