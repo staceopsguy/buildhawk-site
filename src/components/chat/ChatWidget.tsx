@@ -12,15 +12,15 @@ const greeting: Message = {
   id: "greeting",
   role: "assistant",
   content:
-    "G'day, Charlie here from BuildHawk support. We help residential builders, trades and owner-builders run a tighter book through Hawktress™. What's prompting you to reach out?",
+    "G'day, Charlie here. Reception for BuildHawk and Hawktress. What can I help you with today?",
   ts: Date.now(),
 };
 
 const quickReplies = [
   "I'm a builder",
   "I'm a trade",
-  "Owner-builder",
-  "Tell me about pricing",
+  "I'm a supplier",
+  "Pricing",
 ];
 
 function uid() {
@@ -129,7 +129,7 @@ export default function ChatWidget() {
       const data = (await r.json()) as { text?: string; lead?: Record<string, string> };
       const replyText =
         data.text ||
-        "Sorry, can you say that again? Or email info@buildhawk.com.au and we'll pick it up.";
+        "Sorry, can you say that again? Or email services@buildhawk.com.au and we'll pick it up.";
 
       // Subtle 'typing' delay scaled to message length, capped.
       const delay = Math.min(2200, 600 + replyText.length * 12);
@@ -169,7 +169,7 @@ export default function ChatWidget() {
           id: uid(),
           role: "assistant",
           content:
-            "Connection dropped. Try once more, or email info@buildhawk.com.au.",
+            "Connection dropped. Try once more, or email services@buildhawk.com.au.",
           ts: Date.now(),
         },
       ]);

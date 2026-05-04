@@ -20,7 +20,7 @@ const TO_EMAIL =
   process.env.LEAD_TO_EMAIL ||
   process.env.WAITLIST_TO_EMAIL ||
   process.env.INTAKE_TO_EMAIL ||
-  "info@buildhawk.com.au";
+  "services@buildhawk.com.au";
 const FROM_EMAIL =
   process.env.LEAD_FROM_EMAIL ||
   process.env.WAITLIST_FROM_EMAIL ||
