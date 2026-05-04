@@ -84,7 +84,7 @@ export default function Waitlist() {
             <Reveal as="p" className="mt-5 text-bh-paper/70 text-[16px] md:text-[18px] leading-[1.55] tracking-[-0.005em] max-w-md" delay={120}>
               Early access for builders, trades, suppliers and owner-builders
               who want the discipline behind every cost decision. Limited
-              cohorts. We onboard the operators who fit.
+              cohorts. We bring on the operators who fit.
             </Reveal>
             <Reveal as="ul" className="mt-8 space-y-3 text-[14px] text-bh-paper/65" delay={200}>
               <li className="flex items-start gap-3">
@@ -134,7 +134,7 @@ export default function Waitlist() {
                       You're on the list, {name.split(" ")[0] || "thanks"}.
                     </h3>
                     <p className="mt-3 text-bh-graphite text-[15px] leading-[1.55] max-w-md">
-                      We'll reach out as cohort spots open. Reply to the
+                      We'll be in touch as cohort spots open. Reply to the
                       confirmation if you want to flag a specific job or
                       timeline.
                     </p>

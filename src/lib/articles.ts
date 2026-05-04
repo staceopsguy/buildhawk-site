@@ -20,7 +20,7 @@ export type Article = {
   authorId: Author["id"];
   date: string; // ISO yyyy-mm-dd
   readingTime: number; // minutes
-  category: "Methodology" | "Field Notes" | "Founder" | "Operator Playbook";
+  category: "Methodology" | "Field Notes" | "Founder" | "Operator Handbook";
   cover: string; // /images/...
   body: string;
   videoPoster?: string;
@@ -48,7 +48,7 @@ export const articles: Article[] = [
     slug: "five-percent-variance-threshold",
     title: "The 5% Variance Threshold: Why It Saves Margin",
     dek:
-      "A single rule that decides whether a quote, a variation, or an actual cost gets approved or escalated. We use it on every job. Here is why 5% and what happens when you ignore it.",
+      "A single rule that decides whether a quote, a variation or an actual cost gets approved or escalated. We use it on every job. Here is why 5% and what happens when you ignore it.",
     authorId: "nathan",
     date: "2025-03-12",
     readingTime: 7,
@@ -63,7 +63,7 @@ We built the 5% variance threshold to put a hard line under all three.
 
 ## What the threshold actually is
 
-Hawktress holds a rolling regional average for every trade rate it has data on. When a quote, a variation, or an actual cost lands more than 5% outside that average, the record is automatically flagged. Flagged items cannot be approved by the contract administrator alone. They escalate to me, the director, before the CA can move forward.
+Hawktress holds a rolling regional average for every trade rate it has data on. When a quote, a variation or an actual cost lands more than 5% outside that average, the record is automatically flagged. Flagged items cannot be approved by the contract administrator alone. They escalate to me, the director, before the CA can move forward.
 
 That is the whole rule.
 
@@ -121,7 +121,7 @@ If you are a builder reading this and you have ever finished a project knowing y
     authorId: "nathan",
     date: "2024-10-08",
     readingTime: 6,
-    category: "Operator Playbook",
+    category: "Operator Handbook",
     cover: "/images/site-aerial.webp",
     youtubeId: "bFloySBOcp8",
     videoLabel: "How to start a House Build in Australia · Pre-construction Guide",
@@ -195,7 +195,7 @@ If your business is moving into a new postcode this year, the single most expens
     authorId: "nathan",
     date: "2025-07-22",
     readingTime: 5,
-    category: "Operator Playbook",
+    category: "Operator Handbook",
     cover: "/images/residential-gable.webp",
     youtubeId: "qN8QOmChcxY",
     videoLabel: "Contract variation procedure with worked example",
@@ -305,17 +305,17 @@ The alert column has four possible states.
 
 **Green.** Job is inside all forecast bands.
 
-**Amber.** Job has at least one metric drifting toward a band edge but no breach yet. Common amber triggers: forecast final cost rising more than 2% in a single month, programme slippage of more than 5 working days against the contracted PC date, an unapproved variation backlog of more than five items, or aged debtors on this job over 30 days.
+**Amber.** Job has at least one metric drifting toward a band edge but no breach yet. Common amber triggers: forecast final cost rising more than 2% in a single month, programme slippage of more than 5 working days against the contracted PC date, an unapproved variation backlog of more than five items or aged debtors on this job over 30 days.
 
-**Red.** At least one metric has breached a band. Common red triggers: gross margin forecast dropped below the floor set at contract award, forecast final cost exceeding current contract value, programme slippage of more than 15 working days, or a variation flagged outside the 5% threshold and unresolved for more than 14 days.
+**Red.** At least one metric has breached a band. Common red triggers: gross margin forecast dropped below the floor set at contract award, forecast final cost exceeding current contract value, programme slippage of more than 15 working days or a variation flagged outside the 5% threshold and unresolved for more than 14 days.
 
-**Black.** Catastrophic. Job has a margin forecast below break-even, an unrecoverable cost overrun, or a programme breach that triggers liquidated damages. These are escalated by the CA before the report goes out.
+**Black.** Catastrophic. Job has a margin forecast below break-even, an unrecoverable cost overrun or a programme breach that triggers liquidated damages. These are escalated by the CA before the report goes out.
 
 If you only ever read the alert column, you will catch every problem.
 
 ## The report is also a behaviour-shaping artefact
 
-This is the part most directors miss when they first onboard. The report is not just a status snapshot. It is a behaviour-shaping artefact for the entire team that touches the jobs.
+This is the part most directors miss when they first come on board. The report is not just a status snapshot. It is a behaviour-shaping artefact for the entire team that touches the jobs.
 
 The estimator knows that any quote outside the 5% threshold will appear in section 3 with their name on it. They estimate tighter.
 
@@ -412,7 +412,7 @@ This is also why the platform gets stronger the more jobs it sees. Every complet
 
 ## What this means for the next twelve months
 
-The plan is simple and it is paced. We continue to run the platform on internal jobs through the rest of this year. We open to a small number of external builders next quarter, on annual subscriptions, on the explicit understanding that they are working with a system that has been seasoned on real jobs but is still being shaped by their feedback. We onboard trade subscribers once we have enough builder activity to make the trade benchmarks meaningful in their categories. We open the supplier platform last, once we have the builder and trade data dense enough to support real recommendations.
+The plan is simple and it is paced. We continue to run the platform on internal jobs through the rest of this year. We open to a small number of external builders next quarter, on annual subscriptions, on the explicit understanding that they are working with a system that has been seasoned on real jobs but is still being shaped by their feedback. We bring trade subscribers on once we have enough builder activity to make the trade benchmarks meaningful in their categories. We open the supplier platform last, once we have the builder and trade data dense enough to support real recommendations.
 
 We are not in a hurry. The construction software graveyard is full of companies that were in a hurry. We would rather be the platform that the industry trusts in three years than the platform that did a big launch this year and disappeared next year.
 
