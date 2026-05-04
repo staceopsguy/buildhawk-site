@@ -1,3 +1,6 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Reveal from "@/components/motion/Reveal";
 import Counter from "@/components/motion/Counter";
@@ -84,14 +87,40 @@ const stages: Stage[] = [
 ];
 
 export default function Lifecycle() {
+  const [active, setActive] = useState(0);
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const stage = stages[active];
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement | null)?.tagName;
+      if (tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT") return;
+      if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
+      const el = sectionRef.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const inView = r.top < window.innerHeight * 0.6 && r.bottom > window.innerHeight * 0.4;
+      if (!inView) return;
+      e.preventDefault();
+      setActive((i) =>
+        e.key === "ArrowRight"
+          ? (i + 1) % stages.length
+          : (i - 1 + stages.length) % stages.length
+      );
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
   return (
     <section
       id="hawktress"
+      ref={sectionRef}
       className="relative bg-bh-white py-16 md:py-36 scroll-mt-20"
     >
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+      <div className="mx-auto max-w-[1480px] px-5 md:px-10">
         {/* Section header */}
-        <div className="grid grid-cols-12 gap-6 md:gap-8 mb-14 md:mb-20">
+        <div className="grid grid-cols-12 gap-6 md:gap-8 mb-12 md:mb-16">
           <Reveal as="div" className="col-span-12 md:col-span-4" duration={750}>
             <span className="inline-flex items-center gap-2 px-3 h-7 rounded-full bg-bh-orange-50 border border-bh-orange/30 text-[11px] tracking-[0.18em] uppercase text-bh-orange-700 mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-bh-orange" />
@@ -104,62 +133,88 @@ export default function Lifecycle() {
             </h2>
           </Reveal>
           <Reveal as="div" className="col-span-12 md:col-span-7 md:col-start-6 md:pt-3" delay={180} duration={750}>
-            <p className="text-[18px] md:text-[20px] leading-[1.5] tracking-[-0.01em] text-bh-graphite">
-              Most platforms stop at estimating. Hawktress connects intelligence
-              across every stage of the project. It captures real quote-to-actual
-              data from live Australian and New Zealand jobs, then uses that data
-              to flag cost risk before it becomes margin loss.
+            <p className="text-[16px] md:text-[19px] leading-[1.5] tracking-[-0.01em] text-bh-graphite">
+              Hawktress connects intelligence across every stage of the project.
+              Real quote-to-actual data from live Australian and New Zealand
+              jobs, used to flag cost risk before it becomes margin loss.
             </p>
-            <p className="mt-5 text-[14px] tracking-[-0.005em] text-bh-graphite">
+            <p className="mt-4 text-[12px] md:text-[13px] tracking-[0.04em] text-bh-graphite/80">
               Powered by BuildHawk · Built by builders, for builders.
             </p>
           </Reveal>
         </div>
 
-        {/* Stages — 7 column grid on desktop, scroll on mobile */}
+        {/* Stage chip strip — horizontally scrollable on mobile */}
         <div className="relative">
-          {/* connecting hairline behind cards */}
-          <div className="hidden md:block absolute left-0 right-0 top-[18px] h-px bg-bh-steel/60" />
-
-          <div className="grid grid-cols-1 md:grid-cols-7 gap-px bg-bh-steel/60 border border-bh-steel/60">
-            {stages.map((s, i) => (
-              <Reveal
-                as="article"
-                key={s.n}
-                delay={i * 90}
-                duration={650}
-                y={28}
-                className="relative bg-bh-white p-5 md:p-6 flex flex-col min-h-[260px] md:min-h-[320px] hover:bg-bh-cloud transition-colors group"
-              >
-                {/* number dot */}
-                <div className="flex items-center gap-3 mb-5 md:mb-6">
+          <div
+            role="tablist"
+            aria-label="Hawktress lifecycle stages"
+            className="-mx-5 md:mx-0 px-5 md:px-0 overflow-x-auto md:overflow-visible flex md:grid md:grid-cols-7 gap-2 md:gap-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x snap-mandatory"
+          >
+            {stages.map((s, i) => {
+              const selected = i === active;
+              return (
+                <button
+                  key={s.n}
+                  role="tab"
+                  type="button"
+                  aria-selected={selected}
+                  aria-controls={`lifecycle-panel-${s.n}`}
+                  onClick={() => setActive(i)}
+                  className={`group relative snap-start flex-none md:flex-auto flex flex-col items-start text-left px-4 md:px-5 py-3 md:py-4 border-t-2 transition-colors min-w-[150px] md:min-w-0 ${
+                    selected
+                      ? "border-bh-orange"
+                      : "border-bh-steel/40 hover:border-bh-graphite/60"
+                  }`}
+                >
                   <span
-                    className={`relative z-10 inline-flex items-center justify-center w-9 h-9 rounded-full text-[12px] font-medium tracking-[-0.005em] ${
-                      i === stages.length - 1
-                        ? "bg-bh-orange text-bh-white"
-                        : "bg-bh-white border border-bh-steel/60 text-bh-graphite group-hover:border-bh-orange group-hover:text-bh-orange"
-                    } transition-colors`}
+                    className={`text-[10px] tracking-[0.2em] uppercase mb-1.5 transition-colors ${
+                      selected ? "text-bh-orange" : "text-bh-graphite"
+                    }`}
                   >
                     {s.n}
                   </span>
-                </div>
+                  <span
+                    className={`text-[14px] md:text-[15px] tracking-[-0.01em] font-medium leading-[1.2] transition-colors ${
+                      selected ? "text-bh-black" : "text-bh-graphite group-hover:text-bh-black"
+                    }`}
+                  >
+                    {s.name}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
 
-                <h3 className="text-[16px] md:text-[17px] font-medium tracking-[-0.015em] leading-[1.2] text-bh-black mb-2">
-                  {s.name}
-                </h3>
-                <p className="text-[12px] tracking-[0.005em] text-bh-graphite mb-4 leading-[1.4]">
-                  {s.function}
-                </p>
-                <p className="text-[13px] leading-[1.45] tracking-[-0.005em] text-bh-black/85">
-                  {s.role}
-                </p>
-                <Link
-                  href={`/insights/${s.read.slug}`}
-                  className="mt-auto pt-5 inline-flex items-baseline gap-2 text-[11px] tracking-[0.16em] uppercase text-bh-orange hover:text-bh-orange-700 transition-colors"
-                >
-                  <span aria-hidden className="inline-block w-3 h-px bg-bh-orange translate-y-[-3px]" />
-                  <span className="leading-snug">{s.read.label}</span>
-                  <svg width="11" height="11" viewBox="0 0 14 14" fill="none" aria-hidden className="self-center flex-none">
+          {/* Detail panel — re-mounts on active change so the fade-in plays */}
+          <div
+            key={active}
+            id={`lifecycle-panel-${stage.n}`}
+            role="tabpanel"
+            aria-labelledby={`lifecycle-tab-${stage.n}`}
+            className="mt-8 md:mt-10 grid grid-cols-12 gap-6 md:gap-10 bh-stage-in"
+          >
+            <div className="col-span-12 md:col-span-7">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-bh-graphite mb-4">
+                {stage.function}
+              </p>
+              <p className="text-[22px] md:text-[28px] lg:text-[32px] leading-[1.25] tracking-[-0.02em] text-bh-black font-medium max-w-2xl">
+                {stage.role}
+              </p>
+            </div>
+            <div className="col-span-12 md:col-span-5 md:pl-8 md:border-l border-bh-steel/40">
+              <p className="text-[10px] tracking-[0.2em] uppercase text-bh-orange mb-3">
+                Read field note
+              </p>
+              <Link
+                href={`/insights/${stage.read.slug}`}
+                className="group inline-flex items-start gap-3 text-bh-black hover:text-bh-orange transition-colors"
+              >
+                <span className="text-[18px] md:text-[20px] tracking-[-0.01em] font-medium leading-[1.3] max-w-xs">
+                  {stage.read.label}
+                </span>
+                <span className="mt-1 inline-flex items-center justify-center rounded-full w-7 h-7 bg-bh-black/5 group-hover:bg-bh-orange/15 transition-colors flex-none">
+                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden>
                     <path
                       d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
                       stroke="currentColor"
@@ -168,8 +223,26 @@ export default function Lifecycle() {
                       strokeLinejoin="round"
                     />
                   </svg>
-                </Link>
-              </Reveal>
+                </span>
+              </Link>
+              <p className="mt-4 text-[12px] tracking-[0.04em] text-bh-graphite/80">
+                {active + 1} of {stages.length} · use ← / → keys
+              </p>
+            </div>
+          </div>
+
+          {/* Progress dots — clickable + reflect active stage */}
+          <div className="mt-10 md:mt-12 flex items-center gap-2">
+            {stages.map((s, i) => (
+              <button
+                key={s.n}
+                type="button"
+                aria-label={`Go to stage ${s.n} ${s.name}`}
+                onClick={() => setActive(i)}
+                className={`h-1 rounded-full transition-all ${
+                  i === active ? "w-10 bg-bh-orange" : "w-5 bg-bh-steel/60 hover:bg-bh-graphite/60"
+                }`}
+              />
             ))}
           </div>
 
@@ -177,7 +250,7 @@ export default function Lifecycle() {
           <Reveal
             as="div"
             duration={900}
-            className="mt-8 md:mt-10 flex flex-col md:flex-row md:items-center gap-5 md:gap-10"
+            className="mt-12 md:mt-16 pt-10 md:pt-12 border-t border-bh-steel/40 flex flex-col md:flex-row md:items-center gap-5 md:gap-10"
           >
             <p className="flex-none font-medium tracking-[-0.03em] leading-[0.95] text-bh-orange text-[64px] md:text-[88px] tabular-nums whitespace-nowrap">
               <Counter to={5} suffix="%" duration={1100} />

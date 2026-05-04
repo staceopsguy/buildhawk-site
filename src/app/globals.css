@@ -142,6 +142,15 @@ html.lenis body {
   animation: bh-card-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
+/* Lifecycle stage detail panel cross-fade on tab change */
+@keyframes bh-stage-in {
+  0%   { opacity: 0; transform: translate3d(0, 8px, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.bh-stage-in {
+  animation: bh-stage-in 420ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
 /* Orange dot pulse used in eyebrows / status indicators */
 @keyframes bh-pulse {
   0%, 100% { transform: scale(1); opacity: 1; }
@@ -164,7 +173,8 @@ html.lenis body {
 @media (prefers-reduced-motion: reduce) {
   .bh-pricing-grid .bh-pricing-card,
   .bh-pulse,
-  .bh-marquee-track {
+  .bh-marquee-track,
+  .bh-stage-in {
     animation: none !important;
   }
 }
