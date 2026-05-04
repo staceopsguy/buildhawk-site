@@ -10,12 +10,33 @@ const suisse = Inter({
   weight: ["400", "500", "600"],
 });
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://buildhawk.com.au";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: "BuildHawk · Powered by Hawktress™ · Precision Estimating. Disciplined Delivery.",
   description:
     "BuildHawk Pty Ltd is a back-end partner for builders, developers and owner-builders, delivering its work through the Hawktress™ platform. We protect profit margins, control project costs and strengthen construction execution from tender through completion.",
   icons: {
     icon: "/brand/favicon-32.png",
+  },
+  openGraph: {
+    type: "website",
+    siteName: "BuildHawk",
+    url: SITE_URL,
+    title: "BuildHawk · Powered by Hawktress™",
+    description:
+      "Precision estimating, contract administration and live margin tracking for Australian residential builders, trades and suppliers.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BuildHawk · Powered by Hawktress™",
+    description:
+      "Precision estimating, contract administration and live margin tracking for Australian residential builders, trades and suppliers.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
