@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 const suisse = Inter({
   variable: "--font-suisse",
@@ -26,6 +27,7 @@ export default function RootLayout({
       <body className="min-h-full bg-bh-white text-bh-black antialiased">
         <SmoothScroll />
         {children}
+        <ChatWidget />
       </body>
     </html>
   );
