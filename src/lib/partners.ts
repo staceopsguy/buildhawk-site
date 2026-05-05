@@ -96,7 +96,14 @@ export const partners: Partner[] = [
     badge: "Cybersecurity",
     darkTile: true,
   },
-  { name: "Mindset 365", src: "/logos/mindset-365.svg", width: 320, height: 120 },
+  {
+    name: "Mindset 365",
+    src: "/logos/mindset-365.webp",
+    width: 211,
+    height: 120,
+    url: "https://www.mindset365.com.au/",
+    badge: "Mental performance",
+  },
   { name: "Softriver", src: "/logos/softriver.svg", width: 320, height: 80 },
   { name: "Tapang Group", src: "/logos/tapang-group.svg", width: 320, height: 80 },
 ];

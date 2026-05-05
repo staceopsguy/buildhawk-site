@@ -4,8 +4,9 @@
     {
       "name": "buildhawk-dev",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "--", "--port", "3737"],
-      "port": 3737
+      "runtimeArgs": ["run", "dev"],
+      "port": 3737,
+      "autoPort": true
     }
   ]
 }

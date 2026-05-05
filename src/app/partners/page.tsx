@@ -225,13 +225,128 @@ export default function PartnersPage() {
         </div>
       </section>
 
+      {/* Coaching — Mindset 365 */}
+      <section className="relative py-20 md:py-28 border-t border-bh-steel/40">
+        <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+          <div className="grid grid-cols-12 gap-6 md:gap-8 mb-10 md:mb-14">
+            <div className="col-span-12 md:col-span-3">
+              <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
+                03 / Coaching
+              </p>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <Reveal as="h2" className="text-[28px] md:text-[40px] lg:text-[48px] leading-[1.15] tracking-[-0.025em] text-bh-black font-medium">
+                The operator behind the operation.
+              </Reveal>
+              <Reveal as="p" className="mt-4 max-w-2xl text-[16px] md:text-[18px] leading-[1.55] tracking-[-0.005em] text-bh-graphite" delay={120}>
+                Margin discipline is a system. Holding the line under pressure
+                is a person. Mindset 365 sits behind the operators inside the
+                BuildHawk stack — leadership, resilience and stress management
+                for the people running tight books.
+              </Reveal>
+            </div>
+          </div>
+
+          <Reveal>
+            <a
+              href="https://www.mindset365.com.au/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Mindset 365 — mental performance partner (opens in new tab)"
+              className="group relative grid grid-cols-12 border border-bh-steel/40 bg-bh-cloud hover:border-bh-orange/60 transition-colors overflow-hidden"
+            >
+              <div className="col-span-12 md:col-span-5 relative bg-bh-paper min-h-[260px] md:min-h-[440px] border-b md:border-b-0 md:border-r border-bh-steel/40">
+                <Image
+                  src="/images/mindset-365-ben.webp"
+                  alt="Ben — founder of Mindset 365"
+                  fill
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover"
+                />
+                <span className="absolute top-4 left-4 inline-flex items-center gap-2 text-[10px] tracking-[0.2em] uppercase text-bh-paper bg-bh-ink/70 backdrop-blur-sm px-2.5 py-1">
+                  <span className="inline-block w-3 h-px bg-bh-orange" />
+                  Mental performance partner
+                </span>
+              </div>
+              <div className="col-span-12 md:col-span-7 p-8 md:p-12 flex flex-col">
+                <div className="flex items-center gap-4 mb-6">
+                  <span className="relative inline-flex items-center justify-center h-10 md:h-12 px-3 bg-bh-paper border border-bh-steel/40">
+                    <Image
+                      src="/logos/mindset-365.webp"
+                      alt="Mindset 365"
+                      width={211}
+                      height={120}
+                      className="h-7 md:h-9 w-auto object-contain"
+                    />
+                  </span>
+                  <p className="text-[11px] tracking-[0.18em] uppercase text-bh-graphite">
+                    Through Mindset 365
+                  </p>
+                </div>
+                <h3 className="text-[26px] md:text-[34px] lg:text-[40px] leading-[1.1] tracking-[-0.025em] text-bh-black font-medium">
+                  Pressure is the job.{" "}
+                  <span className="text-bh-graphite">Composure is the edge.</span>
+                </h3>
+                <p className="mt-5 text-[16px] md:text-[18px] leading-[1.55] tracking-[-0.005em] text-bh-graphite max-w-xl">
+                  Ben founded Mindset 365 after twelve years in environments
+                  where decisions hold under pressure — AFL football
+                  broadcasting and leadership inside the Australian Border
+                  Force. He brings that into the BuildHawk network as a mental
+                  performance coach for builders, directors and site leaders.
+                </p>
+                <dl className="mt-7 grid grid-cols-3 gap-4 md:gap-6 max-w-md">
+                  <div>
+                    <dt className="text-[10px] tracking-[0.2em] uppercase text-bh-graphite mb-1.5">
+                      Format
+                    </dt>
+                    <dd className="text-[15px] md:text-[16px] tracking-[-0.005em] text-bh-black">
+                      1:1 · Team · Keynote
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-[10px] tracking-[0.2em] uppercase text-bh-graphite mb-1.5">
+                      Focus
+                    </dt>
+                    <dd className="text-[15px] md:text-[16px] tracking-[-0.005em] text-bh-black">
+                      Resilience · Leadership
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-[10px] tracking-[0.2em] uppercase text-bh-graphite mb-1.5">
+                      Credentials
+                    </dt>
+                    <dd className="text-[15px] md:text-[16px] tracking-[-0.005em] text-bh-black">
+                      Mental performance · NLP
+                    </dd>
+                  </div>
+                </dl>
+                <span className="mt-8 inline-flex items-center gap-3 text-[13px] tracking-[-0.005em] text-bh-black group-hover:text-bh-orange transition-colors">
+                  Visit mindset365.com.au
+                  <span className="inline-flex items-center justify-center rounded-full w-7 h-7 bg-bh-black/5 group-hover:bg-bh-orange/15 transition-colors">
+                    <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden>
+                      <path
+                        d="M3.5 10.5 L 10.5 3.5 M 5 3.5 H 10.5 V 9"
+                        stroke="currentColor"
+                        strokeWidth="1.4"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </span>
+                </span>
+              </div>
+            </a>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Accreditation */}
       <section className="relative py-20 md:py-28 border-t border-bh-steel/40">
         <div className="mx-auto max-w-[1480px] px-6 md:px-10">
           <div className="grid grid-cols-12 gap-6 md:gap-8 mb-10 md:mb-14">
             <div className="col-span-12 md:col-span-3">
               <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
-                03 / Accreditation
+                04 / Accreditation
               </p>
             </div>
             <div className="col-span-12 md:col-span-9">
