@@ -75,6 +75,12 @@ export const partners: Partner[] = [
     darkTile: true,
   },
   {
+    name: "Ockenden Group",
+    src: "/logos/ockenden-group.png",
+    width: 320,
+    height: 120,
+  },
+  {
     name: "Buena Vista Homes",
     src: "/logos/buena-vista-homes.png",
     width: 320,
@@ -91,61 +97,11 @@ export const partners: Partner[] = [
     darkTile: true,
   },
   { name: "Mindset 365", src: "/logos/mindset-365.svg", width: 320, height: 120 },
-  {
-    name: "Xact Accounting",
-    src: "/logos/xact-accounting.png",
-    width: 320,
-    height: 120,
-    url: "https://xactaccounting.com.au/",
-    badge: "Partner",
-  },
-  {
-    name: "Buildxact",
-    src: "/logos/buildxact.png",
-    width: 320,
-    height: 80,
-    url: "https://www.buildxact.com/us/",
-    badge: "Integration",
-    darkTile: true,
-  },
   { name: "Softriver", src: "/logos/softriver.svg", width: 320, height: 80 },
   { name: "Tapang Group", src: "/logos/tapang-group.svg", width: 320, height: 80 },
 ];
 
 export const accreditations: Accreditation[] = [
-  {
-    name: "Australian Accounting Awards · Firm of the Year 2025",
-    description:
-      "Australian Accounting Awards 2025 Winner — Firm of the Year. Issued by Accountants Daily.",
-    src: "/images/xact-awards-2025.png",
-    width: 1178,
-    height: 400,
-    through: "Xact Accounting",
-    throughUrl: "https://xactaccounting.com.au/",
-    kind: "award",
-  },
-  {
-    name: "Financial Review Top 100 Accounting Firms 2025",
-    description:
-      "Recognised in the Australian Financial Review Top 100 Accounting Firms list, presented by Xero.",
-    src: "/images/xact-awards-2025.png",
-    width: 1178,
-    height: 400,
-    through: "Xact Accounting",
-    throughUrl: "https://xactaccounting.com.au/",
-    kind: "award",
-  },
-  {
-    name: "Commercial Finance Awards · Accounting Practice of the Year 2025",
-    description:
-      "Commercial Finance Awards 2025 Winner — Accounting Practice of the Year.",
-    src: "/images/xact-awards-2025.png",
-    width: 1178,
-    height: 400,
-    through: "Xact Accounting",
-    throughUrl: "https://xactaccounting.com.au/",
-    kind: "award",
-  },
   {
     name: "Microsoft 365 Partner",
     description:

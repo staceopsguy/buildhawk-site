@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { upsertContact, createOpportunity } from "@/lib/ghl";
 
 export const runtime = "nodejs";
 
@@ -129,10 +130,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "Invalid email" }, { status: 400 });
   }
 
+  // GHL: upsert contact + create opportunity for every valid submission
+  const contactId = await upsertContact({
+    name,
+    email,
+    phone: body.phone,
+    company: body.company,
+    source: "buildhawk-site-brief",
+    tags: ["website-brief", body.audience ?? "unknown"].filter(Boolean),
+  });
+  if (contactId) {
+    await createOpportunity({
+      contactId,
+      name: `${name} · ${projectType}`,
+      source: "buildhawk-site-brief",
+    });
+  }
+
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
-    // Log so the team can recover the submission from Vercel logs even if
-    // email delivery is not yet configured.
     console.warn("[intake] RESEND_API_KEY missing. Submission:", body);
     return NextResponse.json(
       {

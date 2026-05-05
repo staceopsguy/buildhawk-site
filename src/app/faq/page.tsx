@@ -175,7 +175,7 @@ const sections: Section[] = [
       {
         q: "What software do I need to use?",
         a: [
-          "None on your side that you are not already running. We integrate with the accounting and project management systems most Australian residential builders already use — Xero, Buildxact, Databuild and Microsoft 365.",
+          "None on your side that you are not already running. We work with the accounting and project management systems most Australian residential builders already use.",
         ],
       },
       {

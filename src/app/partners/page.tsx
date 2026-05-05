@@ -240,16 +240,7 @@ export default function PartnersPage() {
               </Reveal>
               <Reveal as="p" className="mt-4 max-w-2xl text-[16px] md:text-[18px] leading-[1.55] tracking-[-0.005em] text-bh-graphite" delay={120}>
                 Awards and partnerships held by the operators inside the
-                BuildHawk stack. Finance through{" "}
-                <a
-                  href="https://xactaccounting.com.au/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-bh-black underline underline-offset-4 hover:text-bh-orange transition-colors"
-                >
-                  Xact Accounting
-                </a>
-                ; cybersecurity through{" "}
+                BuildHawk stack. Cybersecurity through{" "}
                 <a
                   href="https://www.builtonit.com.au/"
                   target="_blank"
@@ -263,43 +254,6 @@ export default function PartnersPage() {
             </div>
           </div>
 
-          {/* Awards strip — Xact Accounting 2025 */}
-          <Reveal>
-            <a
-              href="https://xactaccounting.com.au/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Xact Accounting 2025 awards (opens in new tab)"
-              className="group block bg-bh-white border border-bh-steel/40 hover:border-bh-orange/60 transition-colors p-6 md:p-10"
-            >
-              <div className="grid grid-cols-12 gap-6 md:gap-8 items-center">
-                <div className="col-span-12 md:col-span-4">
-                  <p className="text-[11px] tracking-[0.18em] uppercase text-bh-orange mb-3">
-                    Through Xact Accounting · 2025
-                  </p>
-                  <h3 className="text-[22px] md:text-[26px] tracking-[-0.02em] text-bh-black font-medium leading-[1.2]">
-                    Three industry awards.{" "}
-                    <span className="text-bh-graphite">One finance partner.</span>
-                  </h3>
-                  <p className="mt-3 text-[14px] leading-[1.55] text-bh-graphite max-w-xs">
-                    Australian Accounting Awards · AFR Top 100 · Commercial
-                    Finance Awards. The discipline behind every BuildHawk
-                    director report.
-                  </p>
-                </div>
-                <div className="col-span-12 md:col-span-8 relative bg-bh-paper">
-                  <Image
-                    src="/images/xact-awards-2025.png"
-                    alt="Xact Accounting 2025 awards: Australian Accounting Awards Firm of the Year, Financial Review Top 100 Accounting Firms, Commercial Finance Awards Accounting Practice of the Year"
-                    width={1178}
-                    height={400}
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-              </div>
-            </a>
-          </Reveal>
-
           {/* Partner badge strip — Built On It cybersecurity stack */}
           <Reveal>
             <a
@@ -307,7 +261,7 @@ export default function PartnersPage() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Built On It cybersecurity partner programs (opens in new tab)"
-              className="group block bg-bh-white border border-bh-steel/40 hover:border-bh-orange/60 transition-colors p-6 md:p-10 mt-6"
+              className="group block bg-bh-white border border-bh-steel/40 hover:border-bh-orange/60 transition-colors p-6 md:p-10"
             >
               <div className="grid grid-cols-12 gap-6 md:gap-8 items-center">
                 <div className="col-span-12 md:col-span-4">
