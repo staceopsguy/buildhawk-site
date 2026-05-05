@@ -149,7 +149,7 @@ export default function CtaFooter() {
           </div>
         </div>
 
-        <div className="mt-20 md:mt-28 pt-10 border-t border-bh-graphite/40 grid grid-cols-12 gap-8">
+        <footer className="mt-20 md:mt-28 pt-10 border-t border-bh-graphite/40 grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-5">
             <BrandLockup tone="dark" size="md" showTagline />
             <p className="mt-5 max-w-xs text-[13px] leading-[1.55] text-bh-steel/70 tracking-[-0.005em]">
@@ -159,7 +159,7 @@ export default function CtaFooter() {
             </p>
           </div>
 
-          <div className="col-span-6 md:col-span-3">
+          <div className="col-span-6 md:col-span-2">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/70 mb-4">
               Hawktress
             </p>
@@ -167,13 +167,26 @@ export default function CtaFooter() {
               <li><a href="/#hawktress" className="text-bh-paper hover:text-bh-orange transition-colors">Lifecycle</a></li>
               <li><a href="/#how" className="text-bh-paper hover:text-bh-orange transition-colors">How it works</a></li>
               <li><a href="/#pricing" className="text-bh-paper hover:text-bh-orange transition-colors">Pricing</a></li>
-              <li><a href="/insights" className="text-bh-paper hover:text-bh-orange transition-colors">Insights</a></li>
+              <li><a href="/partners" className="text-bh-paper hover:text-bh-orange transition-colors">Partners</a></li>
               <li><a href="/#about" className="text-bh-paper hover:text-bh-orange transition-colors">About</a></li>
               <li><a href="/#intake" className="text-bh-paper hover:text-bh-orange transition-colors">Start a brief</a></li>
             </ul>
           </div>
 
-          <div className="col-span-6 md:col-span-4">
+          <div className="col-span-6 md:col-span-2">
+            <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/70 mb-4">
+              Resources
+            </p>
+            <ul className="space-y-2 text-[13px] tracking-[-0.005em]">
+              <li><a href="/articles" className="text-bh-paper hover:text-bh-orange transition-colors">Articles</a></li>
+              <li><a href="/faq" className="text-bh-paper hover:text-bh-orange transition-colors">FAQ</a></li>
+              <li><a href="/insights" className="text-bh-paper hover:text-bh-orange transition-colors">Field Notes</a></li>
+              <li><a href="tel:+61433366607" className="text-bh-paper hover:text-bh-orange transition-colors">Call us</a></li>
+              <li><a href="mailto:info@buildhawk.com.au" className="text-bh-paper hover:text-bh-orange transition-colors">Email us</a></li>
+            </ul>
+          </div>
+
+          <div className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-steel/70 mb-4">
               Legal
             </p>
@@ -190,7 +203,7 @@ export default function CtaFooter() {
             <p>Governing law · Victoria, Australia</p>
             <a className="hover:text-bh-paper" href="#top">Back to top ↑</a>
           </div>
-        </div>
+        </footer>
       </div>
 
       {/* Brand signature: bottom orange band (from stationery) */}

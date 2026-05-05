@@ -374,29 +374,18 @@ export default function FaqPage() {
       </section>
 
       <footer className="bg-bh-ink text-bh-paper py-16">
-        <div className="mx-auto max-w-[1480px] px-6 md:px-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-          <p className="text-[14px] tracking-[-0.005em] text-bh-steel/80">
-            © {new Date().getFullYear()} BuildHawk Pty Ltd · Geelong, VIC
-          </p>
-          <div className="flex items-center gap-6">
-            <a
-              href="/articles"
-              className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors"
-            >
-              Articles
-            </a>
-            <a
-              href="/insights"
-              className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors"
-            >
-              Field Notes
-            </a>
-            <a
-              href="/"
-              className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors"
-            >
-              ← Back to BuildHawk
-            </a>
+        <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <p className="text-[14px] tracking-[-0.005em] text-bh-steel/80">
+              © {new Date().getFullYear()} BuildHawk Pty Ltd · Geelong, VIC
+            </p>
+            <nav className="flex flex-wrap items-center gap-x-6 gap-y-3" aria-label="Footer">
+              <a href="/articles" className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors">Articles</a>
+              <a href="/insights" className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors">Field Notes</a>
+              <a href="/data-policy" className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors">Data policy</a>
+              <a href="/terms-builders" className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors">Terms</a>
+              <a href="/" className="text-[13px] tracking-[-0.005em] text-bh-paper hover:text-bh-orange transition-colors">← Back to BuildHawk</a>
+            </nav>
           </div>
         </div>
         <div className="h-3 md:h-4 bg-bh-orange mt-16" />
