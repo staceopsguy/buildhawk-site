@@ -90,7 +90,7 @@ export const partners: Partner[] = [
     badge: "Cybersecurity",
     darkTile: true,
   },
-  { name: "Uprise Projects", src: "/logos/uprise-projects.jpg", width: 320, height: 120 },
+  { name: "Mindset 365", src: "/logos/mindset-365.svg", width: 320, height: 120 },
   {
     name: "Xact Accounting",
     src: "/logos/xact-accounting.png",

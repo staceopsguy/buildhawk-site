@@ -48,24 +48,26 @@ export default function Founder() {
 
             <div className="mt-10 space-y-5 max-w-2xl text-[16px] md:text-[17px] leading-[1.55] tracking-[-0.005em] text-bh-graphite">
               <p>
-                Residential building is a precision craft administered, too
-                often, by gut feel. Decisions get made on outdated benchmarks
-                and quotes nobody can verify. Margin leaks quietly at every
-                stage and the team that allowed it carries the weight.
+                Residential building is a precision craft. Most of it is
+                still run on gut feel.
               </p>
               <p>
-                Hawktress is built from the ground up on live Australian and
-                New Zealand construction data, run by people who estimate and
-                administer construction contracts on real residential jobs.
-                It exists because nothing in the market does what it does, and
-                because the operators who run the best builds in the country
-                deserve the operating standard the rest of the world already
-                has.
+                Decisions get made on stale benchmarks and unverifiable
+                quotes. Margin disappears quietly, stage by stage, and the
+                people who allowed it are left carrying it.
+              </p>
+              <p>
+                Hawktress is built on live Australian and New Zealand
+                construction data, by people who estimate and administer
+                real residential contracts. It exists because nothing in
+                the market does what it does, and because the operators
+                running the best builds in this country deserve the same
+                operating standard the rest of the world takes for granted.
               </p>
               <p className="text-bh-black">
-                We do not chase a market position. We choose the operators we
-                work with. The builders, trades and suppliers inside Hawktress
-                hold the same standard that we hold ourselves.
+                We do not chase market share. We choose who we work with.
+                Every builder, trade, and supplier inside Hawktress holds
+                the same standard we hold ourselves.
               </p>
             </div>
 
