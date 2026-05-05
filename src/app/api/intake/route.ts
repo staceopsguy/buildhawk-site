@@ -161,19 +161,19 @@ export async function POST(req: Request) {
 
   const resend = new Resend(apiKey);
 
-  try {
-    const audienceLabel =
-      (body.audience && audienceLabels[body.audience]) || "General";
-    await resend.emails.send({
-      from: FROM_EMAIL,
-      to: [TO_EMAIL],
-      replyTo: email,
-      subject: `[${audienceLabel}] ${name} · ${projectType}`,
-      html: buildHtml(body),
-      text: buildText(body),
-    });
-  } catch (err) {
-    console.error("[intake] Resend send failed:", err);
+  const audienceLabel =
+    (body.audience && audienceLabels[body.audience]) || "General";
+  const { error: sendError } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: [TO_EMAIL],
+    replyTo: email,
+    subject: `[${audienceLabel}] ${name} · ${projectType}`,
+    html: buildHtml(body),
+    text: buildText(body),
+  });
+
+  if (sendError) {
+    console.error("[intake] Resend send failed:", sendError);
     return NextResponse.json(
       { error: "Could not send right now. Please email info@buildhawk.com.au" },
       { status: 502 }

@@ -136,18 +136,19 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true, queued: false });
   }
 
-  try {
-    const resend = new Resend(apiKey);
-    await resend.emails.send({
-      from: FROM_EMAIL,
-      to: TO_EMAIL,
-      replyTo: email,
-      subject: `Live chat lead · ${name}${payload.audience ? ` · ${payload.audience}` : ""}`,
-      html,
-    });
-    return NextResponse.json({ ok: true, queued: true });
-  } catch (err) {
-    console.error("[lead] resend error:", err);
+  const resend = new Resend(apiKey);
+  const { error: sendError } = await resend.emails.send({
+    from: FROM_EMAIL,
+    to: TO_EMAIL,
+    replyTo: email,
+    subject: `Live chat lead · ${name}${payload.audience ? ` · ${payload.audience}` : ""}`,
+    html,
+  });
+
+  if (sendError) {
+    console.error("[lead] resend error:", sendError);
     return NextResponse.json({ ok: false, error: "Send failed" }, { status: 502 });
   }
+
+  return NextResponse.json({ ok: true, queued: true });
 }
