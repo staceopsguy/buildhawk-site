@@ -59,16 +59,19 @@ export default function InsightsPage() {
         <div className="border-t border-bh-steel/60" />
       </div>
 
-      {/* Rest of the archive */}
+      {/* Rest of the articles */}
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-[1480px] px-6 md:px-10">
           <div className="flex items-baseline justify-between mb-10 md:mb-12">
             <h2 className="text-[20px] md:text-[24px] font-medium tracking-[-0.015em] text-bh-black">
-              Archive
+              Articles
             </h2>
-            <p className="text-[12px] tracking-[0.18em] uppercase text-bh-graphite">
-              {all.length} pieces · 2024 → 2026
-            </p>
+            <a
+              href="/articles"
+              className="text-[12px] tracking-[0.18em] uppercase text-bh-graphite hover:text-bh-orange transition-colors"
+            >
+              {all.length} pieces · 2024 → 2026 →
+            </a>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-14">
             {rest.map((a) => (

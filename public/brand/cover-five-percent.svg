@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="The 5% Variance Rule">
+  <defs>
+    <linearGradient id="bg5" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c0d11"/>
+      <stop offset="1" stop-color="#1a1d27"/>
+    </linearGradient>
+    <linearGradient id="num5" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#edeff7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bg5)"/>
+
+  <!-- Threshold ladder grid -->
+  <g stroke="#262932" stroke-width="1">
+    <line x1="0" y1="220" x2="1600" y2="220"/>
+    <line x1="0" y1="380" x2="1600" y2="380"/>
+    <line x1="0" y1="540" x2="1600" y2="540"/>
+    <line x1="0" y1="700" x2="1600" y2="700"/>
+    <line x1="0" y1="860" x2="1600" y2="860"/>
+  </g>
+
+  <!-- Threshold line -->
+  <g>
+    <line x1="80" y1="540" x2="1520" y2="540" stroke="#de5123" stroke-width="3" stroke-dasharray="2 10"/>
+    <text x="1520" y="528" text-anchor="end" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-size="22" letter-spacing="3" fill="#de5123">THRESHOLD</text>
+  </g>
+
+  <!-- Massive number -->
+  <text x="800" y="690" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-weight="500" font-size="640" letter-spacing="-32" fill="url(#num5)">5%</text>
+
+  <!-- Eyebrow + caption -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" fill="#a8acbc">
+    <text x="80" y="120" font-size="22" letter-spacing="5">METHODOLOGY · BUILDHAWK</text>
+    <text x="80" y="170" font-size="34" letter-spacing="-0.5" fill="#edeff7">The variance threshold</text>
+  </g>
+
+  <text x="800" y="900" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-size="22" letter-spacing="6" fill="#a8acbc">FLAG · REVIEW · RECOVER</text>
+
+  <!-- Eagle mark watermark -->
+  <g transform="translate(1380 820)" opacity="0.85">
+    <circle cx="60" cy="60" r="60" fill="#de5123"/>
+    <path d="M30 70 q15 -25 50 -22 q-12 8 -18 22 q22 -8 36 -2 q-18 12 -38 14 z" fill="#0c0d11"/>
+    <circle cx="78" cy="50" r="3" fill="#0c0d11"/>
+  </g>
+</svg>

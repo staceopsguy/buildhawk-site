@@ -1,0 +1,88 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Hawktress: Cost Data That Actually Matters">
+  <defs>
+    <linearGradient id="bght" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#edeff7"/>
+      <stop offset="1" stop-color="#ffffff"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bght)"/>
+
+  <!-- Data grid background -->
+  <g stroke="#bcbfcc" stroke-width="1">
+    <line x1="0" y1="200" x2="1600" y2="200"/>
+    <line x1="0" y1="320" x2="1600" y2="320"/>
+    <line x1="0" y1="440" x2="1600" y2="440"/>
+    <line x1="0" y1="560" x2="1600" y2="560"/>
+    <line x1="0" y1="680" x2="1600" y2="680"/>
+    <line x1="0" y1="800" x2="1600" y2="800"/>
+    <line x1="0" y1="920" x2="1600" y2="920"/>
+    <line x1="200" y1="0" x2="200" y2="1000"/>
+    <line x1="450" y1="0" x2="450" y2="1000"/>
+    <line x1="700" y1="0" x2="700" y2="1000"/>
+    <line x1="950" y1="0" x2="950" y2="1000"/>
+    <line x1="1200" y1="0" x2="1200" y2="1000"/>
+    <line x1="1400" y1="0" x2="1400" y2="1000"/>
+  </g>
+
+  <!-- Data cells with values -->
+  <g font-family="ui-monospace, 'SFMono-Regular', Menlo, monospace" font-size="18" fill="#6e7180">
+    <text x="220" y="240">$98/m²</text>
+    <text x="470" y="240">slab · M-class</text>
+    <text x="720" y="240">3215</text>
+    <text x="970" y="240">2024-09</text>
+    <text x="1220" y="240">+2.1%</text>
+
+    <text x="220" y="360">$145/m²</text>
+    <text x="470" y="360">slab · P-class</text>
+    <text x="720" y="360">3216</text>
+    <text x="970" y="360">2024-11</text>
+    <text x="1220" y="360" fill="#de5123">+11.4%</text>
+
+    <text x="220" y="480">$1,280/lm</text>
+    <text x="470" y="480">retaining · 1.2m</text>
+    <text x="720" y="480">3220</text>
+    <text x="970" y="480">2025-02</text>
+    <text x="1220" y="480">+0.8%</text>
+
+    <text x="220" y="600">$22,400</text>
+    <text x="470" y="600">electrical · cust.</text>
+    <text x="720" y="600">3221</text>
+    <text x="970" y="600">2025-03</text>
+    <text x="1220" y="600" fill="#de5123">+5.5%</text>
+
+    <text x="220" y="720">$65,800</text>
+    <text x="470" y="720">joinery · stone</text>
+    <text x="720" y="720">3224</text>
+    <text x="970" y="720">2025-06</text>
+    <text x="1220" y="720" fill="#de5123">+6.2%</text>
+
+    <text x="220" y="840">$48,000</text>
+    <text x="470" y="840">framing · double</text>
+    <text x="720" y="840">3225</text>
+    <text x="970" y="840">2025-08</text>
+    <text x="1220" y="840">−1.3%</text>
+  </g>
+
+  <!-- Highlighted row -->
+  <rect x="0" y="320" width="1600" height="120" fill="#de5123" fill-opacity="0.07"/>
+  <rect x="0" y="320" width="6" height="120" fill="#de5123"/>
+
+  <!-- Header chip -->
+  <g transform="translate(80 70)">
+    <rect width="280" height="48" rx="24" fill="#0c0d11"/>
+    <text x="140" y="31" text-anchor="middle" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-size="18" letter-spacing="4" fill="#ffffff">HAWKTRESS · COST INTELLIGENCE</text>
+  </g>
+
+  <!-- Massive headline -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif">
+    <text x="80" y="950" font-weight="500" font-size="80" letter-spacing="-2" fill="#0c0d11">Reconciled jobs.</text>
+    <text x="640" y="950" font-weight="500" font-size="80" letter-spacing="-2" fill="#de5123">Real prices.</text>
+  </g>
+
+  <!-- Eagle mark -->
+  <g transform="translate(1400 60)" opacity="0.95">
+    <circle cx="60" cy="60" r="60" fill="#de5123"/>
+    <path d="M30 70 q15 -25 50 -22 q-12 8 -18 22 q22 -8 36 -2 q-18 12 -38 14 z" fill="#ffffff"/>
+    <circle cx="78" cy="50" r="3" fill="#ffffff"/>
+  </g>
+</svg>

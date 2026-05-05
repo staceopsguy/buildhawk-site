@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Reading the Monthly Director Report">
+  <defs>
+    <linearGradient id="bgdr" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0c0d11"/>
+      <stop offset="1" stop-color="#15171d"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="1000" fill="url(#bgdr)"/>
+
+  <!-- Report sheet -->
+  <g transform="translate(820 120)">
+    <rect width="700" height="780" rx="6" fill="#edeff7"/>
+    <rect width="700" height="80" fill="#de5123"/>
+    <text x="36" y="52" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-size="22" letter-spacing="6" fill="#ffffff">DIRECTOR REPORT · MAY</text>
+
+    <!-- Sections -->
+    <g font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" fill="#0c0d11">
+      <g transform="translate(36 130)">
+        <rect width="628" height="58" rx="3" fill="#ffffff"/>
+        <text x="20" y="38" font-size="20" letter-spacing="3" fill="#6e7180">01 · PORTFOLIO SUMMARY</text>
+        <circle cx="600" cy="29" r="10" fill="#22c55e"/>
+      </g>
+      <g transform="translate(36 200)">
+        <rect width="628" height="58" rx="3" fill="#ffffff"/>
+        <text x="20" y="38" font-size="20" letter-spacing="3" fill="#6e7180">02 · JOB TRACKING GRID</text>
+        <circle cx="600" cy="29" r="10" fill="#f59e0b"/>
+      </g>
+      <g transform="translate(36 270)">
+        <rect width="628" height="58" rx="3" fill="#ffffff"/>
+        <text x="20" y="38" font-size="20" letter-spacing="3" fill="#6e7180">03 · FLAGGED ITEMS</text>
+        <circle cx="600" cy="29" r="10" fill="#ef4444"/>
+      </g>
+      <g transform="translate(36 340)">
+        <rect width="628" height="58" rx="3" fill="#ffffff"/>
+        <text x="20" y="38" font-size="20" letter-spacing="3" fill="#6e7180">04 · AGED DEBTORS</text>
+        <circle cx="600" cy="29" r="10" fill="#22c55e"/>
+      </g>
+      <g transform="translate(36 410)">
+        <rect width="628" height="58" rx="3" fill="#ffffff"/>
+        <text x="20" y="38" font-size="20" letter-spacing="3" fill="#6e7180">05 · ESCALATIONS</text>
+        <circle cx="600" cy="29" r="10" fill="#f59e0b"/>
+      </g>
+    </g>
+
+    <text x="36" y="540" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-size="22" letter-spacing="4" fill="#6e7180">DELIVERED BY THE 5TH</text>
+    <text x="36" y="710" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-size="34" letter-spacing="-0.5" fill="#0c0d11">90-second read.</text>
+    <text x="36" y="755" font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif" font-size="34" letter-spacing="-0.5" fill="#de5123">All decisions surfaced.</text>
+  </g>
+
+  <!-- Massive 90s -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif">
+    <text x="80" y="520" font-weight="500" font-size="380" letter-spacing="-18" fill="#edeff7">90s</text>
+    <text x="84" y="600" font-size="26" letter-spacing="6" fill="#a8acbc">TO READ THE WHOLE BUSINESS</text>
+  </g>
+
+  <!-- Eyebrow -->
+  <g font-family="ui-sans-serif, system-ui, -apple-system, 'Inter', Helvetica, Arial, sans-serif">
+    <text x="80" y="120" font-size="22" letter-spacing="5" fill="#de5123">METHODOLOGY · MONTHLY CADENCE</text>
+    <text x="80" y="170" font-size="34" letter-spacing="-0.5" fill="#edeff7">Reading the director report</text>
+  </g>
+
+  <!-- Eagle mark -->
+  <g transform="translate(80 820)" opacity="0.95">
+    <circle cx="60" cy="60" r="60" fill="#de5123"/>
+    <path d="M30 70 q15 -25 50 -22 q-12 8 -18 22 q22 -8 36 -2 q-18 12 -38 14 z" fill="#0c0d11"/>
+    <circle cx="78" cy="50" r="3" fill="#0c0d11"/>
+  </g>
+</svg>
