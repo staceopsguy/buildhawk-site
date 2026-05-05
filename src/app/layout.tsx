@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import SmoothScroll from "@/components/SmoothScroll";
 import ChatWidget from "@/components/chat/ChatWidget";
@@ -55,6 +57,8 @@ export default function RootLayout({
         <SmoothScroll />
         {children}
         <ChatWidget />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
