@@ -4,13 +4,16 @@ export const runtime = "nodejs";
 
 // Charlie is offline. Always return a short message that points visitors at the
 // brief/waitlist forms on this page. No Anthropic call, no token cost, no
-// chance of going off-script while live chat is paused.
-const OFFLINE_REPLY = `Live chat is offline at the moment. The fastest way to reach the team is to fill in the brief or jump on the Hawktress waitlist — both are on this page.
+// chance of going off-script while live chat is paused. Links use markdown
+// syntax so the rendered label stays short and tidy.
+const OFFLINE_REPLY = `Live chat is offline.
 
-Brief (builders, trades, suppliers): https://buildhawk.com.au/#intake
-Hawktress waitlist: https://buildhawk.com.au/#waitlist
+Pick the form on this page that matches what you need — both come straight to the team and we reply within one business day.
 
-If it is urgent: services@buildhawk.com.au or +61 433 366 607.`;
+• Project to discuss → [Start a brief](https://buildhawk.com.au/#intake)
+• Early access to the Hawktress platform → [Join the waitlist](https://buildhawk.com.au/#waitlist)
+
+Urgent? services@buildhawk.com.au · +61 433 366 607`;
 
 export async function POST() {
   return NextResponse.json({ text: OFFLINE_REPLY });

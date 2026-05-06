@@ -27,31 +27,47 @@ function uid() {
   return Math.random().toString(36).slice(2, 10);
 }
 
-// Render a message body, turning any https://... URL into a clickable anchor.
-// Same-origin /#intake and /#waitlist links scroll on this page.
+// Render a message body, turning [label](url) markdown links and bare https://
+// URLs into clickable anchors. Same-origin links resolve to a relative path so
+// the on-page anchors (#intake, #waitlist) scroll smoothly without reloading.
 function renderMessage(content: string) {
-  const parts = content.split(/(https?:\/\/[^\s<]+)/g);
-  return parts.map((part, i) => {
-    if (!/^https?:\/\//.test(part)) return part;
-    let href = part;
+  const pattern =
+    /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|(https?:\/\/[^\s<]+)/g;
+  const out: (string | React.ReactElement)[] = [];
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+  let key = 0;
+  while ((match = pattern.exec(content)) !== null) {
+    if (match.index > lastIndex) {
+      out.push(content.slice(lastIndex, match.index));
+    }
+    const [full, mdLabel, mdHref, bareUrl] = match;
+    const href = mdHref || bareUrl;
+    const label = mdLabel || bareUrl;
+    let finalHref = href;
     try {
-      const u = new URL(part);
+      const u = new URL(href);
       if (typeof window !== "undefined" && u.host === window.location.host) {
-        href = u.pathname + u.search + u.hash;
+        finalHref = u.pathname + u.search + u.hash;
       }
     } catch {
       /* keep raw */
     }
-    return (
+    out.push(
       <a
-        key={i}
-        href={href}
-        className="underline underline-offset-2 hover:text-bh-orange break-all"
+        key={key++}
+        href={finalHref}
+        className="underline underline-offset-2 hover:text-bh-orange"
       >
-        {part}
+        {label}
       </a>
     );
-  });
+    lastIndex = match.index + full.length;
+  }
+  if (lastIndex < content.length) {
+    out.push(content.slice(lastIndex));
+  }
+  return out;
 }
 
 function loadHistory(): Message[] {
