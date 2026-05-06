@@ -27,6 +27,33 @@ function uid() {
   return Math.random().toString(36).slice(2, 10);
 }
 
+// Render a message body, turning any https://... URL into a clickable anchor.
+// Same-origin /#intake and /#waitlist links scroll on this page.
+function renderMessage(content: string) {
+  const parts = content.split(/(https?:\/\/[^\s<]+)/g);
+  return parts.map((part, i) => {
+    if (!/^https?:\/\//.test(part)) return part;
+    let href = part;
+    try {
+      const u = new URL(part);
+      if (typeof window !== "undefined" && u.host === window.location.host) {
+        href = u.pathname + u.search + u.hash;
+      }
+    } catch {
+      /* keep raw */
+    }
+    return (
+      <a
+        key={i}
+        href={href}
+        className="underline underline-offset-2 hover:text-bh-orange break-all"
+      >
+        {part}
+      </a>
+    );
+  });
+}
+
 function loadHistory(): Message[] {
   if (typeof window === "undefined") return [greeting];
   try {
@@ -224,7 +251,7 @@ export default function ChatWidget() {
           className="fixed bottom-[88px] right-4 md:right-5 z-[60] max-w-[260px] text-left px-4 py-3 rounded-2xl rounded-br-md bg-bh-ink text-bh-paper text-[13px] leading-snug tracking-[-0.005em] shadow-[0_12px_40px_-8px_rgba(17,17,17,0.4)] hover:bg-bh-orange transition-colors"
           aria-label="Open live chat"
         >
-          Got a build in the pipeline? Live support — typically replies in seconds.
+          Got a build in the pipeline? Drop your details — the team replies within one business day.
         </button>
       )}
 
@@ -248,7 +275,7 @@ export default function ChatWidget() {
               <path fill="#de5123" d="M134.06,71.73c-14.44,25.73-43.31,8.41-51.72,8.41-5.03,0-16.67-.35-25.2-.42v42.36s-17.12-11.93-28-33.1c-4.15-8.06-7.39-17.46-8.44-28.05-.23-2.38-.36-4.82-.36-7.32v-22.82s36.8-.17,36.8,0v31.35h18.6c31.67,0,34.27-40.89-5.24-40.89H26.01C14.28,21.24,0,11.73,0,0h74.84c31.85,0,48.24,11.12,54.11,24.53,8.4,19.16-4.71,42.99-24.9,45.68,0,0,9.89,7.42,30.01,1.52Z"/>
             </svg>
             <span
-              className="absolute bottom-0 right-0 inline-block w-3 h-3 rounded-full bg-[#22c55e] border-2 border-bh-ink"
+              className="absolute bottom-0 right-0 inline-block w-3 h-3 rounded-full bg-[#f59e0b] border-2 border-bh-ink"
               aria-hidden
             />
           </span>
@@ -257,7 +284,7 @@ export default function ChatWidget() {
               Charlie · BuildHawk support
             </p>
             <p className="text-[11px] tracking-[0.04em] text-bh-paper/65 mt-0.5">
-              Online · typically replies in seconds · 24/7
+              Offline · use the brief or waitlist on this page
             </p>
           </div>
           <button
@@ -289,13 +316,13 @@ export default function ChatWidget() {
               className={`flex ${m.role === "user" ? "justify-end" : "justify-start"}`}
             >
               <div
-                className={`max-w-[80%] px-3.5 py-2.5 text-[14px] leading-[1.5] tracking-[-0.005em] ${
+                className={`max-w-[80%] px-3.5 py-2.5 text-[14px] leading-[1.5] tracking-[-0.005em] whitespace-pre-line ${
                   m.role === "user"
                     ? "bg-bh-orange text-bh-paper rounded-2xl rounded-br-md"
                     : "bg-bh-paper text-bh-ink border border-bh-steel/50 rounded-2xl rounded-bl-md"
                 }`}
               >
-                {m.content}
+                {m.role === "assistant" ? renderMessage(m.content) : m.content}
               </div>
             </div>
           ))}
