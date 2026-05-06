@@ -46,7 +46,7 @@ export const authors: Record<Author["id"], Author> = {
 export const articles: Article[] = [
   {
     slug: "sitework-bore-hole-gap",
-    title: "Why every builder underprices sitework",
+    title: "The geo-report gap: why sitework eats margin between bore holes",
     dek:
       "A geotechnical report tells you what is at three or four points on the site. Builders who price sitework as a locked sum are pricing those points as though they represent the entire allotment. The gap between bore holes is where margin disappears.",
     authorId: "nathan",
@@ -289,7 +289,7 @@ The estimate is the first commercial document on any project. The discipline app
   },
   {
     slug: "underpricing-sitework-year-one",
-    title: "Why Every Builder Underprices Sitework in Year One",
+    title: "Why every builder underprices sitework in a new region",
     dek:
       "Excavation, drainage, retaining and site clean. Together they are usually 4 to 7% of the contract. Builders almost universally get them wrong on the first job in a new region. Here is what to actually budget.",
     authorId: "nathan",
