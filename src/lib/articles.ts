@@ -45,39 +45,245 @@ export const authors: Record<Author["id"], Author> = {
 
 export const articles: Article[] = [
   {
-    slug: "five-percent-variance-threshold",
-    title: "The 5% Variance Rule",
+    slug: "sitework-bore-hole-gap",
+    title: "Why every builder underprices sitework",
     dek:
-      "Most builders find out a job is losing money too late to do anything about it. The 5% variance threshold is how you stop that from happening.",
+      "A geotechnical report tells you what is at three or four points on the site. Builders who price sitework as a locked sum are pricing those points as though they represent the entire allotment. The gap between bore holes is where margin disappears.",
     authorId: "nathan",
-    date: "2026-05-04",
+    date: "2026-05-06",
+    readingTime: 5,
+    category: "Operator Handbook",
+    cover: "/brand/cover-sitework.svg?v=2",
+    body: `Sitework kills more first-year margins than any other trade on the schedule. Not because builders are careless. Because sitework is the one stage where the ground decides what it costs, and the ground does not care what the estimate says.
+
+The mistake is consistent: a builder prices sitework as a locked sum at tender, reviews the geotechnical report, and assumes the report tells the full story. They win the job. They mobilise. And somewhere between topsoil strip and slab prep, they hit conditions that the report never captured. Rock in a zone between bore holes. Unexpected fill in a corner of the site that was never tested. A perched water table that only reveals itself when excavation opens up the full footprint.
+
+Every one of these is a cost the estimate did not carry. Every one of them comes off margin.
+
+---
+
+## Why the geo report is not the whole picture
+
+A geotechnical report is a mandatory document. No building permit issues without one. The builder has it at tender, and they price sitework on the basis of what it says. That is the correct starting point. It is not a complete picture of what is in the ground.
+
+A standard residential geotechnical investigation involves three to four bore holes across the site. Those bore holes produce accurate data at the exact point they were drilled. What they do not produce is certainty about every other point on the allotment. The ground between bore holes is interpolated, not tested. On a site with variable geology, fill of unknown origin, or a history of previous structures, the conditions between test points can be materially different from the conditions at them.
+
+A builder who reads a geo report and locks sitework as a confirmed sum is pricing three to four data points as though they represent the entire site. In many cases that assumption holds. In enough cases it does not, and the cost of being wrong lands entirely on the builder's margin.
+
+## Why year one is the highest-risk period
+
+An experienced builder develops a calibrated sense of sitework exposure over time. They know which postcodes carry rock risk between bore holes. They know what variable fill looks like in a geo report and how to price around it. They have been caught out enough times that they have built a structural allowance for the unknown into their sitework approach.
+
+A builder in their first year does not have that history. They read the geo report, price what it says, and trust the data. They are not yet pricing the gap between what the bore holes found and what the excavator might find. That gap is where the margin exposure lives.
+
+## The spoil calculation builders get wrong
+
+Spoil removal is one of the most consistently underpriced line items in residential sitework, and the error is almost always the same. The builder calculates the volume of material to be excavated, applies a truck rate, and puts a number in the estimate. What they do not account for is bulking.
+
+Soil does not leave a site in the same volume it occupies in the ground. Clay bulks at 20 to 30%. Rock bulks at 30 to 40% or higher. On a standard residential allotment requiring 200 cubic metres of cut, a 25% bulk factor adds 50 cubic metres of material that was never in the disposal calculation. At a haulage and tipping rate of $120 per cubic metre, that is $6,000 unaccounted for before a single trade has raised a variation.
+
+The compounding factor is contaminated or classified material. Standard fill goes to a standard landfill at a standard rate. Fill containing asbestos, hydrocarbons, or treated timber products is classified waste, running at three to five times the standard disposal rate. A geo report with three to four bore holes cannot confirm what is sitting in every untested zone. A builder who assumes standard disposal across the entire site is carrying both a financial and a regulatory risk inside the same unpriced line item.
+
+On the wrong site, spoil is a $15,000 to $40,000 exposure sitting inside a number the builder never questioned.
+
+## The correct position: allowance, not locked sum
+
+Having a geotechnical report does not mean sitework should be priced as a locked sum. It means the builder has confirmed data at three to four points and interpreted data everywhere else.
+
+Sitework at estimation stage should be structured as a base confirmed cost, derived from what the geo report actually establishes, plus an explicitly qualified provisional sum for the conditions the bore holes did not test. Not a vague contingency. A separately identified line item in the contract with a defined scope, a defined trigger, and a defined pricing mechanism if adverse conditions are encountered.
+
+A locked sum transfers all geological risk, including the risk of what sits between the bore holes, to the builder the moment the contract is executed. If conditions are worse, the builder wears it. If conditions are better, the client keeps the saving. The asymmetry is entirely in the client's favour.
+
+## The margin arithmetic on a missed sitework call
+
+A builder prices sitework at $45,000 on an $850,000 contract. The geo report confirmed reactive clay at all four bore hole locations. Sitework is locked at tender on that basis.
+
+Excavation commences. Rock is encountered at 600mm across 40% of the site, in a zone between two bore holes that both returned clay. Rock breaking and removal adds $28,000. Spoil volumes run 30% over estimate because bulking was not applied. Disposal adds a further $8,000. Total sitework cost lands at $81,000 against a $45,000 allowance. Variance: $36,000.
+
+That $36,000 is unrecoverable. The geo report was in hand. The contract was signed on a locked sitework sum. There is no contractual mechanism to pass the cost to the client. It comes directly off the $212,500 margin target, reducing the effective margin from 25% to 20.3%.
+
+On one project. Before the frame goes up.
+
+## The upstream fix
+
+Read the geo report for what it confirms, not what it implies. Data at bore hole locations is confirmed. Everything between those points is interpreted. Price accordingly.
+
+Carry a provisional sum for inter-bore-hole risk on every site where geology is variable, fill history is unknown, or previous structures have been demolished.
+
+Apply a bulk factor to every earthworks volume calculation. Minimum 20% for clay. Minimum 30% for rock. Confirm the rate with the excavator before finalising the disposal figure.
+
+Obtain a current feature and level survey before finalising earthworks quantities. Planning-stage contour data is not a reliable basis for a cost.
+
+Price rock separately and always. If the geo report shows rock at any bore hole location, carry a provisional sum for zones between test points with a day-rate mechanism for actual removal.
+
+Review the dial-before-you-dig report at every tender. Service locations shift. An old report is not a reliable basis for a cost.
+
+> The sitework stage is where the ground between the bore holes takes over. The builder's job is to price that uncertainty correctly before signing, not to discover it mid-excavation and absorb it in silence.
+
+— BuildHawk`,
+  },
+  {
+    slug: "variations-where-margin-dies",
+    title: "Variations are where margin dies",
+    dek:
+      "Most builders do not lose their margin on the estimate. They lose it after the contract is signed, in the space between what was agreed and what actually gets built. One poorly managed variation register can wipe 8 to 12 points off margin before the roof is on.",
+    authorId: "nathan",
+    date: "2026-05-06",
+    readingTime: 4,
+    category: "Methodology",
+    cover: "/brand/cover-variation.svg?v=2",
+    body: `Most builders do not lose their margin on the estimate. They lose it after the contract is signed, in the space between what was agreed and what actually gets built.
+
+Variations are not an inconvenience. They are the single highest-risk commercial event on any residential project. A builder running a 25% gross margin on a $1.2M contract has $300,000 to protect. One poorly managed variation register, three unpriced scope additions, and two "we'll sort it later" conversations with the client can wipe 8 to 12 points off that margin before the roof is even on.
+
+This is not a niche problem. It is the default outcome when variation control is left to goodwill, verbal agreements, or a builder who is too busy managing the site to manage the contract.
+
+---
+
+## Where the leakage happens
+
+Variations fail at four consistent points:
+
+Scope is instructed verbally and never formalised. The client asks, the supervisor says yes, the trade does the work. No written instruction. No priced variation. No signature.
+
+The variation is priced too late. Work is complete before the cost has been agreed. The builder presents a number after the fact and the client disputes it, citing their own (lower) expectation.
+
+Preliminaries are not re-costed. A scope addition adds two weeks to the programme. The direct cost of the variation is captured. The additional site supervision, crane hire, scaffold, and temporary services are not.
+
+Margin is not applied consistently. Trade quotes are passed through at cost. The builder recovers the supply and install but forfeits the margin they are entitled to on every instructed variation.
+
+Each of these is a systems failure, not a one-off mistake.
+
+## The standard that protects 25%
+
+A variation that protects margin requires four non-negotiable steps before any work is instructed:
+
+Written scope description with reference to the original contract scope and the specific change.
+
+Full cost build-up: supply, install, preliminaries impact, and programme extension if applicable.
+
+Margin applied at the same rate as the head contract.
+
+Client signature before work commences. No exceptions.
+
+The Security of Payment Act (SOPA in Victoria, BCIPA in Queensland) provides builders with a legal pathway to recover progress payments including variation amounts, but only where the variation is documented. A verbal instruction does not create an enforceable claim. A signed variation order does.
+
+## The margin arithmetic builders ignore
+
+On a $1.2M contract at 25% gross margin, the builder is recovering $300,000 above direct costs. If $80,000 in variations are instructed across the build and only $60,000 is formally claimed and collected, the margin on that $80,000 of work is effectively zero. The direct cost was covered. The margin was not.
+
+Across a programme of ten projects per year, that leakage compounds. Five projects where variation recovery is partial or late does not mean a builder is a poor estimator. It means they have a variation control problem, and no estimate will fix it.
+
+## What a controlled variation register looks like
+
+Every live project should carry a variation register that tracks, at minimum:
+
+• Variation number (sequential, no gaps)
+• Date instructed (establishes timeline for Security of Payment purposes)
+• Description (scope of change, referenced to contract)
+• Direct cost ex-GST (supply and install)
+• Preliminaries impact (additional site costs attributable to the variation)
+• Margin applied (at head contract rate)
+• Total value ex-GST (claimed amount)
+• Client signature date (approval confirmation)
+• Invoice issued (date and reference)
+• Payment received (confirmed date)
+
+This is not a bureaucratic exercise. It is a real-time snapshot of the commercial exposure on every project. Without it, the builder is managing margin from memory.
+
+## The upstream fix
+
+The most effective variation control starts before the contract is signed. A well-structured estimate with clearly defined scope and explicit contract exclusions reduces variation disputes at the source. When the original scope is unambiguous, the variation is unambiguous.
+
+Builders who treat the estimate as a price submission and nothing else are leaving their margin unprotected from day one. The estimate is a contract document. It should be built accordingly.
+
+## The position to hold
+
+Variation control is not about being difficult with clients. It is about running a business with commercial discipline.
+
+A client who understands that variations are priced, approved, and invoiced consistently will not be surprised when a scope change carries a cost. The builder who holds the line, consistently and professionally, protects the 25%. The builder who gives ground on variation process to keep the client happy will not have the margin to stay in business long enough to build them anything.
+
+> The 25% does not die on the estimate. It dies on the variations the builder did not enforce.
+
+— BuildHawk`,
+  },
+  {
+    slug: "five-percent-variance-threshold",
+    title: "The 5% Variance Rule: zero tolerance starts at contract",
+    dek:
+      "Every estimate carries uncertainty. The question is not whether variance exists, it is whether the builder controls it or absorbs it. Up to 5% per line item is acceptable at estimate stage. At contract execution, the tolerance is zero.",
+    authorId: "nathan",
+    date: "2026-05-06",
     readingTime: 4,
     category: "Methodology",
     cover: "/brand/cover-five-percent.svg?v=2",
-    youtubeId: "o9X5uA-pVWA",
-    videoLabel: "Construction Contract Variations and Claims with Peter Mallett",
-    videoCredit: "Featured talk · 32 min",
-    body: `Most builders find out a job is losing money too late to do anything about it.
+    body: `Every estimate carries uncertainty. The question is not whether variance exists, it is whether the builder controls it or absorbs it.
 
-The 5% variance threshold is how you stop that from happening.
+The 5% Variance Rule is a commercial discipline applied at the estimation stage. It acknowledges that during cost planning, before a full document set is confirmed, before trade quotes are locked, and before site conditions are fully known, a tolerance of up to 5% on any individual line item is acceptable. It is not a buffer to hide poor estimating. It is a structured acknowledgement that estimate-stage figures carry inherent exposure, and that exposure must be named, tracked, and closed before a contract is executed.
 
-It is not a contingency, a markup buffer, or a pricing allowance. It is a monitoring trigger — a defined tolerance applied across each trade or BOQ section. When actual costs exceed your estimated allowance by 5% or more on any section, the job flags for review. That is the mechanism.
+Once the contract is signed, the tolerance is zero. The number is the number.
 
-Here is what it looks like in practice.
+---
 
-Your framing package is estimated at $48,000. Timber runs over on supply and the crew logs an extra day due to a structural change. You are now at $52,400 — 9.2% variance on a single section. Without a threshold in place, that number sits unreviewed until the final account. With it active, the flag triggers at $50,400. You still have time to assess whether the change warrants a variation claim, whether another section absorbs the gap, or whether margin needs to be re-baselined.
+## What the 5% tolerance covers
 
-The same applies to services. Electrical estimated at $22,000. The sparky invoices $23,200 after running additional circuits for a home office scope that was never formalised as a variation. That is 5.5%. Caught early, it is a conversation and a recoverable cost. Caught at Practical Completion, it is a write-off.
+At the estimation stage, variance arises from four sources:
 
-Joinery is where it matters most. A $65,000 package with an additional overhead cupboard run and a revised island bench — neither processed as a variation — sits at 6.2% over. That number only surfaces when you are reconciling the job post-handover.
+Incomplete documentation. A full drawing set has not been issued. Scope is interpreted from what is available. Missing detail creates cost uncertainty.
 
-The threshold creates a decision point while options still exist. At 5% variance on a single section, you have three choices: absorb it, recover it elsewhere, or escalate. At 15% across multiple sections no one caught, you have none.
+Unconfirmed trade pricing. Budget rates or historical benchmarks have been used in lieu of live quotes. Market movement between estimate and tender close has not yet been captured.
 
-> Builders who operate without a defined variance threshold are not managing cost. They are counting on the final account to tell them what happened.
+Site conditions not yet assessed. Geotechnical data, service locations, or access constraints are unknown or assumed. These carry cost implications that cannot be fully quantified at estimate stage.
 
-BuildHawk builds cost control into the estimate before construction starts. The threshold is one part of a structured financial framework that keeps your margin visible from the first trade package to Practical Completion.
+Scope interpretation. Where plans are ambiguous, the estimator makes a reasonable assumption. That assumption may not align with what the client or designer intended.
 
-If that is a problem you are looking to solve, reply to this email or book a call below.
+A 5% tolerance across these items, applied at the line-item level and flagged in the estimate, is a defensible commercial position. It communicates to the client that the figure is a considered estimate, not a fixed price, and that the path to a fixed price runs through confirmed documentation and trade quotes.
+
+## What the 5% tolerance does not cover
+
+The 5% tolerance is not a margin top-up. It is not a contingency for poor scope definition, missing trades from the estimate, or items that were simply not priced. Those are estimating errors. The 5% rule is a precision tool, not a catch-all.
+
+Applying the tolerance to every line item regardless of confidence level is not discipline. It is padding. Builders who pad uniformly train clients to expect the final number to be lower, which creates exactly the commercial pressure the rule is designed to prevent.
+
+The tolerance should be applied selectively, documented explicitly, and closed out at each stage gate as information improves.
+
+## The gate that removes the tolerance
+
+The 5% tolerance has a hard expiry: contract execution.
+
+At the point of signing, every line item must be confirmed. Trade quotes must be in hand or formally committed. Scope must be locked to the issued tender documentation. Any item still carrying an estimate-stage tolerance that has not been resolved represents uncontrolled exposure that the builder is now carrying at their own risk.
+
+The contract is a fixed-price commitment. The client signs on the basis of a number. The builder signs on the basis of a cost plan that must support a 25% gross margin at that number. If variance still exists inside the cost plan when the contract executes, the margin is already under threat before the first slab is poured.
+
+Zero tolerance at contract stage is not a policy preference. It is a financial requirement.
+
+## The margin arithmetic
+
+A builder contracts a $950,000 project at 25% gross margin. Their direct cost target is $712,500. If three cost plan line items are still carrying a combined 5% estimate-stage tolerance at the time of signing, and those items total $180,000 of direct cost, the unresolved variance is $9,000. That $9,000 comes directly off margin if the costs land high.
+
+On a project where the margin target is $237,500, a $9,000 exposure from unresolved estimate variance represents a 3.8% margin erosion before a single trade sets foot on site. Across a programme of eight to ten projects, this compounds into a structural margin problem that no variation recovery process can fully offset.
+
+The fix is upstream. Close the variance before the contract is signed.
+
+## How to apply the rule in practice
+
+The 5% Variance Rule works as a staged close-out process tied to document milestones:
+
+• Concept estimate (sketch plans or design intent only): up to 5% per line item, all items flagged.
+• Schematic estimate (developed design, no engineering): up to 5% on structural and services items.
+• Tender estimate (full drawing set, engineering issued): up to 5% on items pending trade quote only.
+• Pre-contract sign-off (all trade quotes received and reviewed): zero. Every line item confirmed.
+• Post-contract (contract executed): zero. No estimate-stage tolerances carried.
+
+Each stage gate requires a formal review. Any item still carrying tolerance at the pre-contract stage must be resolved before execution, either by obtaining the outstanding quote, confirming the scope assumption with the designer, or adjusting the contract price to reflect the confirmed cost position.
+
+## The discipline that protects the number
+
+Builders who apply the 5% rule at estimate stage and enforce zero tolerance at contract stage are running cost plans, not guesses. They know their margin exposure at every point in the project lifecycle. They do not discover cost problems on site because the cost plan was never properly closed.
+
+The estimate is the first commercial document on any project. The discipline applied to it determines whether the 25% margin is achievable or aspirational.
+
+> BuildHawk's estimating framework is built around this principle. Every cost plan is produced with flagged tolerances, stage-gate review, and a pre-contract sign-off checklist designed to close every open item before execution. The number that goes into the contract is the number the builder can stand behind.
 
 — BuildHawk`,
   },
