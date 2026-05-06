@@ -267,7 +267,7 @@ export default function ChatWidget() {
           className="fixed bottom-[88px] right-4 md:right-5 z-[60] max-w-[260px] text-left px-4 py-3 rounded-2xl rounded-br-md bg-bh-ink text-bh-paper text-[13px] leading-snug tracking-[-0.005em] shadow-[0_12px_40px_-8px_rgba(17,17,17,0.4)] hover:bg-bh-orange transition-colors"
           aria-label="Open live chat"
         >
-          Got a build in the pipeline? Drop your details — the team replies within one business day.
+          Got a build in the pipeline? Drop your details and the team replies within one business day.
         </button>
       )}
 
