@@ -1,8 +1,8 @@
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
-const LOCATION_ID = process.env.GHL_LOCATION_ID || "faIZiavkSvyDcMVx7Dmf";
-// Sales & Project Pipeline — New Inquiry stage
-const PIPELINE_ID = "NfpFMoPBbMwics84ZoTs";
-const STAGE_ID = "3b5f38e0-95c4-4b3a-b5d8-efd9be1105e1";
+// BuildHawk location · Lead Qualification Pipeline · New Lead stage
+const LOCATION_ID = process.env.GHL_LOCATION_ID || "sJHr1joAOg5ZYB2XxOTD";
+const PIPELINE_ID = process.env.GHL_PIPELINE_ID || "u0LtKXA93fb8LYYXKarR";
+const STAGE_ID = process.env.GHL_STAGE_ID || "01def813-6149-4c05-8d23-540194334ab2";
 
 function headers() {
   return {

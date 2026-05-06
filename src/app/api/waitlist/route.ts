@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { upsertContact, createOpportunity } from "@/lib/ghl";
 
 export const runtime = "nodejs";
 
@@ -95,6 +96,22 @@ export async function POST(req: Request) {
       </div>
     </div>
   </body></html>`;
+
+  // GHL: upsert contact + create opportunity for every valid waitlist signup
+  const contactId = await upsertContact({
+    name,
+    email,
+    company: payload.company,
+    source: "buildhawk-site-waitlist",
+    tags: ["website-waitlist", payload.audience ?? "unknown"].filter(Boolean),
+  });
+  if (contactId) {
+    await createOpportunity({
+      contactId,
+      name: `${name} · Hawktress waitlist`,
+      source: "buildhawk-site-waitlist",
+    });
+  }
 
   const apiKey = process.env.RESEND_API_KEY;
   if (!apiKey) {
