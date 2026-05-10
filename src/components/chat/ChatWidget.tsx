@@ -12,7 +12,7 @@ const greeting: Message = {
   id: "greeting",
   role: "assistant",
   content:
-    "G'day, Charlie here. Reception for BuildHawk and Hawktress. What can I help you with today?",
+    "G'day, Charlie here. Intake specialist for BuildHawk and Hawktress. What can I help you with today?",
   ts: Date.now(),
 };
 
@@ -291,16 +291,16 @@ export default function ChatWidget() {
               <path fill="#de5123" d="M134.06,71.73c-14.44,25.73-43.31,8.41-51.72,8.41-5.03,0-16.67-.35-25.2-.42v42.36s-17.12-11.93-28-33.1c-4.15-8.06-7.39-17.46-8.44-28.05-.23-2.38-.36-4.82-.36-7.32v-22.82s36.8-.17,36.8,0v31.35h18.6c31.67,0,34.27-40.89-5.24-40.89H26.01C14.28,21.24,0,11.73,0,0h74.84c31.85,0,48.24,11.12,54.11,24.53,8.4,19.16-4.71,42.99-24.9,45.68,0,0,9.89,7.42,30.01,1.52Z"/>
             </svg>
             <span
-              className="absolute bottom-0 right-0 inline-block w-3 h-3 rounded-full bg-[#f59e0b] border-2 border-bh-ink"
+              className="absolute bottom-0 right-0 inline-block w-3 h-3 rounded-full bg-[#22c55e] border-2 border-bh-ink"
               aria-hidden
             />
           </span>
           <div className="flex-1 min-w-0">
             <p className="text-[14px] tracking-[-0.005em] font-medium leading-tight">
-              Charlie · BuildHawk support
+              Charlie · BuildHawk intake specialist
             </p>
             <p className="text-[11px] tracking-[0.04em] text-bh-paper/65 mt-0.5">
-              Offline · use the brief or waitlist on this page
+              Online · typically replies in seconds
             </p>
           </div>
           <button
