@@ -180,10 +180,17 @@ export default function BuildSequence() {
       if (!el) return;
       const rect = el.getBoundingClientRect();
       const vh = window.innerHeight;
-      // 0 when section top hits bottom of viewport, 1 when section bottom leaves top
-      const total = rect.height + vh;
-      const passed = vh - rect.top;
-      const np = Math.max(0, Math.min(1, passed / total));
+      // Map progress to the range where the sticky inner panel is actually
+      // pinned to the viewport: from when the section top hits the viewport
+      // top (rect.top = 0) to when the section bottom hits the viewport top
+      // (rect.top = -(rect.height - vh)). Earlier versions used the full
+      // viewport traversal which meant p only ever covered 0.25 to 0.75
+      // while the canvas was on screen, so the roof and detail stages
+      // (thresholds 0.65 and 0.85) never reached full opacity before the
+      // section scrolled away.
+      const stickyTravel = Math.max(1, rect.height - vh);
+      const passed = -rect.top;
+      const np = Math.max(0, Math.min(1, passed / stickyTravel));
       setP(np);
     };
     onScroll();
