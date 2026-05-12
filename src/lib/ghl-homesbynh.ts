@@ -1,19 +1,17 @@
 /**
- * GHL client for the Homes by NH location.
- *
- * Required env vars (set in Vercel):
- *   GHL_HBNH_API_KEY        Private Integration Token from the Homes by NH location.
- *                           Scopes needed: opportunities.readonly, opportunities.write,
- *                                          contacts.readonly, contacts.write
- *
- *   GHL_HBNH_LOCATION_ID    Location ID. Defaults to faIZiavkSvyDcMVx7Dmf.
- *
- * If GHL_HBNH_API_KEY is unset, all functions return null/empty so the
- * dashboard gracefully falls back to placeholder data.
+ * GHL client. Originally scoped to the Homes by NH location; now accepts a
+ * `GhlConfig` so SaaS tenants can each bring their own GHL credentials and
+ * location ID. Falls back to env-var single-tenant config for legacy callers.
  */
 
+import { getLegacyGhlConfig, type GhlConfig } from "@/lib/integrations";
+
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
-const HBNH_LOCATION_ID = process.env.GHL_HBNH_LOCATION_ID || "faIZiavkSvyDcMVx7Dmf";
+
+const requireConfig = (cfg: GhlConfig | null | undefined): GhlConfig | null => {
+  if (cfg) return cfg;
+  return getLegacyGhlConfig();
+};
 
 // Pipeline IDs (Homes by NH location)
 export const HBNH_PIPELINES = {
@@ -46,10 +44,10 @@ const CUSTOM_FIELDS = {
 };
 
 // ID of a multi-line text custom field used to store the BuildHawk financial overlay JSON.
-// Created once in GHL Homes by NH (key: bh_project_data) and pasted as an env var.
-// If not set, overlays cannot be saved and the dashboard uses synthesised numbers.
-export const PROJECT_DATA_FIELD_ID = process.env.GHL_HBNH_PROJECT_DATA_FIELD_ID;
-export const isProjectDataFieldConfigured = () => Boolean(PROJECT_DATA_FIELD_ID);
+// Created once per tenant's GHL location (key: bh_project_data) and stored on the
+// tenant's integration record. If not set, overlays cannot be saved.
+export const isProjectDataFieldConfigured = (cfg?: GhlConfig | null) =>
+  Boolean((cfg ?? getLegacyGhlConfig())?.projectDataFieldId);
 
 export type BoqLine = {
   id: string;
@@ -271,10 +269,10 @@ export type HbnhProject = {
   updatedAt: string;
 };
 
-export const isGhlConnected = () => Boolean(process.env.GHL_HBNH_API_KEY);
+export const isGhlConnected = (cfg?: GhlConfig | null) => Boolean(requireConfig(cfg));
 
-const headers = () => ({
-  Authorization: `Bearer ${process.env.GHL_HBNH_API_KEY}`,
+const headers = (cfg: GhlConfig) => ({
+  Authorization: `Bearer ${cfg.apiKey}`,
   "Content-Type": "application/json",
   Version: "2021-07-28",
 });
@@ -377,12 +375,12 @@ const customFieldString = (op: GhlOpportunity, fieldId: string): string | undefi
 const customFieldNumber = (op: GhlOpportunity, fieldId: string): number | undefined =>
   op.customFields?.find((f) => f.id === fieldId)?.fieldValueNumber;
 
-const mapOpportunityToProject = (op: GhlOpportunity): HbnhProject => {
+const mapOpportunityToProject = (op: GhlOpportunity, projectDataFieldId?: string): HbnhProject => {
   const address = customFieldString(op, CUSTOM_FIELDS.projectAddress);
   const explicitValue = customFieldNumber(op, CUSTOM_FIELDS.projectValue);
   const budget = explicitValue ?? op.monetaryValue ?? 0;
-  const overlay = PROJECT_DATA_FIELD_ID
-    ? parseOverlay(customFieldString(op, PROJECT_DATA_FIELD_ID))
+  const overlay = projectDataFieldId
+    ? parseOverlay(customFieldString(op, projectDataFieldId))
     : null;
   return {
     id: op.id,
@@ -411,42 +409,45 @@ const mapOpportunityToProject = (op: GhlOpportunity): HbnhProject => {
  * Pulls from both Sales & Project (open) and Contract Administration (won) pipelines.
  * Returns null if GHL is not configured.
  */
-export async function getActiveProjects(): Promise<HbnhProject[] | null> {
-  if (!isGhlConnected()) return null;
+export async function getActiveProjects(
+  config?: GhlConfig | null,
+): Promise<HbnhProject[] | null> {
+  const cfg = requireConfig(config);
+  if (!cfg) return null;
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 8000); // 8s hard timeout
+  const timeout = setTimeout(() => controller.abort(), 8000);
   try {
     const url = new URL(`${GHL_API_BASE}/opportunities/search`);
-    url.searchParams.set("location_id", HBNH_LOCATION_ID);
+    url.searchParams.set("location_id", cfg.locationId);
     url.searchParams.set("limit", "100");
     const res = await fetch(url.toString(), {
-      headers: headers(),
+      headers: headers(cfg),
       cache: "no-store",
       signal: controller.signal,
     });
     clearTimeout(timeout);
     if (!res.ok) {
-      console.error("[ghl-hbnh] search failed:", res.status, await res.text());
+      console.error("[ghl] search failed:", res.status, await res.text());
       return null;
     }
     const data = await res.json();
     const opportunities: GhlOpportunity[] = data.opportunities ?? [];
 
-    // Active = open in any pipeline OR won in Contract Admin (active construction)
+    // Active = open in any pipeline OR won in Contract Admin (active construction).
+    // Note: the sales/contract-admin pipeline IDs below are Homes by NH specific.
+    // For new tenants whose pipelines differ, the filter falls back to "open or won".
     const active = opportunities.filter((op) => {
-      const inSalesPipeline = op.pipelineId === HBNH_PIPELINES.sales;
-      const inCaPipeline = op.pipelineId === HBNH_PIPELINES.contractAdmin;
-      if (op.status === "open" && (inSalesPipeline || inCaPipeline)) return true;
-      if (op.status === "won" && inCaPipeline) return true;
+      if (op.status === "open") return true;
+      if (op.status === "won" && op.pipelineId === HBNH_PIPELINES.contractAdmin) return true;
       return false;
     });
 
     return active
-      .map(mapOpportunityToProject)
+      .map((op) => mapOpportunityToProject(op, cfg.projectDataFieldId))
       .sort((a, b) => b.budget - a.budget);
   } catch (e) {
     clearTimeout(timeout);
-    console.error("[ghl-hbnh] getActiveProjects error:", e);
+    console.error("[ghl] getActiveProjects error:", e);
     return null;
   }
 }
@@ -454,38 +455,40 @@ export async function getActiveProjects(): Promise<HbnhProject[] | null> {
 /**
  * Upsert a contact in Homes by NH.
  */
-async function upsertContact(input: {
-  name: string;
-  email: string;
-  phone?: string;
-  companyName?: string;
-}): Promise<string | null> {
-  if (!isGhlConnected()) return null;
+async function upsertContact(
+  input: {
+    name: string;
+    email: string;
+    phone?: string;
+    companyName?: string;
+  },
+  cfg: GhlConfig,
+): Promise<string | null> {
   const [firstName, ...rest] = input.name.trim().split(" ");
   const lastName = rest.join(" ") || undefined;
   try {
     const res = await fetch(`${GHL_API_BASE}/contacts/upsert`, {
       method: "POST",
-      headers: headers(),
+      headers: headers(cfg),
       body: JSON.stringify({
-        locationId: HBNH_LOCATION_ID,
+        locationId: cfg.locationId,
         firstName,
         lastName,
         email: input.email,
         phone: input.phone,
-        companyName: input.companyName ?? "Homes by NH",
-        source: "buildhawk-command-centre",
-        tags: ["command-centre"],
+        companyName: input.companyName,
+        source: "buildhawk-cost-plan-console",
+        tags: ["cost-plan-console"],
       }),
     });
     if (!res.ok) {
-      console.error("[ghl-hbnh] upsertContact failed:", res.status, await res.text());
+      console.error("[ghl] upsertContact failed:", res.status, await res.text());
       return null;
     }
     const data = await res.json();
     return data.contact?.id ?? null;
   } catch (e) {
-    console.error("[ghl-hbnh] upsertContact error:", e);
+    console.error("[ghl] upsertContact error:", e);
     return null;
   }
 }
@@ -509,15 +512,22 @@ export type CreateProjectResult =
 /**
  * Create a project (opportunity + contact) in Homes by NH.
  */
-export async function createProject(input: CreateProjectInput): Promise<CreateProjectResult> {
-  if (!isGhlConnected()) {
-    return { ok: false, error: "GHL Homes by NH not configured. Set GHL_HBNH_API_KEY in Vercel." };
+export async function createProject(
+  input: CreateProjectInput,
+  config?: GhlConfig | null,
+): Promise<CreateProjectResult> {
+  const cfg = requireConfig(config);
+  if (!cfg) {
+    return { ok: false, error: "GHL not connected. Connect a location in Settings." };
   }
-  const contactId = await upsertContact({
-    name: input.contactName,
-    email: input.contactEmail,
-    phone: input.contactPhone,
-  });
+  const contactId = await upsertContact(
+    {
+      name: input.contactName,
+      email: input.contactEmail,
+      phone: input.contactPhone,
+    },
+    cfg,
+  );
   if (!contactId) {
     return { ok: false, error: "Could not create or find contact in GHL." };
   }
@@ -534,16 +544,16 @@ export async function createProject(input: CreateProjectInput): Promise<CreatePr
   try {
     const res = await fetch(`${GHL_API_BASE}/opportunities/`, {
       method: "POST",
-      headers: headers(),
+      headers: headers(cfg),
       body: JSON.stringify({
         pipelineId: input.pipelineId,
         pipelineStageId: input.pipelineStageId,
-        locationId: HBNH_LOCATION_ID,
+        locationId: cfg.locationId,
         contactId,
         name: input.projectName,
         status: "open",
         monetaryValue: input.budget,
-        source: "buildhawk-command-centre",
+        source: "buildhawk-cost-plan-console",
         customFields,
       }),
     });
@@ -567,23 +577,27 @@ export async function createProject(input: CreateProjectInput): Promise<CreatePr
  * Fetch a single Homes by NH opportunity by ID, mapped into the HbnhProject shape.
  * Returns null if not found, GHL is not configured, or the call errors.
  */
-export async function getProjectById(id: string): Promise<HbnhProject | null> {
-  if (!isGhlConnected()) return null;
+export async function getProjectById(
+  id: string,
+  config?: GhlConfig | null,
+): Promise<HbnhProject | null> {
+  const cfg = requireConfig(config);
+  if (!cfg) return null;
   try {
     const res = await fetch(`${GHL_API_BASE}/opportunities/${encodeURIComponent(id)}`, {
-      headers: headers(),
+      headers: headers(cfg),
       cache: "no-store",
     });
     if (!res.ok) {
-      console.error("[ghl-hbnh] getProjectById failed:", res.status, await res.text());
+      console.error("[ghl] getProjectById failed:", res.status, await res.text());
       return null;
     }
     const data = await res.json();
     const op: GhlOpportunity | undefined = data.opportunity ?? data;
     if (!op?.id) return null;
-    return mapOpportunityToProject(op);
+    return mapOpportunityToProject(op, cfg.projectDataFieldId);
   } catch (e) {
-    console.error("[ghl-hbnh] getProjectById error:", e);
+    console.error("[ghl] getProjectById error:", e);
     return null;
   }
 }
@@ -610,15 +624,17 @@ export type UpdateOverlayResult =
  */
 export async function updateProjectOverlay(
   input: UpdateOverlayInput,
+  config?: GhlConfig | null,
 ): Promise<UpdateOverlayResult> {
-  if (!isGhlConnected()) {
-    return { ok: false, error: "GHL Homes by NH not configured. Set GHL_HBNH_API_KEY in Vercel." };
+  const cfg = requireConfig(config);
+  if (!cfg) {
+    return { ok: false, error: "GHL not connected. Connect a location in Settings." };
   }
-  if (!PROJECT_DATA_FIELD_ID) {
+  if (!cfg.projectDataFieldId) {
     return {
       ok: false,
       error:
-        "GHL_HBNH_PROJECT_DATA_FIELD_ID env var not set. In GHL, create a multi-line text custom field on Homes by NH (suggested name: 'BuildHawk Project Data', key: bh_project_data), then add its ID to Vercel env vars and redeploy.",
+        "Project-data custom field ID not set on this tenant's GHL integration. In GHL, create a multi-line text custom field (suggested key: bh_project_data), then add its ID via Settings.",
     };
   }
 
@@ -629,10 +645,9 @@ export async function updateProjectOverlay(
   };
 
   const customFields: Array<{ id: string; field_value: string | number }> = [
-    { id: PROJECT_DATA_FIELD_ID, field_value: JSON.stringify(overlayWithMeta) },
+    { id: cfg.projectDataFieldId, field_value: JSON.stringify(overlayWithMeta) },
   ];
 
-  // Mirror committed cost into the existing project value field if budget changed
   if (typeof input.budget === "number") {
     customFields.push({ id: CUSTOM_FIELDS.projectValue, field_value: input.budget });
   }
@@ -646,13 +661,13 @@ export async function updateProjectOverlay(
       `${GHL_API_BASE}/opportunities/${encodeURIComponent(input.opportunityId)}`,
       {
         method: "PUT",
-        headers: headers(),
+        headers: headers(cfg),
         body: JSON.stringify(body),
       },
     );
     if (!res.ok) {
       const text = await res.text();
-      console.error("[ghl-hbnh] updateProjectOverlay failed:", res.status, text);
+      console.error("[ghl] updateProjectOverlay failed:", res.status, text);
       return { ok: false, error: `GHL responded ${res.status}: ${text.slice(0, 200)}` };
     }
     return { ok: true, opportunityId: input.opportunityId };

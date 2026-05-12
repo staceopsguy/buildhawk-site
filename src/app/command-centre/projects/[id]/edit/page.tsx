@@ -7,6 +7,8 @@ import {
   isProjectDataFieldConfigured,
   PIPELINE_OPTIONS,
 } from "@/lib/ghl-homesbynh";
+import { getActiveContext } from "@/lib/auth";
+import { getGhlConfig, getLegacyGhlConfig } from "@/lib/integrations";
 
 export const metadata: Metadata = {
   title: "Estimate Workbook · BuildHawk Cost Plan Console",
@@ -20,10 +22,14 @@ type Params = Promise<{ id: string }>;
 
 export default async function EditProjectPage({ params }: { params: Params }) {
   const { id } = await params;
-  const ghlOn = isGhlConnected();
-  const overlayFieldOn = isProjectDataFieldConfigured();
+  const ctx = await getActiveContext().catch(() => null);
+  const cfg =
+    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
+    getLegacyGhlConfig();
+  const ghlOn = isGhlConnected(cfg);
+  const overlayFieldOn = isProjectDataFieldConfigured(cfg);
 
-  const project = ghlOn ? await getProjectById(id) : null;
+  const project = ghlOn ? await getProjectById(id, cfg) : null;
   if (ghlOn && !project) notFound();
 
   return (

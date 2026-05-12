@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { createProject, type CreateProjectInput } from "@/lib/ghl-homesbynh";
+import { getActiveContext } from "@/lib/auth";
+import { getGhlConfig, getLegacyGhlConfig } from "@/lib/integrations";
 
 export const runtime = "nodejs";
 
@@ -33,17 +35,25 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Invalid budget" }, { status: 400 });
   }
 
-  const result = await createProject({
-    projectName: String(body.projectName),
-    address: body.address ? String(body.address) : undefined,
-    budget,
-    pipelineId: String(body.pipelineId),
-    pipelineStageId: String(body.pipelineStageId),
-    contactName: String(body.contactName),
-    contactEmail: String(body.contactEmail),
-    contactPhone: body.contactPhone ? String(body.contactPhone) : undefined,
-    notes: body.notes ? String(body.notes) : undefined,
-  });
+  const ctx = await getActiveContext().catch(() => null);
+  const cfg =
+    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
+    getLegacyGhlConfig();
+
+  const result = await createProject(
+    {
+      projectName: String(body.projectName),
+      address: body.address ? String(body.address) : undefined,
+      budget,
+      pipelineId: String(body.pipelineId),
+      pipelineStageId: String(body.pipelineStageId),
+      contactName: String(body.contactName),
+      contactEmail: String(body.contactEmail),
+      contactPhone: body.contactPhone ? String(body.contactPhone) : undefined,
+      notes: body.notes ? String(body.notes) : undefined,
+    },
+    cfg,
+  );
 
   if (!result.ok) {
     return NextResponse.json(result, { status: 502 });

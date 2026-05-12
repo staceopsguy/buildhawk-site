@@ -1,35 +1,43 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyToken, SESSION_COOKIE_NAME } from "@/lib/auth";
+import { SESSION_COOKIE, verifyEdgeSession } from "@/lib/auth-edge";
 
 export const config = {
-  // Apply to everything under /command-centre, plus /api/command-centre except /auth/*
-  matcher: ["/command-centre/:path*", "/api/command-centre/((?!auth).*)"],
+  // Gate /command-centre/* and /api/command-centre/* with these public exceptions:
+  //   /command-centre/login, /signup, /request-access  (auth top-of-funnel)
+  //   /api/command-centre/auth/*                        (auth handles its own validation)
+  //   /api/command-centre/stripe/webhook                (Stripe-signed)
+  matcher: [
+    "/command-centre/:path*",
+    "/api/command-centre/((?!auth|stripe/webhook|request-access).*)",
+  ],
 };
 
-const PUBLIC_PATHS = ["/command-centre/login"];
+const PUBLIC_PATHS = new Set([
+  "/command-centre/login",
+  "/command-centre/signup",
+  "/command-centre/request-access",
+]);
 
 export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
-  // Public routes (login) pass through unchanged.
-  if (PUBLIC_PATHS.includes(pathname)) {
+  if (PUBLIC_PATHS.has(pathname)) {
     return NextResponse.next();
   }
 
-  // If auth is not configured, treat the gate as transparent — keeps the
-  // prototype usable without env vars. Once BH_AUTH_SECRET + allowlist are set,
-  // the gate engages.
-  if (!process.env.BH_AUTH_SECRET || !process.env.BH_AUTHORIZED_EMAILS) {
-    return NextResponse.next();
+  // If auth secret isn't set, the gate stays open (lets you bootstrap locally).
+  const secret = process.env.BH_AUTH_SECRET;
+  if (!secret) return NextResponse.next();
+
+  const token = req.cookies.get(SESSION_COOKIE)?.value;
+  const session = await verifyEdgeSession(token, secret);
+  if (session) {
+    const res = NextResponse.next();
+    res.headers.set("x-bh-user-id", session.userId);
+    res.headers.set("x-bh-tenant-id", session.tenantId);
+    return res;
   }
 
-  const token = req.cookies.get(SESSION_COOKIE_NAME)?.value;
-  const payload = token ? await verifyToken(token) : null;
-  if (payload && payload.kind === "session") {
-    return NextResponse.next();
-  }
-
-  // API calls get 401 JSON; pages redirect to login with a return path.
   if (pathname.startsWith("/api/")) {
     return NextResponse.json({ ok: false, error: "Not signed in" }, { status: 401 });
   }

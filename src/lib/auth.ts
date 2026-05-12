@@ -1,18 +1,27 @@
 /**
- * Magic link auth for the BuildHawk Cost Plan Console.
+ * Magic-link auth for the BuildHawk SaaS.
+ *
+ * Self-serve signup. Users are persisted in Postgres; sessions carry a userId
+ * and an active tenantId. Magic-link tokens are stored hashed in the DB so
+ * we can revoke and prevent replay.
  *
  * Required env vars:
- *   BH_AUTH_SECRET           Random 32+ char string for HMAC signing.
- *   BH_AUTHORIZED_EMAILS     Comma-separated allowlist of permitted emails.
- *   RESEND_API_KEY           Resend transactional email key (already required by site).
- *   NEXT_PUBLIC_SITE_URL     Public origin (defaults to https://www.buildhawk.com.au).
+ *   BH_AUTH_SECRET   32+ char HMAC secret for signing session cookies.
+ *   DATABASE_URL     Neon Postgres connection string.
+ *   RESEND_API_KEY   Resend transactional email key.
+ *   NEXT_PUBLIC_SITE_URL  Public origin.
  */
 
 import { cookies } from "next/headers";
+import { createHash, randomBytes } from "node:crypto";
+import { and, eq, gt, isNull } from "drizzle-orm";
+import { db, isDbConfigured } from "@/lib/db/client";
+import { magicLinks, memberships, tenants, users } from "@/lib/db/schema";
+import { ids } from "@/lib/db/ids";
 
-const SESSION_COOKIE = "bh_cc_session";
+const SESSION_COOKIE = "bh_session";
 const SESSION_DAYS = 30;
-const MAGIC_TTL_SECONDS = 30 * 60; // 30 minutes
+const MAGIC_TTL_MS = 30 * 60 * 1000;
 
 const enc = new TextEncoder();
 const dec = new TextDecoder();
@@ -51,7 +60,6 @@ const sign = async (data: string): Promise<string> => {
 
 const verifySignature = async (data: string, sig: string): Promise<boolean> => {
   const expected = await sign(data);
-  // Constant-time compare
   if (expected.length !== sig.length) return false;
   let diff = 0;
   for (let i = 0; i < expected.length; i++) {
@@ -60,27 +68,26 @@ const verifySignature = async (data: string, sig: string): Promise<boolean> => {
   return diff === 0;
 };
 
-export type TokenPayload = {
+export type SessionPayload = {
+  userId: string;
+  tenantId: string;
   email: string;
-  kind: "magic" | "session";
-  exp: number; // unix seconds
-  // Optional return path on magic verify
-  redirect?: string;
+  exp: number;
 };
 
-export async function createToken(payload: TokenPayload): Promise<string> {
+async function encodeSession(payload: SessionPayload): Promise<string> {
   const body = b64url(enc.encode(JSON.stringify(payload)));
   const sig = await sign(body);
   return `${body}.${sig}`;
 }
 
-export async function verifyToken(token: string): Promise<TokenPayload | null> {
+async function decodeSession(token: string): Promise<SessionPayload | null> {
   if (!token || !token.includes(".")) return null;
   const [body, sig] = token.split(".");
-  const ok = await verifySignature(body, sig);
-  if (!ok) return null;
+  if (!body || !sig) return null;
+  if (!(await verifySignature(body, sig))) return null;
   try {
-    const payload = JSON.parse(dec.decode(fromB64url(body))) as TokenPayload;
+    const payload = JSON.parse(dec.decode(fromB64url(body))) as SessionPayload;
     if (typeof payload.exp !== "number") return null;
     if (payload.exp < Math.floor(Date.now() / 1000)) return null;
     return payload;
@@ -91,25 +98,19 @@ export async function verifyToken(token: string): Promise<TokenPayload | null> {
 
 export const normalizeEmail = (email: string) => email.trim().toLowerCase();
 
-export function isAuthorizedEmail(email: string): boolean {
-  const allow = process.env.BH_AUTHORIZED_EMAILS;
-  if (!allow) return false;
-  const normalized = normalizeEmail(email);
-  return allow
-    .split(",")
-    .map((e) => normalizeEmail(e))
-    .filter(Boolean)
-    .includes(normalized);
-}
+export const hashToken = (token: string) =>
+  createHash("sha256").update(token).digest("hex");
 
 export const isAuthConfigured = () =>
-  Boolean(getSecret()) &&
-  Boolean(process.env.BH_AUTHORIZED_EMAILS) &&
-  Boolean(process.env.RESEND_API_KEY);
+  Boolean(getSecret()) && isDbConfigured() && Boolean(process.env.RESEND_API_KEY);
 
-export async function setSessionCookie(email: string) {
+/* ------------------------------------------------------------------ */
+/* Session cookie                                                     */
+/* ------------------------------------------------------------------ */
+
+export async function setSession(payload: Omit<SessionPayload, "exp">) {
   const exp = Math.floor(Date.now() / 1000) + SESSION_DAYS * 86400;
-  const token = await createToken({ email: normalizeEmail(email), kind: "session", exp });
+  const token = await encodeSession({ ...payload, exp });
   const jar = await cookies();
   jar.set(SESSION_COOKIE, token, {
     httpOnly: true,
@@ -120,7 +121,7 @@ export async function setSessionCookie(email: string) {
   });
 }
 
-export async function clearSessionCookie() {
+export async function clearSession() {
   const jar = await cookies();
   jar.set(SESSION_COOKIE, "", {
     httpOnly: true,
@@ -131,18 +132,117 @@ export async function clearSessionCookie() {
   });
 }
 
-export async function getSessionEmail(): Promise<string | null> {
+export async function getSession(): Promise<SessionPayload | null> {
   const jar = await cookies();
   const t = jar.get(SESSION_COOKIE)?.value;
   if (!t) return null;
-  const payload = await verifyToken(t);
-  if (!payload || payload.kind !== "session") return null;
-  return payload.email;
+  return decodeSession(t);
 }
 
-export async function createMagicToken(email: string, redirect?: string) {
-  const exp = Math.floor(Date.now() / 1000) + MAGIC_TTL_SECONDS;
-  return createToken({ email: normalizeEmail(email), kind: "magic", exp, redirect });
+export async function getSessionEmail(): Promise<string | null> {
+  const s = await getSession();
+  return s?.email ?? null;
+}
+
+/* ------------------------------------------------------------------ */
+/* Magic-link issue + consume                                         */
+/* ------------------------------------------------------------------ */
+
+export type MagicPurpose = "signin" | "signup" | "invite";
+
+export async function issueMagicLink(opts: {
+  email: string;
+  purpose: MagicPurpose;
+  redirect?: string;
+  metadata?: Record<string, unknown>;
+}): Promise<string> {
+  const email = normalizeEmail(opts.email);
+  const rawToken = randomBytes(32).toString("base64url");
+  const tokenHash = hashToken(rawToken);
+  const expiresAt = new Date(Date.now() + MAGIC_TTL_MS);
+  await db()
+    .insert(magicLinks)
+    .values({
+      id: ids.magicLink(),
+      tokenHash,
+      email,
+      purpose: opts.purpose,
+      redirect: opts.redirect ?? null,
+      metadata: opts.metadata ?? null,
+      expiresAt,
+    });
+  return rawToken;
+}
+
+export async function consumeMagicLink(rawToken: string) {
+  const tokenHash = hashToken(rawToken);
+  const now = new Date();
+  const [row] = await db()
+    .select()
+    .from(magicLinks)
+    .where(
+      and(
+        eq(magicLinks.tokenHash, tokenHash),
+        gt(magicLinks.expiresAt, now),
+        isNull(magicLinks.consumedAt),
+      ),
+    )
+    .limit(1);
+  if (!row) return null;
+  await db()
+    .update(magicLinks)
+    .set({ consumedAt: now })
+    .where(eq(magicLinks.id, row.id));
+  return row;
+}
+
+/* ------------------------------------------------------------------ */
+/* User + tenant resolution                                           */
+/* ------------------------------------------------------------------ */
+
+export async function findOrCreateUser(email: string, name?: string) {
+  const e = normalizeEmail(email);
+  const existing = await db().select().from(users).where(eq(users.email, e)).limit(1);
+  if (existing[0]) return existing[0];
+  const id = ids.user();
+  const [created] = await db()
+    .insert(users)
+    .values({ id, email: e, name: name ?? null, emailVerified: true })
+    .returning();
+  return created;
+}
+
+export async function getActiveContext() {
+  const session = await getSession();
+  if (!session) return null;
+  const user = (
+    await db().select().from(users).where(eq(users.id, session.userId)).limit(1)
+  )[0];
+  if (!user) return null;
+  const tenant = (
+    await db().select().from(tenants).where(eq(tenants.id, session.tenantId)).limit(1)
+  )[0];
+  if (!tenant) return null;
+  const membership = (
+    await db()
+      .select()
+      .from(memberships)
+      .where(and(eq(memberships.tenantId, tenant.id), eq(memberships.userId, user.id)))
+      .limit(1)
+  )[0];
+  if (!membership) return null;
+  return { user, tenant, membership };
+}
+
+export async function listUserTenants(userId: string) {
+  return db()
+    .select({
+      tenant: tenants,
+      role: memberships.role,
+    })
+    .from(memberships)
+    .innerJoin(tenants, eq(memberships.tenantId, tenants.id))
+    .where(eq(memberships.userId, userId));
 }
 
 export const SESSION_COOKIE_NAME = SESSION_COOKIE;

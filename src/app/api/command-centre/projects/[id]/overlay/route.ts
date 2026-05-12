@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { updateProjectOverlay, type ProjectOverlay } from "@/lib/ghl-homesbynh";
+import { getActiveContext } from "@/lib/auth";
+import { getGhlConfig, getLegacyGhlConfig } from "@/lib/integrations";
 
 export const runtime = "nodejs";
 
@@ -75,14 +77,25 @@ export async function POST(req: Request, { params }: { params: Params }) {
       : undefined,
   };
 
-  const result = await updateProjectOverlay({
-    opportunityId: id,
-    overlay,
-    pipelineStageId:
-      typeof body.pipelineStageId === "string" ? String(body.pipelineStageId) : undefined,
-    budget: numField(body.budget),
-    updatedBy: typeof body.updatedBy === "string" ? String(body.updatedBy) : undefined,
-  });
+  const ctx = await getActiveContext().catch(() => null);
+  const cfg =
+    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
+    getLegacyGhlConfig();
+
+  const result = await updateProjectOverlay(
+    {
+      opportunityId: id,
+      overlay,
+      pipelineStageId:
+        typeof body.pipelineStageId === "string" ? String(body.pipelineStageId) : undefined,
+      budget: numField(body.budget),
+      updatedBy:
+        typeof body.updatedBy === "string"
+          ? String(body.updatedBy)
+          : ctx?.user.name ?? ctx?.user.email ?? undefined,
+    },
+    cfg,
+  );
 
   if (!result.ok) return NextResponse.json(result, { status: 502 });
   return NextResponse.json(result, { status: 200 });

@@ -1,0 +1,77 @@
+import { NextResponse } from "next/server";
+import { Resend } from "resend";
+import {
+  isAuthConfigured,
+  issueMagicLink,
+  normalizeEmail,
+} from "@/lib/auth";
+import { magicLinkUrl, renderMagicLinkEmail, sendAuthEmail } from "../_email";
+
+export const runtime = "nodejs";
+
+const ALLOWED_PLANS = ["starter", "pro", "enterprise"] as const;
+type Plan = (typeof ALLOWED_PLANS)[number];
+
+export async function POST(req: Request) {
+  if (!isAuthConfigured()) {
+    return NextResponse.json(
+      { ok: false, error: "Auth not configured." },
+      { status: 503 },
+    );
+  }
+  let body: {
+    email?: string;
+    name?: string;
+    tenantName?: string;
+    plan?: string;
+    redirect?: string;
+  };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+  }
+  const email = typeof body.email === "string" ? normalizeEmail(body.email) : "";
+  const tenantName = typeof body.tenantName === "string" ? body.tenantName.trim() : "";
+  const name = typeof body.name === "string" ? body.name.trim() : "";
+  const planRaw = typeof body.plan === "string" ? body.plan : "starter";
+  const plan: Plan = (ALLOWED_PLANS as readonly string[]).includes(planRaw)
+    ? (planRaw as Plan)
+    : "starter";
+
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    return NextResponse.json({ ok: false, error: "Enter a valid email" }, { status: 400 });
+  }
+  if (!tenantName || tenantName.length < 2 || tenantName.length > 80) {
+    return NextResponse.json(
+      { ok: false, error: "Company name is required" },
+      { status: 400 },
+    );
+  }
+
+  try {
+    const rawToken = await issueMagicLink({
+      email,
+      purpose: "signup",
+      redirect: body.redirect ?? "/command-centre",
+      metadata: { name, tenantName, plan },
+    });
+    const link = magicLinkUrl(rawToken);
+    const resend = new Resend(process.env.RESEND_API_KEY!);
+    const { text, html } = renderMagicLinkEmail({ link, mode: "signup", tenantName });
+    await sendAuthEmail(resend, {
+      to: email,
+      subject: "Confirm your BuildHawk account",
+      html,
+      text,
+    });
+  } catch (e) {
+    console.error("[auth] signup error:", e);
+    return NextResponse.json(
+      { ok: false, error: "Could not send confirmation email" },
+      { status: 500 },
+    );
+  }
+
+  return NextResponse.json({ ok: true });
+}

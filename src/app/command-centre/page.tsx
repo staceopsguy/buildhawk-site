@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import CommandCentre from "./CommandCentre";
 import { getActiveProjects, isGhlConnected, type HbnhProject } from "@/lib/ghl-homesbynh";
 import { isAiConfigured } from "@/lib/intelligence";
-import { getSessionEmail } from "@/lib/auth";
+import { getActiveContext, getSessionEmail } from "@/lib/auth";
+import { getGhlConfig, getLegacyGhlConfig } from "@/lib/integrations";
 import type { Project, CashflowPoint } from "./data";
 import hbnhSnapshot from "./_data/hbnh-snapshot.json";
 
@@ -159,8 +160,12 @@ type SnapshotShape = {
 const SNAPSHOT = hbnhSnapshot as SnapshotShape;
 
 export default async function CommandCentrePage() {
-  const ghlConnected = isGhlConnected();
-  const ghlProjects = ghlConnected ? await getActiveProjects() : null;
+  const ctx = await getActiveContext().catch(() => null);
+  const ghlConfig =
+    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
+    getLegacyGhlConfig();
+  const ghlConnected = isGhlConnected(ghlConfig);
+  const ghlProjects = ghlConnected ? await getActiveProjects(ghlConfig) : null;
 
   let liveProjects: Project[] | null = null;
   let usableRaw: HbnhProject[] | null = null;

@@ -178,14 +178,14 @@ export default function LoginForm({
             )}
 
             <div className="mt-6 pt-5 border-t border-slate-200/70 text-[11px] text-slate-500 leading-relaxed">
-              Don&apos;t have access?{" "}
+              New to BuildHawk?{" "}
               <Link
-                href="mailto:services@buildhawk.com.au?subject=Command%20Centre%20access"
+                href="/command-centre/signup"
                 className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
               >
-                Email Nathan
-              </Link>{" "}
-              to be added to the invite list. By signing in you agree to our{" "}
+                Start your workspace
+              </Link>
+              . 14-day trial, no credit card. By signing in you agree to our{" "}
               <Link
                 href="/data-policy"
                 className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"

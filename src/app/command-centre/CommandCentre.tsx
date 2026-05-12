@@ -395,10 +395,13 @@ const Sidebar = ({
           </svg>
           <span>buildhawk.com.au</span>
         </Link>
-        <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-white/55 hover:text-white hover:bg-white/5">
+        <Link
+          href="/command-centre/settings"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-white/55 hover:text-white hover:bg-white/5"
+        >
           <Icon name="settings" className="w-[18px] h-[18px]" />
           <span>Settings</span>
-        </button>
+        </Link>
         <div className="mt-3 px-3 py-3 rounded-lg bg-white/5 border border-white/10">
           <div className="flex items-center gap-2 text-[11px] text-emerald-400 font-semibold uppercase tracking-wider tabular-nums">
             <span className="relative inline-flex">
