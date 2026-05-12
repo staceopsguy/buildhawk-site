@@ -2,10 +2,10 @@ import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
 
-// Charlie is the BuildHawk + Hawktress intake specialist. This route proxies
-// the chat widget to the Anthropic Messages API, runs a tool-using model so
-// leads can be captured structurally, and falls back to the offline reply if
-// anything is missing or broken so the widget never hangs.
+// Estimate Intake is BuildHawk's qualifying front desk powered by Hawktress.
+// This route proxies the chat widget to the Anthropic Messages API, runs a
+// tool-using model so leads can be captured structurally, and falls back to
+// the offline reply if anything is missing or broken so the widget never hangs.
 
 type Role = "user" | "assistant";
 type Message = { role: Role; content: string };
@@ -25,13 +25,15 @@ type Lead = {
   notes?: string;
 };
 
-// Default to current stable Sonnet. Override with CHARLIE_MODEL in Vercel env
-// when a newer Sonnet ships and we want to roll it out.
-const MODEL = process.env.CHARLIE_MODEL || "claude-sonnet-4-5-20250929";
+// Default to current stable Sonnet. Override with INTAKE_MODEL in Vercel env
+// when a newer Sonnet ships and we want to roll it out. Legacy CHARLIE_MODEL
+// still honoured to avoid breaking existing deployments.
+const MODEL =
+  process.env.INTAKE_MODEL || process.env.CHARLIE_MODEL || "claude-sonnet-4-5-20250929";
 const MAX_TOKENS = 600;
 
 // Per-IP rate limit. Keeps abuse cheap. In-memory is fine on a single Vercel
-// instance for this traffic; revisit with Vercel KV if Charlie gets popular.
+// instance for this traffic; revisit with Vercel KV if Estimate Intake gets popular.
 const RATE_LIMIT_WINDOW_MS = 15 * 60 * 1000;
 const RATE_LIMIT_MAX = 30;
 const ipHits = new Map<string, { count: number; resetAt: number }>();
@@ -59,7 +61,7 @@ Pick the form on this page that matches what you need. Both come straight to the
 
 Urgent? services@buildhawk.com.au or +61 433 366 607`;
 
-const SYSTEM_PROMPT = `You are Charlie, the intake specialist for BuildHawk and Hawktress.
+const SYSTEM_PROMPT = `You are BuildHawk's Estimate Intake assistant, powered by Hawktress. You are not a named character; you are the firm's front desk workflow for qualifying and routing enquiries.
 
 # Who we are
 BuildHawk is a precision construction estimating service for Australian residential builders. Tagline: "Precision Estimating. Disciplined Delivery."

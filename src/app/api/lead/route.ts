@@ -88,7 +88,7 @@ export async function POST(req: Request) {
             `<p style="margin:6px 0;color:${
               m.role === "user" ? "#111" : "#6e7180"
             };font-size:14px;line-height:1.5;"><strong>${
-              m.role === "user" ? "Visitor" : "Charlie"
+              m.role === "user" ? "Visitor" : "Intake"
             }:</strong> ${escapeHtml(m.content)}</p>`
         )
         .join("")}</div>`

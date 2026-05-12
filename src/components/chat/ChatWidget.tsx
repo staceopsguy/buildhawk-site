@@ -12,7 +12,7 @@ const greeting: Message = {
   id: "greeting",
   role: "assistant",
   content:
-    "G'day, Charlie here. Intake specialist for BuildHawk and Hawktress. What can I help you with today?",
+    "G'day. This is BuildHawk Estimate Intake, powered by Hawktress. What can I help you with today?",
   ts: Date.now(),
 };
 
@@ -297,7 +297,7 @@ export default function ChatWidget() {
           </span>
           <div className="flex-1 min-w-0">
             <p className="text-[14px] tracking-[-0.005em] font-medium leading-tight">
-              Charlie · BuildHawk intake specialist
+              BuildHawk · Estimate Intake
             </p>
             <p className="text-[11px] tracking-[0.04em] text-bh-paper/65 mt-0.5">
               Online · typically replies in seconds
@@ -343,7 +343,7 @@ export default function ChatWidget() {
             </div>
           ))}
           {busy && (
-            <div className="flex justify-start" aria-label="Charlie is typing">
+            <div className="flex justify-start" aria-label="Estimate Intake is typing">
               <div className="px-3.5 py-3 bg-bh-paper border border-bh-steel/50 rounded-2xl rounded-bl-md inline-flex items-center gap-1.5">
                 <span className="bh-typing-dot inline-block w-1.5 h-1.5 rounded-full bg-bh-graphite" />
                 <span className="bh-typing-dot inline-block w-1.5 h-1.5 rounded-full bg-bh-graphite" style={{ animationDelay: "120ms" }} />
@@ -387,7 +387,7 @@ export default function ChatWidget() {
                 }
               }}
               rows={1}
-              placeholder="Message Charlie…"
+              placeholder="Message Estimate Intake…"
               aria-label="Type a message"
               className="flex-1 resize-none max-h-32 min-h-[40px] bg-bh-cloud/60 text-bh-ink placeholder:text-bh-graphite/80 text-[14px] tracking-[-0.005em] leading-snug px-3 py-2.5 rounded-[10px] border border-bh-steel/60 focus:border-bh-orange focus:outline-none transition-colors"
             />
