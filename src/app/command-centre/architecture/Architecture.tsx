@@ -307,10 +307,10 @@ export default function Architecture() {
                 BUILDHAWK
               </div>
               <div
-                className="text-bh-graphite mt-0.5 uppercase font-semibold"
-                style={{ fontSize: 9, letterSpacing: "0.18em" }}
+                className="text-bh-graphite mt-0.5 uppercase"
+                style={{ fontSize: 9, letterSpacing: "0.16em" }}
               >
-                Architecture
+                Powered by Hawktress<sup style={{ fontSize: "0.7em", marginLeft: "0.1em" }}>™</sup>
               </div>
             </div>
           </Link>

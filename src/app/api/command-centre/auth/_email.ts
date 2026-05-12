@@ -55,7 +55,7 @@ If you didn't request this, ignore this email.`;
       <div style="width:36px;height:28px;background:#DE5123;border-radius:6px;"></div>
       <div>
         <div style="font-weight:700;font-size:13px;letter-spacing:0.04em;">BUILDHAWK</div>
-        <div style="font-weight:600;font-size:9px;letter-spacing:0.18em;color:#6e7180;text-transform:uppercase;">Cost Plan Console</div>
+        <div style="font-size:9px;letter-spacing:0.16em;color:#6e7180;text-transform:uppercase;">Powered by Hawktress&trade;</div>
       </div>
     </div>
     <h1 style="font-size:24px;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px;">${headline}</h1>

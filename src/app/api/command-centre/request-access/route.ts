@@ -72,7 +72,7 @@ const renderTeamEmail = (p: Required<Pick<Payload, "name" | "email" | "company">
   const html = `<!doctype html><html><body style="font-family:-apple-system,BlinkMacSystemFont,Inter,sans-serif;background:#edeff7;padding:32px;">
   <div style="max-width:560px;margin:0 auto;background:#fff;border:1px solid #d3d6e0;">
     <div style="background:#111;color:#fff;padding:18px 24px;">
-      <p style="margin:0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#bcbfcc;">BuildHawk · Cost Plan Console</p>
+      <p style="margin:0;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:#bcbfcc;">BuildHawk · Powered by Hawktress&trade;</p>
       <p style="margin:6px 0 0;font-size:18px;font-weight:600;letter-spacing:-0.01em;">Access request from ${escapeHtml(p.name)}</p>
     </div>
     <div style="padding:24px;">
@@ -113,7 +113,7 @@ If you have questions in the meantime, reply to this email.
       <div style="width:36px;height:28px;background:#DE5123;border-radius:6px;"></div>
       <div>
         <div style="font-weight:700;font-size:13px;letter-spacing:0.04em;">BUILDHAWK</div>
-        <div style="font-weight:600;font-size:9px;letter-spacing:0.18em;color:#6e7180;text-transform:uppercase;">Cost Plan Console</div>
+        <div style="font-size:9px;letter-spacing:0.16em;color:#6e7180;text-transform:uppercase;">Powered by Hawktress&trade;</div>
       </div>
     </div>
     <h1 style="font-size:24px;font-weight:800;letter-spacing:-0.01em;margin:0 0 12px;">Request received</h1>

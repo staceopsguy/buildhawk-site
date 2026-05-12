@@ -299,10 +299,10 @@ const Logo = () => (
         BUILDHAWK
       </div>
       <div
-        className="text-white/55 mt-0.5 uppercase font-semibold"
-        style={{ fontSize: 9, letterSpacing: "0.18em" }}
+        className="text-white/55 mt-0.5 uppercase"
+        style={{ fontSize: 9, letterSpacing: "0.16em" }}
       >
-        Cost Plan Console
+        Powered by Hawktress<sup style={{ fontSize: "0.7em", marginLeft: "0.1em" }}>™</sup>
       </div>
     </div>
   </div>

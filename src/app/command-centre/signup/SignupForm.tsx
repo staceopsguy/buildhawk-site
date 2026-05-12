@@ -84,10 +84,10 @@ export default function SignupForm({
               BUILDHAWK
             </div>
             <div
-              className="text-bh-graphite mt-0.5 uppercase font-semibold"
-              style={{ fontSize: 10, letterSpacing: "0.18em" }}
+              className="text-bh-graphite mt-0.5 uppercase"
+              style={{ fontSize: 10, letterSpacing: "0.16em" }}
             >
-              Cost Plan Console
+              Powered by Hawktress<sup style={{ fontSize: "0.7em", marginLeft: "0.1em" }}>™</sup>
             </div>
           </div>
         </Link>
