@@ -6,6 +6,7 @@ import BrandLockup from "@/components/BrandLockup";
 const links = [
   { href: "/#hawktress", label: "Hawktress", section: "hawktress" },
   { href: "/#how", label: "How It Works", section: "how" },
+  { href: "/#integrations", label: "Integrations", section: "integrations" },
   { href: "/#pricing", label: "Pricing", section: "pricing" },
   { href: "/partners", label: "Partners", section: null },
   { href: "/articles", label: "Articles", section: null },

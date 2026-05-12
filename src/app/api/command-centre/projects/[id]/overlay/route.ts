@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { updateProjectOverlay, type ProjectOverlay } from "@/lib/ghl-homesbynh";
 import { getActiveContext } from "@/lib/auth";
 import { getGhlConfig, getLegacyGhlConfig } from "@/lib/integrations";
+import { recordAudit } from "@/lib/audit";
 
 export const runtime = "nodejs";
 
@@ -98,5 +99,19 @@ export async function POST(req: Request, { params }: { params: Params }) {
   );
 
   if (!result.ok) return NextResponse.json(result, { status: 502 });
+  if (ctx) {
+    recordAudit({
+      tenantId: ctx.tenant.id,
+      actorUserId: ctx.user.id,
+      actorEmail: ctx.user.email,
+      action: "overlay.saved",
+      target: id,
+      metadata: {
+        awardedSubsCount: overlay.awardedSubs?.length ?? 0,
+        variationsCount: overlay.variations?.length ?? 0,
+        costToCompleteCount: overlay.costToComplete?.length ?? 0,
+      },
+    });
+  }
   return NextResponse.json(result, { status: 200 });
 }

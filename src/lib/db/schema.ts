@@ -15,6 +15,8 @@ import {
   uniqueIndex,
   index,
   pgEnum,
+  numeric,
+  date,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
@@ -44,11 +46,10 @@ export const memberRoleEnum = pgEnum("member_role", [
   "viewer",
 ]);
 
-export const integrationKindEnum = pgEnum("integration_kind", [
-  "ghl",
-  "buildxact",
-  "xero",
-]);
+// integration.kind is a free-form connector id (e.g. "ghl", "procore",
+// "buildxact", "monday", "webhook"). Stored as text so adding a new connector
+// is a TypeScript-only change. The canonical catalog lives in
+// src/lib/integrations/connectors.ts.
 
 export const inviteStatusEnum = pgEnum("invite_status", [
   "pending",
@@ -193,7 +194,7 @@ export const integrations = pgTable(
     tenantId: text("tenant_id")
       .notNull()
       .references(() => tenants.id, { onDelete: "cascade" }),
-    kind: integrationKindEnum("kind").notNull(),
+    kind: text("kind").notNull(),
     label: text("label"),
     // Encrypted JSON blob (AES-256-GCM). Shape varies by kind:
     //   ghl: { apiKey, locationId, projectDataFieldId? }
@@ -294,6 +295,47 @@ export const usageCounters = pgTable(
   }),
 );
 
+/* ------------------------------------------------------------------ */
+/* Hawktress benchmark samples                                        */
+/* ------------------------------------------------------------------ */
+
+/**
+ * One row per awarded subcontract written by any tenant. Powers the
+ * cross-tenant Hawktress benchmark cohort. Tenant ID is stored so we can
+ * dedupe re-saves of the same overlay; it is never returned by the public
+ * benchmark API.
+ */
+export const benchmarkSamples = pgTable(
+  "benchmark_samples",
+  {
+    id: text("id").primaryKey(),
+    tenantId: text("tenant_id")
+      .notNull()
+      .references(() => tenants.id, { onDelete: "cascade" }),
+    sourceOpportunityId: text("source_opportunity_id").notNull(),
+    sourceAwardId: text("source_award_id").notNull(),
+    region: text("region").notNull(),
+    tradeSection: text("trade_section").notNull(),
+    projectType: text("project_type"),
+    awardedValue: numeric("awarded_value", { precision: 14, scale: 2 }).notNull(),
+    awardDate: date("award_date"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .default(sql`now()`),
+  },
+  (t) => ({
+    dimensionIdx: index("benchmark_samples_dim_idx").on(
+      t.region,
+      t.tradeSection,
+      t.projectType,
+    ),
+    dedupIdx: uniqueIndex("benchmark_samples_dedup_idx").on(
+      t.sourceOpportunityId,
+      t.sourceAwardId,
+    ),
+  }),
+);
+
 export type Tenant = typeof tenants.$inferSelect;
 export type User = typeof users.$inferSelect;
 export type Membership = typeof memberships.$inferSelect;
@@ -302,3 +344,4 @@ export type Invitation = typeof invitations.$inferSelect;
 export type AuditEvent = typeof auditEvents.$inferSelect;
 export type MagicLink = typeof magicLinks.$inferSelect;
 export type UsageCounter = typeof usageCounters.$inferSelect;
+export type BenchmarkSample = typeof benchmarkSamples.$inferSelect;

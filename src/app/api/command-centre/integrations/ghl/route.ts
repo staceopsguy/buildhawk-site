@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { getActiveContext } from "@/lib/auth";
 import { getGhlConfig, saveGhlConfig, disconnectGhl } from "@/lib/integrations";
 import { isEncryptionConfigured } from "@/lib/crypto";
+import { recordAudit } from "@/lib/audit";
 
 export const runtime = "nodejs";
 
@@ -62,6 +63,17 @@ export async function POST(req: Request) {
       locationId,
       projectDataFieldId: body.projectDataFieldId?.trim() || undefined,
     });
+    recordAudit({
+      tenantId: ctx.tenant.id,
+      actorUserId: ctx.user.id,
+      actorEmail: ctx.user.email,
+      action: existing ? "integration.ghl.updated" : "integration.ghl.connected",
+      target: "ghl",
+      metadata: {
+        locationId,
+        hasProjectDataField: Boolean(body.projectDataFieldId?.trim()),
+      },
+    });
     return NextResponse.json({ ok: true });
   } catch (e) {
     console.error("[integrations] save ghl error:", e);
@@ -82,5 +94,12 @@ export async function DELETE() {
     );
   }
   await disconnectGhl(ctx.tenant.id);
+  recordAudit({
+    tenantId: ctx.tenant.id,
+    actorUserId: ctx.user.id,
+    actorEmail: ctx.user.email,
+    action: "integration.ghl.disconnected",
+    target: "ghl",
+  });
   return NextResponse.json({ ok: true });
 }

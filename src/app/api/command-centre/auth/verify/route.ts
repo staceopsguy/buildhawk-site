@@ -9,6 +9,7 @@ import {
 import { db } from "@/lib/db/client";
 import { invitations, memberships, tenants, users } from "@/lib/db/schema";
 import { ids } from "@/lib/db/ids";
+import { recordAudit } from "@/lib/audit";
 
 export const runtime = "nodejs";
 
@@ -60,6 +61,14 @@ export async function GET(req: Request) {
         role: "owner",
       });
     tenantId = tenantRow.id;
+    recordAudit({
+      tenantId: tenantRow.id,
+      actorUserId: user.id,
+      actorEmail: user.email,
+      action: "tenant.created",
+      target: tenantRow.id,
+      metadata: { plan: tenantRow.plan, name: tenantRow.name },
+    });
   }
 
   // Invite path: accept invitation, become a member of the inviting tenant.
@@ -84,6 +93,14 @@ export async function GET(req: Request) {
           tenantId: invite.tenantId,
           userId: user.id,
           role: invite.role,
+        });
+        recordAudit({
+          tenantId: invite.tenantId,
+          actorUserId: user.id,
+          actorEmail: user.email,
+          action: "member.joined",
+          target: user.id,
+          metadata: { role: invite.role, inviteId: invite.id },
         });
       }
       await db()
@@ -111,9 +128,16 @@ export async function GET(req: Request) {
 
   await setSession({ userId: user.id, tenantId, email: user.email });
 
-  const target =
-    consumed.redirect && consumed.redirect.startsWith("/")
-      ? consumed.redirect
-      : "/command-centre";
+  // Fresh signups land in the onboarding wizard; signins go to wherever they
+  // were heading (or the dashboard). The wizard self-skips if the tenant
+  // already has its setup complete.
+  let target: string;
+  if (consumed.purpose === "signup") {
+    target = "/command-centre/onboarding";
+  } else if (consumed.redirect && consumed.redirect.startsWith("/")) {
+    target = consumed.redirect;
+  } else {
+    target = "/command-centre";
+  }
   return NextResponse.redirect(new URL(target, url.origin));
 }

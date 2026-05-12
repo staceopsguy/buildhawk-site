@@ -4,6 +4,8 @@ import { getActiveProjects, isGhlConnected, type HbnhProject } from "@/lib/ghl-h
 import { isAiConfigured } from "@/lib/intelligence";
 import { getActiveContext, getSessionEmail } from "@/lib/auth";
 import { getGhlConfig, getLegacyGhlConfig } from "@/lib/integrations";
+import { getTenantAccess } from "@/lib/billing/access";
+import BillingRequired from "./_components/BillingRequired";
 import type { Project, CashflowPoint } from "./data";
 import hbnhSnapshot from "./_data/hbnh-snapshot.json";
 
@@ -161,6 +163,23 @@ const SNAPSHOT = hbnhSnapshot as SnapshotShape;
 
 export default async function CommandCentrePage() {
   const ctx = await getActiveContext().catch(() => null);
+
+  // Billing gate: if tenant is trial-expired / past-due / canceled, show the
+  // billing-required page instead of the dashboard. /settings stays accessible
+  // so they can manage billing.
+  if (ctx) {
+    const access = getTenantAccess(ctx.tenant);
+    if (!access.allowed) {
+      return (
+        <BillingRequired
+          tenant={{ name: ctx.tenant.name, plan: ctx.tenant.plan }}
+          state={access.state}
+          reason={access.reason}
+        />
+      );
+    }
+  }
+
   const ghlConfig =
     (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
     getLegacyGhlConfig();
