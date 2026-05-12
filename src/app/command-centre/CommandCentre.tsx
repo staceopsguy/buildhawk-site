@@ -402,6 +402,24 @@ const Sidebar = ({
           <Icon name="settings" className="w-[18px] h-[18px]" />
           <span>Settings</span>
         </Link>
+        <Link
+          href="/command-centre/architecture"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm text-white/55 hover:text-white hover:bg-white/5"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth={1.6}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-[18px] h-[18px]"
+          >
+            <path d="M3 3h18v18H3z" />
+            <path d="M3 9h18M9 3v18" />
+          </svg>
+          <span>Architecture</span>
+        </Link>
         <div className="mt-3 px-3 py-3 rounded-lg bg-white/5 border border-white/10">
           <div className="flex items-center gap-2 text-[11px] text-emerald-400 font-semibold uppercase tracking-wider tabular-nums">
             <span className="relative inline-flex">
