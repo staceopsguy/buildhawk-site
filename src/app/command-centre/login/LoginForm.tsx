@@ -5,11 +5,19 @@ import Link from "next/link";
 import Image from "next/image";
 import GlassBackground from "../_components/GlassBackground";
 
-type State =
+type SignInState =
   | { status: "idle" }
   | { status: "submitting" }
   | { status: "sent"; email: string }
   | { status: "error"; message: string };
+
+type RequestState =
+  | { status: "idle" }
+  | { status: "submitting" }
+  | { status: "sent"; email: string }
+  | { status: "error"; message: string };
+
+type Tab = "signin" | "request";
 
 export default function LoginForm({
   next,
@@ -20,29 +28,72 @@ export default function LoginForm({
   error?: string;
   configured: boolean;
 }) {
-  const [email, setEmail] = useState("");
-  const [state, setState] = useState<State>({ status: "idle" });
+  const [tab, setTab] = useState<Tab>("signin");
 
-  const onSubmit = async (e: React.FormEvent) => {
+  /* Sign-in state */
+  const [signInEmail, setSignInEmail] = useState("");
+  const [signInState, setSignInState] = useState<SignInState>({ status: "idle" });
+
+  /* Request-access state */
+  const [reqName, setReqName] = useState("");
+  const [reqEmail, setReqEmail] = useState("");
+  const [reqCompany, setReqCompany] = useState("");
+  const [reqRole, setReqRole] = useState("");
+  const [reqNotes, setReqNotes] = useState("");
+  const [reqState, setReqState] = useState<RequestState>({ status: "idle" });
+
+  const submitSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    setState({ status: "submitting" });
+    setSignInState({ status: "submitting" });
     try {
       const res = await fetch("/api/command-centre/auth/send-magic-link", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, redirect: next }),
+        body: JSON.stringify({ email: signInEmail, redirect: next }),
       });
       const data = await res.json();
       if (res.ok && data.ok) {
-        setState({ status: "sent", email });
+        setSignInState({ status: "sent", email: signInEmail });
       } else {
-        setState({
+        setSignInState({
           status: "error",
           message: data.error ?? `Request failed (${res.status})`,
         });
       }
     } catch (err) {
-      setState({
+      setSignInState({
+        status: "error",
+        message: err instanceof Error ? err.message : String(err),
+      });
+    }
+  };
+
+  const submitRequest = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setReqState({ status: "submitting" });
+    try {
+      const res = await fetch("/api/command-centre/request-access", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: reqName,
+          email: reqEmail,
+          company: reqCompany,
+          role: reqRole || undefined,
+          notes: reqNotes || undefined,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        setReqState({ status: "sent", email: reqEmail });
+      } else {
+        setReqState({
+          status: "error",
+          message: data.error ?? `Request failed (${res.status})`,
+        });
+      }
+    } catch (err) {
+      setReqState({
         status: "error",
         message: err instanceof Error ? err.message : String(err),
       });
@@ -91,7 +142,6 @@ export default function LoginForm({
             WebkitBackdropFilter: "blur(28px) saturate(140%)",
           }}
         >
-          {/* Top inner highlight strip — gives the glass its "edge of light" */}
           <div
             className="pointer-events-none absolute inset-x-6 top-0 h-px"
             style={{
@@ -100,99 +150,116 @@ export default function LoginForm({
             }}
           />
 
+          {/* Tab switcher */}
+          <div
+            role="tablist"
+            aria-label="Sign in or request access"
+            className="grid grid-cols-2 border-b border-slate-200/70 bg-slate-50/40"
+          >
+            <button
+              role="tab"
+              aria-selected={tab === "signin"}
+              type="button"
+              onClick={() => setTab("signin")}
+              className={`py-3.5 text-[12px] font-bold tracking-[0.04em] uppercase transition ${
+                tab === "signin"
+                  ? "bg-white/80 text-bh-orange-700 border-b-2 border-bh-orange"
+                  : "text-slate-500 hover:text-slate-700 border-b-2 border-transparent"
+              }`}
+            >
+              Sign in
+            </button>
+            <button
+              role="tab"
+              aria-selected={tab === "request"}
+              type="button"
+              onClick={() => setTab("request")}
+              className={`py-3.5 text-[12px] font-bold tracking-[0.04em] uppercase transition ${
+                tab === "request"
+                  ? "bg-white/80 text-bh-orange-700 border-b-2 border-bh-orange"
+                  : "text-slate-500 hover:text-slate-700 border-b-2 border-transparent"
+              }`}
+            >
+              Request access
+            </button>
+          </div>
+
           <div className="p-6 sm:p-8">
-            <div className="text-[11px] uppercase tracking-[0.18em] text-bh-orange-700 font-bold">
-              Director access
-            </div>
-            <h1 className="mt-2 text-2xl font-extrabold tracking-tight">
-              Sign in to your Cost Plan Console
-            </h1>
-            <p className="mt-2 text-sm text-slate-600">
-              We send a one-time link to your email. No passwords. Access is limited to invited
-              builders and the BuildHawk team.
-            </p>
-
-            {!configured && (
-              <div className="mt-5 rounded-2xl border border-bh-orange-200/60 bg-bh-orange-50/70 backdrop-blur p-3 text-xs text-bh-orange-700">
-                <strong className="block font-bold mb-0.5">Auth not configured.</strong>
-                Set <code className="font-mono bg-white/70 px-1 rounded">BH_AUTH_SECRET</code>,{" "}
-                <code className="font-mono bg-white/70 px-1 rounded">BH_AUTHORIZED_EMAILS</code>{" "}
-                and <code className="font-mono bg-white/70 px-1 rounded">RESEND_API_KEY</code> in
-                Vercel env. Until set, the gate stays open.
-              </div>
-            )}
-
-            {error === "expired" && state.status === "idle" && (
-              <div className="mt-5 rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
-                That sign-in link has expired or is invalid. Request a new one.
-              </div>
-            )}
-
-            {state.status === "sent" ? (
-              <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 backdrop-blur p-4">
-                <div className="font-bold text-emerald-800 text-sm">Check your inbox.</div>
-                <p className="mt-1 text-sm text-emerald-700">
-                  We sent a sign-in link to{" "}
-                  <strong className="font-semibold">{state.email}</strong>. The link expires in 30
-                  minutes.
-                </p>
-                <button
-                  type="button"
-                  onClick={() => setState({ status: "idle" })}
-                  className="mt-3 text-xs font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-900"
-                >
-                  Try a different email
-                </button>
-              </div>
+            {tab === "signin" ? (
+              <SignInPanel
+                email={signInEmail}
+                setEmail={setSignInEmail}
+                state={signInState}
+                setState={setSignInState}
+                onSubmit={submitSignIn}
+                error={error}
+                configured={configured}
+              />
             ) : (
-              <form onSubmit={onSubmit} className="mt-6 space-y-3">
-                <label className="block">
-                  <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
-                    Email
-                  </span>
-                  <input
-                    type="email"
-                    required
-                    autoFocus
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="you@example.com.au"
-                    className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
-                  />
-                </label>
-                <button
-                  type="submit"
-                  disabled={state.status === "submitting"}
-                  className="w-full h-11 rounded-xl bg-bh-ink text-white font-semibold text-sm hover:bg-bh-ink/90 disabled:opacity-60 shadow-[0_8px_24px_-8px_rgba(17,17,17,0.45)]"
-                >
-                  {state.status === "submitting"
-                    ? "Sending link…"
-                    : "Send me a sign-in link"}
-                </button>
-                {state.status === "error" && (
-                  <div className="rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
-                    {state.message}
-                  </div>
-                )}
-              </form>
+              <RequestPanel
+                name={reqName}
+                setName={setReqName}
+                email={reqEmail}
+                setEmail={setReqEmail}
+                company={reqCompany}
+                setCompany={setReqCompany}
+                role={reqRole}
+                setRole={setReqRole}
+                notes={reqNotes}
+                setNotes={setReqNotes}
+                state={reqState}
+                setState={setReqState}
+                onSubmit={submitRequest}
+              />
             )}
 
             <div className="mt-6 pt-5 border-t border-slate-200/70 text-[11px] text-slate-500 leading-relaxed">
-              New to BuildHawk?{" "}
-              <Link
-                href="/command-centre/signup"
-                className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
-              >
-                Start your workspace
-              </Link>
-              . 14-day trial, no credit card. By signing in you agree to our{" "}
-              <Link
-                href="/data-policy"
-                className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
-              >
-                data policy
-              </Link>
-              .
+              {tab === "signin" ? (
+                <>
+                  New to BuildHawk?{" "}
+                  <button
+                    type="button"
+                    onClick={() => setTab("request")}
+                    className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
+                  >
+                    Request access
+                  </button>{" "}
+                  for a guided onboarding, or{" "}
+                  <Link
+                    href="/command-centre/signup"
+                    className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
+                  >
+                    start a free trial workspace
+                  </Link>{" "}
+                  yourself. By signing in you agree to our{" "}
+                  <Link
+                    href="/data-policy"
+                    className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
+                  >
+                    data policy
+                  </Link>
+                  .
+                </>
+              ) : (
+                <>
+                  Already have an account?{" "}
+                  <button
+                    type="button"
+                    onClick={() => setTab("signin")}
+                    className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
+                  >
+                    Sign in
+                  </button>
+                  . Want to skip the queue?{" "}
+                  <Link
+                    href="/command-centre/signup"
+                    className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
+                  >
+                    Start a free trial workspace
+                  </Link>
+                  .
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -201,6 +268,249 @@ export default function LoginForm({
           Powered by Hawktress™ · Magic-link auth via Resend
         </p>
       </div>
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────
+ * Sign-in panel
+ * ─────────────────────────────────────────────────────────────────── */
+
+function SignInPanel({
+  email,
+  setEmail,
+  state,
+  setState,
+  onSubmit,
+  error,
+  configured,
+}: {
+  email: string;
+  setEmail: (v: string) => void;
+  state: SignInState;
+  setState: (s: SignInState) => void;
+  onSubmit: (e: React.FormEvent) => Promise<void>;
+  error?: string;
+  configured: boolean;
+}) {
+  return (
+    <div role="tabpanel">
+      <div className="text-[11px] uppercase tracking-[0.18em] text-bh-orange-700 font-bold">
+        Existing user
+      </div>
+      <h1 className="mt-2 text-2xl font-extrabold tracking-tight">
+        Sign in to your Cost Plan Console
+      </h1>
+      <p className="mt-2 text-sm text-slate-600">
+        We send a one-time link to your email. No passwords. No two-factor codes.
+      </p>
+
+      {!configured && (
+        <div className="mt-5 rounded-2xl border border-bh-orange-200/60 bg-bh-orange-50/70 backdrop-blur p-3 text-xs text-bh-orange-700">
+          <strong className="block font-bold mb-0.5">Auth not configured.</strong>
+          Set <code className="font-mono bg-white/70 px-1 rounded">BH_AUTH_SECRET</code>,{" "}
+          <code className="font-mono bg-white/70 px-1 rounded">DATABASE_URL</code>,{" "}
+          <code className="font-mono bg-white/70 px-1 rounded">BH_ENCRYPTION_KEY</code>{" "}
+          and <code className="font-mono bg-white/70 px-1 rounded">RESEND_API_KEY</code> in
+          Vercel env.
+        </div>
+      )}
+
+      {error === "expired" && state.status === "idle" && (
+        <div className="mt-5 rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
+          That sign-in link has expired or is invalid. Request a new one.
+        </div>
+      )}
+
+      {state.status === "sent" ? (
+        <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 backdrop-blur p-4">
+          <div className="font-bold text-emerald-800 text-sm">Check your inbox.</div>
+          <p className="mt-1 text-sm text-emerald-700">
+            We sent a sign-in link to{" "}
+            <strong className="font-semibold">{state.email}</strong>. The link expires in 30
+            minutes.
+          </p>
+          <button
+            type="button"
+            onClick={() => setState({ status: "idle" })}
+            className="mt-3 text-xs font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-900"
+          >
+            Try a different email
+          </button>
+        </div>
+      ) : (
+        <form onSubmit={onSubmit} className="mt-6 space-y-3">
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+              Email
+            </span>
+            <input
+              type="email"
+              required
+              autoFocus
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@yourcompany.com.au"
+              className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
+            />
+          </label>
+          <button
+            type="submit"
+            disabled={state.status === "submitting"}
+            className="w-full h-11 rounded-xl bg-bh-ink text-white font-semibold text-sm hover:bg-bh-ink/90 disabled:opacity-60 shadow-[0_8px_24px_-8px_rgba(17,17,17,0.45)]"
+          >
+            {state.status === "submitting" ? "Sending link…" : "Send me a sign-in link"}
+          </button>
+          {state.status === "error" && (
+            <div className="rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
+              {state.message}
+            </div>
+          )}
+        </form>
+      )}
+    </div>
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────
+ * Request-access panel
+ * ─────────────────────────────────────────────────────────────────── */
+
+function RequestPanel({
+  name,
+  setName,
+  email,
+  setEmail,
+  company,
+  setCompany,
+  role,
+  setRole,
+  notes,
+  setNotes,
+  state,
+  setState,
+  onSubmit,
+}: {
+  name: string;
+  setName: (v: string) => void;
+  email: string;
+  setEmail: (v: string) => void;
+  company: string;
+  setCompany: (v: string) => void;
+  role: string;
+  setRole: (v: string) => void;
+  notes: string;
+  setNotes: (v: string) => void;
+  state: RequestState;
+  setState: (s: RequestState) => void;
+  onSubmit: (e: React.FormEvent) => Promise<void>;
+}) {
+  return (
+    <div role="tabpanel">
+      <div className="text-[11px] uppercase tracking-[0.18em] text-bh-orange-700 font-bold">
+        New here
+      </div>
+      <h1 className="mt-2 text-2xl font-extrabold tracking-tight">
+        Request access for your team
+      </h1>
+      <p className="mt-2 text-sm text-slate-600">
+        Tell us a bit about your business and we&apos;ll set up your workspace, connect your PM tool, and walk you through the first cost plan. Reply within one business day.
+      </p>
+
+      {state.status === "sent" ? (
+        <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 backdrop-blur p-4">
+          <div className="font-bold text-emerald-800 text-sm">Request received.</div>
+          <p className="mt-1 text-sm text-emerald-700">
+            Thanks. The BuildHawk team will reply to{" "}
+            <strong className="font-semibold">{state.email}</strong> within one business day. If you&apos;re a fit for the founding cohort we&apos;ll send a sign-in link.
+          </p>
+          <button
+            type="button"
+            onClick={() => setState({ status: "idle" })}
+            className="mt-3 text-xs font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-900"
+          >
+            Submit another request
+          </button>
+        </div>
+      ) : (
+        <form onSubmit={onSubmit} className="mt-6 space-y-3">
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+              Your name
+            </span>
+            <input
+              type="text"
+              required
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Director / owner"
+              className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+              Work email
+            </span>
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@yourcompany.com.au"
+              className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+              Company
+            </span>
+            <input
+              type="text"
+              required
+              value={company}
+              onChange={(e) => setCompany(e.target.value)}
+              placeholder="e.g. Homes by NH"
+              className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+              Role <span className="font-normal opacity-60">(optional)</span>
+            </span>
+            <input
+              type="text"
+              value={role}
+              onChange={(e) => setRole(e.target.value)}
+              placeholder="Director, Estimator, etc."
+              className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
+            />
+          </label>
+          <label className="block">
+            <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+              Anything we should know <span className="font-normal opacity-60">(optional)</span>
+            </span>
+            <textarea
+              rows={3}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              placeholder="What PM tool do you use? How many estimates a year? Any pain points we can help with?"
+              className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm resize-y"
+            />
+          </label>
+          <button
+            type="submit"
+            disabled={state.status === "submitting"}
+            className="w-full h-11 rounded-xl bg-bh-ink text-white font-semibold text-sm hover:bg-bh-ink/90 disabled:opacity-60 shadow-[0_8px_24px_-8px_rgba(17,17,17,0.45)]"
+          >
+            {state.status === "submitting" ? "Sending request…" : "Request access"}
+          </button>
+          {state.status === "error" && (
+            <div className="rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
+              {state.message}
+            </div>
+          )}
+        </form>
+      )}
     </div>
   );
 }

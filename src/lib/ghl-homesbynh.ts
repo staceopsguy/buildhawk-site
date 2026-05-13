@@ -8,9 +8,16 @@ import { getLegacyGhlConfig, type GhlConfig } from "@/lib/integrations";
 
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 
+/**
+ * Resolve a GhlConfig for the lib's GHL clients.
+ *
+ * Multi-tenant correctness: this previously fell back to `getLegacyGhlConfig()`
+ * (HBNH env vars) when no config was passed. That leaked HBNH data into any
+ * signed-in tenant that had no integration row of their own. Now the lib
+ * requires callers to pass an explicit config — callers handle the fallback.
+ */
 const requireConfig = (cfg: GhlConfig | null | undefined): GhlConfig | null => {
-  if (cfg) return cfg;
-  return getLegacyGhlConfig();
+  return cfg ?? null;
 };
 
 // Pipeline IDs (Homes by NH location)

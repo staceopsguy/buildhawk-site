@@ -202,8 +202,9 @@ export default async function CommandCentrePage() {
       .filter((p) => p.derivedStatus !== "Completed");
     liveProjects = usableRaw.map(toProject);
     dataSource = "live";
-  } else if (SNAPSHOT.projects.length > 0) {
-    // Path 2: real Homes by NH snapshot (point-in-time real data, no continuous sync)
+  } else if (!ctx && SNAPSHOT.projects.length > 0) {
+    // Path 2: legacy HBNH snapshot. Locked to unauth contexts only so the
+    // snapshot's tenant data never leaks into a different tenant's dashboard.
     usableRaw = SNAPSHOT.projects
       .filter((p) => p.budget >= 50_000)
       .filter((p) => !TEST_NAME_PATTERN.test(p.name))

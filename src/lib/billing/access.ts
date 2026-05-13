@@ -31,7 +31,17 @@ export function getTenantAccess(tenant: Pick<Tenant, "status" | "trialEndsAt">):
       // Unbounded trial — uncommon, but treat as access granted.
       return { allowed: true, state: "trialing", daysRemaining: null, reason: null };
     }
-    const remaining = tenant.trialEndsAt.getTime() - now;
+    // Drizzle returns timestamptz as Date with the neon-http driver in most
+    // cases; defensively coerce strings just in case.
+    const endsAt =
+      tenant.trialEndsAt instanceof Date
+        ? tenant.trialEndsAt
+        : new Date(tenant.trialEndsAt as unknown as string);
+    if (Number.isNaN(endsAt.getTime())) {
+      // Bad data — treat as no trial limit rather than incorrectly locking out.
+      return { allowed: true, state: "trialing", daysRemaining: null, reason: null };
+    }
+    const remaining = endsAt.getTime() - now;
     if (remaining <= 0) {
       return {
         allowed: false,
