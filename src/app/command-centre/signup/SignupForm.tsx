@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import GlassBackground from "../_components/GlassBackground";
+import BrandButton from "@/components/brand/BrandButton";
 
 type State =
   | { status: "idle" }
@@ -69,7 +70,7 @@ export default function SignupForm({
           aria-label="BuildHawk home"
         >
           <Image
-            src="/brand/emblem-bh.svg"
+            src="/brand/emblem-bh-dark.svg"
             alt="BuildHawk"
             width={42}
             height={32}
@@ -121,7 +122,7 @@ export default function SignupForm({
             </p>
 
             {orphan && (
-              <div className="mt-4 rounded-2xl border border-amber-200 bg-amber-50/70 backdrop-blur p-3 text-xs text-amber-700">
+              <div className="mt-4 rounded-xl border border-bh-warning-200 bg-bh-warning-50 p-3 text-xs text-bh-warning-500">
                 Your email is verified but isn&apos;t attached to a workspace yet. Create one to continue.
               </div>
             )}
@@ -134,9 +135,9 @@ export default function SignupForm({
             )}
 
             {state.status === "sent" ? (
-              <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 backdrop-blur p-4">
-                <div className="font-bold text-emerald-800 text-sm">Check your inbox.</div>
-                <p className="mt-1 text-sm text-emerald-700">
+              <div className="mt-6 rounded-xl border border-bh-success-200 bg-bh-success-50 p-4">
+                <div className="font-bold text-bh-success-500 text-sm">Check your inbox.</div>
+                <p className="mt-1 text-sm text-bh-success-500">
                   We sent a confirmation link to{" "}
                   <strong className="font-semibold">{state.email}</strong>. Click it to finish creating your workspace. The link expires in 30 minutes.
                 </p>
@@ -212,18 +213,20 @@ export default function SignupForm({
                   </div>
                 </div>
 
-                <button
+                <BrandButton
                   type="submit"
+                  variant="primary"
+                  size="lg"
+                  fullWidth
+                  loading={state.status === "submitting"}
+                  trailingIcon={state.status !== "submitting"}
                   disabled={state.status === "submitting"}
-                  className="w-full h-11 rounded-xl bg-bh-ink text-white font-semibold text-sm hover:bg-bh-ink/90 disabled:opacity-60 shadow-[0_8px_24px_-8px_rgba(17,17,17,0.45)]"
                 >
-                  {state.status === "submitting"
-                    ? "Sending confirmation…"
-                    : "Create workspace"}
-                </button>
+                  {state.status === "submitting" ? "Sending confirmation…" : "Create workspace"}
+                </BrandButton>
 
                 {state.status === "error" && (
-                  <div className="rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
+                  <div className="rounded-xl border border-bh-danger-200 bg-bh-danger-50 p-3 text-xs text-bh-danger-500">
                     {state.message}
                   </div>
                 )}

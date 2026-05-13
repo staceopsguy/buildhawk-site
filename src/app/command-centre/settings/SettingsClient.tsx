@@ -101,7 +101,7 @@ function AuditPanel() {
     return <div className="text-sm text-slate-500">Loading…</div>;
   }
   if (error) {
-    return <div className="text-sm text-rose-700">{error}</div>;
+    return <div className="text-sm text-bh-danger-500">{error}</div>;
   }
   if (events.length === 0) {
     return (
@@ -301,10 +301,10 @@ function IntegrationsCatalog({
 }
 
 const STATUS_TONE: Record<string, string> = {
-  live: "bg-emerald-100 text-emerald-700 border-emerald-200",
-  beta: "bg-sky-100 text-sky-700 border-sky-200",
-  planned: "bg-amber-100 text-amber-700 border-amber-200",
-  "on-request": "bg-slate-100 text-slate-600 border-slate-200",
+  live: "bg-bh-success-50 text-bh-success-500 border-bh-success-200",
+  beta: "bg-bh-orange-50 text-bh-orange-700 border-bh-orange-200",
+  planned: "bg-bh-warning-50 text-bh-warning-500 border-bh-warning-200",
+  "on-request": "bg-bh-grey-50 text-bh-graphite border-bh-grey-200",
 };
 
 function ConnectorCard({
@@ -426,7 +426,7 @@ function GhlPanel({
   return (
     <form onSubmit={save} className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
       {!isAdmin && (
-        <div className="sm:col-span-2 rounded-lg bg-amber-50 border border-amber-200 text-amber-800 text-xs p-2">
+        <div className="sm:col-span-2 rounded-lg bg-bh-warning-50 border border-bh-warning-200 text-bh-warning-500 text-xs p-2">
           You need an owner or admin role to change integrations.
         </div>
       )}
@@ -477,10 +477,10 @@ function GhlPanel({
           {state.kind === "saving" ? "Saving…" : "Save GHL connection"}
         </button>
         {state.kind === "saved" && (
-          <span className="text-emerald-700 text-xs font-semibold">Saved · encrypted</span>
+          <span className="text-bh-success-500 text-xs font-semibold">Saved · encrypted</span>
         )}
         {state.kind === "error" && (
-          <span className="text-rose-700 text-xs">{state.msg}</span>
+          <span className="text-bh-danger-500 text-xs">{state.msg}</span>
         )}
       </div>
       <input type="hidden" value={tenantId} readOnly />
@@ -521,7 +521,7 @@ function RequestConnectorPanel({
 
   if (state.kind === "requested") {
     return (
-      <div className="rounded-lg bg-emerald-50 border border-emerald-200 text-emerald-700 text-xs p-2.5">
+      <div className="rounded-lg bg-bh-success-50 border border-bh-success-200 text-bh-success-500 text-xs p-2.5">
         Request received. We'll be in touch to scope the {connector.name} connector.
       </div>
     );
@@ -543,7 +543,7 @@ function RequestConnectorPanel({
         {state.kind === "requesting" ? "Sending…" : `Request ${connector.name}`}
       </button>
       {state.kind === "error" && (
-        <span className="text-rose-700 text-xs ml-2">{state.msg}</span>
+        <span className="text-bh-danger-500 text-xs ml-2">{state.msg}</span>
       )}
     </div>
   );
@@ -626,7 +626,7 @@ function TeamPanel({ tenantId, isAdmin }: { tenantId: string; isAdmin: boolean }
           </button>
         </form>
       )}
-      {msg && <div className="mb-3 text-xs text-emerald-700 font-semibold">{msg}</div>}
+      {msg && <div className="mb-3 text-xs text-bh-success-500 font-semibold">{msg}</div>}
       <div className="border-t border-slate-200 divide-y divide-slate-200">
         {(members ?? []).map((m) => (
           <div key={m.id} className="py-2 flex items-center gap-3">

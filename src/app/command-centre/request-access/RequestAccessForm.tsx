@@ -75,7 +75,7 @@ export default function RequestAccessForm() {
           aria-label="BuildHawk home"
         >
           <Image
-            src="/brand/emblem-bh.svg"
+            src="/brand/emblem-bh-dark.svg"
             alt="BuildHawk"
             width={42}
             height={32}

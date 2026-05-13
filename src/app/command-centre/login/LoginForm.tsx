@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import GlassBackground from "../_components/GlassBackground";
+import BrandButton from "@/components/brand/BrandButton";
 
 type SignInState =
   | { status: "idle" }
@@ -112,7 +113,7 @@ export default function LoginForm({
           aria-label="BuildHawk home"
         >
           <Image
-            src="/brand/emblem-bh.svg"
+            src="/brand/emblem-bh-dark.svg"
             alt="BuildHawk"
             width={42}
             height={32}
@@ -331,9 +332,9 @@ function SignInPanel({
       )}
 
       {state.status === "sent" ? (
-        <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 backdrop-blur p-4">
-          <div className="font-bold text-emerald-800 text-sm">Check your inbox.</div>
-          <p className="mt-1 text-sm text-emerald-700">
+        <div className="mt-6 rounded-xl border border-bh-success-200 bg-bh-success-50 p-4">
+          <div className="font-bold text-bh-success-500 text-sm">Check your inbox.</div>
+          <p className="mt-1 text-sm text-bh-success-500">
             We sent a sign-in link to{" "}
             <strong className="font-semibold">{state.email}</strong>. The link expires in 30
             minutes.
@@ -341,7 +342,7 @@ function SignInPanel({
           <button
             type="button"
             onClick={() => setState({ status: "idle" })}
-            className="mt-3 text-xs font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-900"
+            className="mt-3 text-xs font-semibold text-bh-success-500 underline underline-offset-2 hover:text-bh-success-500"
           >
             Try a different email
           </button>
@@ -362,15 +363,19 @@ function SignInPanel({
               className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
             />
           </label>
-          <button
+          <BrandButton
             type="submit"
+            variant="primary"
+            size="lg"
+            fullWidth
+            loading={state.status === "submitting"}
+            trailingIcon={state.status !== "submitting"}
             disabled={state.status === "submitting"}
-            className="w-full h-11 rounded-xl bg-bh-ink text-white font-semibold text-sm hover:bg-bh-ink/90 disabled:opacity-60 shadow-[0_8px_24px_-8px_rgba(17,17,17,0.45)]"
           >
             {state.status === "submitting" ? "Sending link…" : "Send me a sign-in link"}
-          </button>
+          </BrandButton>
           {state.status === "error" && (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
+            <div className="rounded-xl border border-bh-danger-200 bg-bh-danger-50 p-3 text-xs text-bh-danger-500">
               {state.message}
             </div>
           )}
@@ -426,16 +431,16 @@ function RequestPanel({
       </p>
 
       {state.status === "sent" ? (
-        <div className="mt-6 rounded-2xl border border-emerald-200 bg-emerald-50/70 backdrop-blur p-4">
-          <div className="font-bold text-emerald-800 text-sm">Request received.</div>
-          <p className="mt-1 text-sm text-emerald-700">
+        <div className="mt-6 rounded-xl border border-bh-success-200 bg-bh-success-50 p-4">
+          <div className="font-bold text-bh-success-500 text-sm">Request received.</div>
+          <p className="mt-1 text-sm text-bh-success-500">
             Thanks. The BuildHawk team will reply to{" "}
             <strong className="font-semibold">{state.email}</strong> within one business day. If you&apos;re a fit for the founding cohort we&apos;ll send a sign-in link.
           </p>
           <button
             type="button"
             onClick={() => setState({ status: "idle" })}
-            className="mt-3 text-xs font-semibold text-emerald-700 underline underline-offset-2 hover:text-emerald-900"
+            className="mt-3 text-xs font-semibold text-bh-success-500 underline underline-offset-2 hover:text-bh-success-500"
           >
             Submit another request
           </button>
@@ -505,15 +510,19 @@ function RequestPanel({
               className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm resize-y"
             />
           </label>
-          <button
+          <BrandButton
             type="submit"
+            variant="primary"
+            size="lg"
+            fullWidth
+            loading={state.status === "submitting"}
+            trailingIcon={state.status !== "submitting"}
             disabled={state.status === "submitting"}
-            className="w-full h-11 rounded-xl bg-bh-ink text-white font-semibold text-sm hover:bg-bh-ink/90 disabled:opacity-60 shadow-[0_8px_24px_-8px_rgba(17,17,17,0.45)]"
           >
             {state.status === "submitting" ? "Sending request…" : "Request access"}
-          </button>
+          </BrandButton>
           {state.status === "error" && (
-            <div className="rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
+            <div className="rounded-xl border border-bh-danger-200 bg-bh-danger-50 p-3 text-xs text-bh-danger-500">
               {state.message}
             </div>
           )}

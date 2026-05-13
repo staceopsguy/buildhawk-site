@@ -19,12 +19,28 @@
   --color-bh-smoke: #d3d6e0;
   --color-bh-cloud: #edeff7;
 
-  /* Extended orange ramp (from UI Button system) */
+  /* Extended orange ramp (from official UI Button + UI Color sheet) */
   --color-bh-orange-900: #9a2a06;
   --color-bh-orange-700: #bc3c12;
   --color-bh-orange-500: #de5123;
   --color-bh-orange-200: #ffcebe;
   --color-bh-orange-50:  #fff0eb;
+
+  /* Status palette (from official UI Color sheet) */
+  --color-bh-success-500: #26b759;
+  --color-bh-success-200: #b5ffcf;
+  --color-bh-success-50:  #e0ffeb;
+  --color-bh-warning-500: #f39a46;
+  --color-bh-warning-200: #f9be85;
+  --color-bh-warning-50:  #ffe9d4;
+  --color-bh-danger-500:  #ff1b1b;
+  --color-bh-danger-200:  #ff8a8a;
+  --color-bh-danger-50:   #ffe0e0;
+
+  /* Neutral / grey scale (from official UI Color sheet) */
+  --color-bh-grey-500: #ababab;
+  --color-bh-grey-200: #ededed;
+  --color-bh-grey-50:  #f8f8f8;
 
   /* Type scale (px from brand guide p.23) */
   --text-bh-display: 9.375rem;       /* 150px */
