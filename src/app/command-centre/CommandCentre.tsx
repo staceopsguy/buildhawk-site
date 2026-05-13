@@ -941,10 +941,10 @@ const Dashboard = ({
     [projects, aggregate],
   );
   return (
-  <div className="p-4 sm:p-6 space-y-6">
-    {/* Hero */}
-    <div className="flex items-end justify-between flex-wrap gap-4">
-      <div>
+  <div className="p-5 sm:p-8 space-y-7">
+    {/* Hero — generous breathing room, primary action gets full weight */}
+    <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6">
+      <div className="max-w-2xl">
         <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.18em] text-bh-orange-700 font-bold tabular-nums">
           <span className="relative inline-flex">
             <span className="w-1.5 h-1.5 rounded-full bg-bh-orange" />
@@ -954,48 +954,59 @@ const Dashboard = ({
             ? "Live · Hawktress · Cost intelligence"
             : "Demo data · Hawktress"}
         </div>
-        <h1 className="mt-2 text-2xl font-extrabold tracking-tight text-slate-900">
+        <h1 className="mt-3 text-3xl sm:text-[34px] font-extrabold tracking-tight text-slate-900 leading-[1.05]">
           Cost Plan Console
         </h1>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-2 text-sm sm:text-[15px] text-slate-500 leading-relaxed">
           Precision Estimating. Disciplined Delivery. Cost certainty before contract.
         </p>
       </div>
-      <div className="flex items-center gap-2">
+      {/* Action group — clear hierarchy: primary (orange filled), secondary (orange outline), tertiary (ghost) */}
+      <div className="flex flex-wrap items-center gap-3">
         <Link
           href="/command-centre/new-project"
-          className="h-9 px-3 inline-flex items-center gap-1.5 rounded-md border border-bh-orange-200/60 bg-bh-orange-50 text-bh-orange-700 text-sm font-semibold hover:bg-bh-orange-100"
+          className="h-11 px-5 inline-flex items-center gap-2 rounded-[8px] bg-bh-orange-500 text-bh-paper text-[13px] font-medium tracking-[-0.005em] border border-bh-orange-500 hover:bg-bh-orange-700 hover:border-bh-orange-700 active:bg-bh-orange-900 active:border-bh-orange-900 transition-colors shadow-[0_8px_24px_-8px_rgba(222,81,35,0.55)]"
         >
-          + New estimate
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+            <path d="M8 3v10M3 8h10" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+          </svg>
+          New estimate
         </Link>
-        <button className="h-9 px-3 inline-flex items-center gap-1.5 rounded-md border border-slate-200 bg-white text-sm font-medium text-slate-700 hover:bg-slate-50">
-          <Icon name="refresh" className="w-4 h-4" />
-          Refresh
+        <button
+          type="button"
+          className="h-11 px-4 inline-flex items-center gap-2 rounded-[8px] border border-bh-orange-500 text-bh-orange-500 bg-transparent text-[13px] font-medium tracking-[-0.005em] hover:bg-bh-orange-50 active:bg-bh-orange-200 active:text-bh-orange-900 transition-colors"
+        >
+          <Icon name="reports" className="w-[15px] h-[15px]" />
+          Export report
         </button>
-        <button className="h-9 px-3 inline-flex items-center gap-1.5 rounded-md bg-bh-ink text-white text-sm font-medium hover:bg-bh-ink/90">
-          <Icon name="reports" className="w-4 h-4" />
-          Export cost plan report
+        <button
+          type="button"
+          className="h-11 px-3.5 inline-flex items-center gap-2 rounded-[8px] text-slate-700 hover:text-bh-orange-700 hover:bg-bh-orange-50 active:text-bh-orange-900 transition-colors text-[13px] font-medium tracking-[-0.005em]"
+          aria-label="Refresh dashboard data"
+        >
+          <Icon name="refresh" className="w-[15px] h-[15px]" />
+          Refresh
         </button>
       </div>
     </div>
 
     {dataSource === "live" && (
-      <div className="rounded-2xl border border-emerald-200/60 bg-emerald-50/70 backdrop-blur px-4 py-2.5 text-xs text-emerald-800 flex items-start gap-2">
+      <div className="rounded-xl border border-bh-success-200 bg-bh-success-50 px-4 py-3 text-xs text-bh-success-500 flex items-start gap-2">
         <span className="font-bold">Live · Hawktress connected.</span>
-        <span>
+        <span className="text-slate-700">
           {projects.length} active engagement{projects.length === 1 ? "" : "s"} pulled directly
           from Homes by NH. New estimates and stage progressions surface within 60 seconds.
         </span>
       </div>
     )}
     {dataSource === "snapshot" && (
-      <div className="rounded-2xl border border-sky-200/60 bg-sky-50/70 backdrop-blur px-4 py-2.5 text-xs text-sky-800 flex items-start gap-2">
+      <div className="rounded-xl border border-bh-orange-200 bg-bh-orange-50 px-4 py-3 text-xs text-bh-orange-700 flex items-start gap-2">
         <span className="font-bold">Real data · Snapshot from Homes by NH.</span>
-        <span>
+        <span className="text-slate-700">
           Showing {projects.length} live engagement{projects.length === 1 ? "" : "s"} captured{" "}
           {snapshotAt ? new Date(snapshotAt).toLocaleDateString("en-AU") : "recently"}. For
           continuous sync of new estimates + stage progressions, set{" "}
-          <code className="font-mono bg-white/80 border border-sky-200 px-1 rounded">
+          <code className="font-mono bg-white/80 border border-bh-orange-200 px-1 rounded">
             GHL_HBNH_API_KEY
           </code>{" "}
           in Vercel env.

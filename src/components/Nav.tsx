@@ -162,22 +162,22 @@ export default function Nav() {
               Cost Plan Console
             </a>
           ) : (
-            <>
-              <a
-                href="/command-centre/login"
-                className="hidden md:inline-flex items-center h-10 px-3.5 rounded-[8px] text-bh-black text-[13px] tracking-[-0.005em] hover:text-bh-orange transition-colors"
-                aria-label="Sign in to Cost Plan Console"
-              >
-                Log in
-              </a>
-              <a
-                href="/command-centre/signup"
-                className="hidden md:inline-flex items-center gap-1.5 h-10 px-4 rounded-[8px] border border-bh-steel/60 text-bh-black text-[13px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
-                aria-label="Sign up for a Cost Plan Console workspace"
-              >
-                Sign up
-              </a>
-            </>
+            <a
+              href="/command-centre/login"
+              className="hidden md:inline-flex items-center gap-1.5 h-10 px-4 rounded-[8px] border border-bh-steel/60 text-bh-black text-[13px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
+              aria-label="Sign in to Cost Plan Console"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
+                <circle cx="7" cy="4.6" r="2.2" stroke="currentColor" strokeWidth="1.2" />
+                <path
+                  d="M2.5 12c.6-2.2 2.4-3.5 4.5-3.5s3.9 1.3 4.5 3.5"
+                  stroke="currentColor"
+                  strokeWidth="1.2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              Sign in
+            </a>
           )}
           <a
             href="/#intake"
@@ -265,22 +265,13 @@ export default function Nav() {
                 Open Cost Plan Console
               </a>
             ) : (
-              <div className="grid grid-cols-2 gap-3">
-                <a
-                  href="/command-centre/login"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center h-12 rounded-[8px] border border-bh-steel/60 text-bh-black text-[14px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
-                >
-                  Log in
-                </a>
-                <a
-                  href="/command-centre/signup"
-                  onClick={() => setMobileOpen(false)}
-                  className="flex items-center justify-center h-12 rounded-[8px] bg-bh-ink text-bh-paper text-[14px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
-                >
-                  Sign up
-                </a>
-              </div>
+              <a
+                href="/command-centre/login"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center h-12 rounded-[8px] border border-bh-steel/60 text-bh-black text-[14px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
+              >
+                Sign in
+              </a>
             )}
             <div className="grid grid-cols-2 gap-3">
               <a

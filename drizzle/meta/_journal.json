@@ -22,6 +22,13 @@
       "when": 1778625429572,
       "tag": "0002_add_benchmark_samples",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1778644544319,
+      "tag": "0003_user_password_hash",
+      "breakpoints": true
     }
   ]
 }

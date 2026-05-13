@@ -113,6 +113,11 @@ export const users = pgTable(
     emailVerified: boolean("email_verified").notNull().default(false),
     name: text("name"),
     avatarUrl: text("avatar_url"),
+    // Password auth, optional. NULL means the user has only used magic links.
+    // Format: "<scrypt-derived-key-hex>:<salt-hex>:<N>:<r>:<p>"
+    passwordHash: text("password_hash"),
+    passwordSetAt: timestamp("password_set_at", { withTimezone: true }),
+    lastSignedInAt: timestamp("last_signed_in_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .default(sql`now()`),

@@ -46,6 +46,10 @@ export default function SettingsClient({
         )}
       </Section>
 
+      <Section title="Sign-in security">
+        <PasswordPanel />
+      </Section>
+
       <Section title="Integrations">
         <IntegrationsCatalog tenantId={tenant.id} ghl={ghl} isAdmin={isAdmin} />
       </Section>
@@ -60,6 +64,117 @@ export default function SettingsClient({
         </Section>
       )}
     </div>
+  );
+}
+
+function PasswordPanel() {
+  const [current, setCurrent] = useState("");
+  const [next, setNext] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const [state, setState] = useState<
+    | { kind: "idle" }
+    | { kind: "saving" }
+    | { kind: "saved" }
+    | { kind: "error"; msg: string }
+  >({ kind: "idle" });
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (next.length < 8) {
+      setState({ kind: "error", msg: "Password must be at least 8 characters" });
+      return;
+    }
+    if (next !== confirm) {
+      setState({ kind: "error", msg: "New password and confirmation don't match" });
+      return;
+    }
+    setState({ kind: "saving" });
+    try {
+      const res = await fetch("/api/command-centre/auth/set-password", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          currentPassword: current || undefined,
+          newPassword: next,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        setState({ kind: "saved" });
+        setCurrent("");
+        setNext("");
+        setConfirm("");
+      } else {
+        setState({ kind: "error", msg: data.error ?? `Request failed (${res.status})` });
+      }
+    } catch (e) {
+      setState({ kind: "error", msg: e instanceof Error ? e.message : String(e) });
+    }
+  };
+
+  return (
+    <form onSubmit={submit} className="space-y-3 max-w-md">
+      <p className="text-xs text-slate-600">
+        Set or change the password used to sign in with email + password. If you&apos;ve never set one, leave the current-password field blank.
+      </p>
+      <label className="block">
+        <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+          Current password <span className="font-normal opacity-60">(if you have one)</span>
+        </span>
+        <input
+          type="password"
+          autoComplete="current-password"
+          value={current}
+          onChange={(e) => setCurrent(e.target.value)}
+          className="mt-1 w-full bg-white border border-slate-200 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-bh-orange"
+        />
+      </label>
+      <label className="block">
+        <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+          New password
+        </span>
+        <input
+          type="password"
+          required
+          minLength={8}
+          autoComplete="new-password"
+          value={next}
+          onChange={(e) => setNext(e.target.value)}
+          className="mt-1 w-full bg-white border border-slate-200 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-bh-orange"
+        />
+      </label>
+      <label className="block">
+        <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+          Confirm new password
+        </span>
+        <input
+          type="password"
+          required
+          minLength={8}
+          autoComplete="new-password"
+          value={confirm}
+          onChange={(e) => setConfirm(e.target.value)}
+          className="mt-1 w-full bg-white border border-slate-200 rounded-lg text-sm px-3 py-2 focus:outline-none focus:ring-2 focus:ring-bh-orange"
+        />
+      </label>
+      <div className="flex items-center gap-3">
+        <button
+          type="submit"
+          disabled={state.kind === "saving" || !next}
+          className="h-10 px-4 inline-flex items-center gap-2 rounded-[8px] bg-bh-orange-500 text-bh-paper text-[13px] font-medium border border-bh-orange-500 hover:bg-bh-orange-700 hover:border-bh-orange-700 active:bg-bh-orange-900 disabled:bg-bh-orange-200 disabled:border-bh-orange-200 disabled:cursor-not-allowed transition-colors"
+        >
+          {state.kind === "saving" ? "Saving…" : "Save password"}
+        </button>
+        {state.kind === "saved" && (
+          <span className="text-bh-success-500 text-xs font-semibold">
+            Password saved · use it on the next sign-in
+          </span>
+        )}
+        {state.kind === "error" && (
+          <span className="text-bh-danger-500 text-xs">{state.msg}</span>
+        )}
+      </div>
+    </form>
   );
 }
 

@@ -35,6 +35,8 @@ export default function LoginForm({
 
   /* Sign-in state */
   const [signInEmail, setSignInEmail] = useState("");
+  const [signInPassword, setSignInPassword] = useState("");
+  const [signInMode, setSignInMode] = useState<"password" | "magic">("password");
   const [signInState, setSignInState] = useState<SignInState>({ status: "idle" });
 
   /* Request-access state */
@@ -49,6 +51,24 @@ export default function LoginForm({
     e.preventDefault();
     setSignInState({ status: "submitting" });
     try {
+      if (signInMode === "password") {
+        const res = await fetch("/api/command-centre/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: signInEmail, password: signInPassword }),
+        });
+        const data = await res.json();
+        if (res.ok && data.ok) {
+          window.location.href = next && next.startsWith("/") ? next : "/command-centre";
+          return;
+        }
+        setSignInState({
+          status: "error",
+          message: data.error ?? `Request failed (${res.status})`,
+        });
+        return;
+      }
+      // Magic link fallback
       const res = await fetch("/api/command-centre/auth/send-magic-link", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -198,6 +218,13 @@ export default function LoginForm({
               <SignInPanel
                 email={signInEmail}
                 setEmail={setSignInEmail}
+                password={signInPassword}
+                setPassword={setSignInPassword}
+                mode={signInMode}
+                setMode={(m) => {
+                  setSignInMode(m);
+                  setSignInState({ status: "idle" });
+                }}
                 state={signInState}
                 setState={setSignInState}
                 onSubmit={submitSignIn}
@@ -288,6 +315,10 @@ export default function LoginForm({
 function SignInPanel({
   email,
   setEmail,
+  password,
+  setPassword,
+  mode,
+  setMode,
   state,
   setState,
   onSubmit,
@@ -296,12 +327,20 @@ function SignInPanel({
 }: {
   email: string;
   setEmail: (v: string) => void;
+  password: string;
+  setPassword: (v: string) => void;
+  mode: "password" | "magic";
+  setMode: (m: "password" | "magic") => void;
   state: SignInState;
   setState: (s: SignInState) => void;
   onSubmit: (e: React.FormEvent) => Promise<void>;
   error?: string;
   configured: boolean;
 }) {
+  const intro =
+    mode === "password"
+      ? "Enter your email and password. Forgot it? Use the email-link option below."
+      : "We send a one-time link to your email. No passwords. No two-factor codes.";
   return (
     <div role="tabpanel">
       <div className="text-[11px] uppercase tracking-[0.18em] text-bh-orange-700 font-bold">
@@ -310,12 +349,10 @@ function SignInPanel({
       <h1 className="mt-2 text-2xl font-extrabold tracking-tight">
         Sign in to your Cost Plan Console
       </h1>
-      <p className="mt-2 text-sm text-slate-600">
-        We send a one-time link to your email. No passwords. No two-factor codes.
-      </p>
+      <p className="mt-2 text-sm text-slate-600">{intro}</p>
 
       {!configured && (
-        <div className="mt-5 rounded-2xl border border-bh-orange-200/60 bg-bh-orange-50/70 backdrop-blur p-3 text-xs text-bh-orange-700">
+        <div className="mt-5 rounded-xl border border-bh-orange-200 bg-bh-orange-50 p-3 text-xs text-bh-orange-700">
           <strong className="block font-bold mb-0.5">Auth not configured.</strong>
           Set <code className="font-mono bg-white/70 px-1 rounded">BH_AUTH_SECRET</code>,{" "}
           <code className="font-mono bg-white/70 px-1 rounded">DATABASE_URL</code>,{" "}
@@ -326,7 +363,7 @@ function SignInPanel({
       )}
 
       {error === "expired" && state.status === "idle" && (
-        <div className="mt-5 rounded-2xl border border-rose-200 bg-rose-50/70 backdrop-blur p-3 text-xs text-rose-700">
+        <div className="mt-5 rounded-xl border border-bh-danger-200 bg-bh-danger-50 p-3 text-xs text-bh-danger-500">
           That sign-in link has expired or is invalid. Request a new one.
         </div>
       )}
@@ -334,7 +371,7 @@ function SignInPanel({
       {state.status === "sent" ? (
         <div className="mt-6 rounded-xl border border-bh-success-200 bg-bh-success-50 p-4">
           <div className="font-bold text-bh-success-500 text-sm">Check your inbox.</div>
-          <p className="mt-1 text-sm text-bh-success-500">
+          <p className="mt-1 text-sm text-slate-700">
             We sent a sign-in link to{" "}
             <strong className="font-semibold">{state.email}</strong>. The link expires in 30
             minutes.
@@ -342,7 +379,7 @@ function SignInPanel({
           <button
             type="button"
             onClick={() => setState({ status: "idle" })}
-            className="mt-3 text-xs font-semibold text-bh-success-500 underline underline-offset-2 hover:text-bh-success-500"
+            className="mt-3 text-xs font-semibold text-bh-success-500 underline underline-offset-2"
           >
             Try a different email
           </button>
@@ -360,9 +397,27 @@ function SignInPanel({
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="you@yourcompany.com.au"
+              autoComplete="email"
               className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
             />
           </label>
+          {mode === "password" && (
+            <label className="block">
+              <span className="text-[11px] uppercase tracking-wider text-slate-500 font-semibold">
+                Password
+              </span>
+              <input
+                type="password"
+                required
+                minLength={8}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                autoComplete="current-password"
+                className="mt-1 w-full bg-white/70 backdrop-blur border border-white/60 rounded-xl text-sm px-3.5 py-2.5 focus:outline-none focus:ring-2 focus:ring-bh-orange focus:border-bh-orange placeholder:text-slate-400 shadow-sm"
+              />
+            </label>
+          )}
           <BrandButton
             type="submit"
             variant="primary"
@@ -372,13 +427,38 @@ function SignInPanel({
             trailingIcon={state.status !== "submitting"}
             disabled={state.status === "submitting"}
           >
-            {state.status === "submitting" ? "Sending link…" : "Send me a sign-in link"}
+            {state.status === "submitting"
+              ? mode === "password"
+                ? "Signing in…"
+                : "Sending link…"
+              : mode === "password"
+                ? "Sign in"
+                : "Send me a sign-in link"}
           </BrandButton>
           {state.status === "error" && (
             <div className="rounded-xl border border-bh-danger-200 bg-bh-danger-50 p-3 text-xs text-bh-danger-500">
               {state.message}
             </div>
           )}
+          <div className="flex justify-center pt-1">
+            {mode === "password" ? (
+              <button
+                type="button"
+                onClick={() => setMode("magic")}
+                className="text-[11px] font-semibold text-slate-600 hover:text-bh-orange-700 underline underline-offset-2"
+              >
+                Forgot password? Email me a one-time sign-in link instead
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setMode("password")}
+                className="text-[11px] font-semibold text-slate-600 hover:text-bh-orange-700 underline underline-offset-2"
+              >
+                Use email + password instead
+              </button>
+            )}
+          </div>
         </form>
       )}
     </div>
