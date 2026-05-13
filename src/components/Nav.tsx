@@ -6,7 +6,6 @@ import BrandLockup from "@/components/BrandLockup";
 const links = [
   { href: "/#hawktress", label: "Hawktress", section: "hawktress" },
   { href: "/#how", label: "How It Works", section: "how" },
-  { href: "/#integrations", label: "Integrations", section: "integrations" },
   { href: "/#pricing", label: "Pricing", section: "pricing" },
   { href: "/partners", label: "Partners", section: null },
   { href: "/articles", label: "Articles", section: null },
@@ -14,27 +13,11 @@ const links = [
   { href: "/#about", label: "About", section: "about" },
 ];
 
-type Auth = { signedIn: boolean; email: string | null };
-
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [progress, setProgress] = useState(0);
   const [active, setActive] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [auth, setAuth] = useState<Auth>({ signedIn: false, email: null });
-
-  useEffect(() => {
-    let alive = true;
-    fetch("/api/command-centre/auth/whoami", { cache: "no-store" })
-      .then((r) => (r.ok ? r.json() : null))
-      .then((data) => {
-        if (alive && data) setAuth(data);
-      })
-      .catch(() => undefined);
-    return () => {
-      alive = false;
-    };
-  }, []);
 
   useEffect(() => {
     if (mobileOpen) {
@@ -144,41 +127,6 @@ export default function Nav() {
               />
             </svg>
           </a>
-          {auth.signedIn ? (
-            <a
-              href="/command-centre"
-              className="hidden md:inline-flex items-center gap-1.5 h-10 px-4 rounded-[8px] border border-bh-steel/60 text-bh-black text-[13px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
-              aria-label={`Open Cost Plan Console as ${auth.email}`}
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-                <circle cx="7" cy="4.6" r="2.2" stroke="currentColor" strokeWidth="1.2" />
-                <path
-                  d="M2.5 12c.6-2.2 2.4-3.5 4.5-3.5s3.9 1.3 4.5 3.5"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                />
-              </svg>
-              Cost Plan Console
-            </a>
-          ) : (
-            <a
-              href="/command-centre/login"
-              className="hidden md:inline-flex items-center gap-1.5 h-10 px-4 rounded-[8px] border border-bh-steel/60 text-bh-black text-[13px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
-              aria-label="Sign in to Cost Plan Console"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden>
-                <circle cx="7" cy="4.6" r="2.2" stroke="currentColor" strokeWidth="1.2" />
-                <path
-                  d="M2.5 12c.6-2.2 2.4-3.5 4.5-3.5s3.9 1.3 4.5 3.5"
-                  stroke="currentColor"
-                  strokeWidth="1.2"
-                  strokeLinecap="round"
-                />
-              </svg>
-              Sign in
-            </a>
-          )}
           <a
             href="/#intake"
             className="hidden sm:inline-flex items-center h-10 px-5 rounded-[8px] bg-bh-ink text-bh-paper text-[13px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
@@ -255,40 +203,21 @@ export default function Nav() {
               </a>
             ))}
           </nav>
-          <div className="mt-auto pt-10 space-y-3">
-            {auth.signedIn ? (
-              <a
-                href="/command-centre"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center h-12 rounded-[8px] border border-bh-steel/60 text-bh-black text-[14px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
-              >
-                Open Cost Plan Console
-              </a>
-            ) : (
-              <a
-                href="/command-centre/login"
-                onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center h-12 rounded-[8px] border border-bh-steel/60 text-bh-black text-[14px] tracking-[-0.005em] hover:border-bh-orange hover:text-bh-orange transition-colors"
-              >
-                Sign in
-              </a>
-            )}
-            <div className="grid grid-cols-2 gap-3">
-              <a
-                href="tel:+61433366607"
-                onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center justify-center h-12 rounded-[8px] border border-bh-steel/60 text-bh-black text-[14px] tracking-[-0.005em] hover:bg-bh-cloud transition-colors"
-              >
-                Call
-              </a>
-              <a
-                href="/#intake"
-                onClick={() => setMobileOpen(false)}
-                className="inline-flex items-center justify-center h-12 rounded-[8px] bg-bh-ink text-bh-paper text-[14px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
-              >
-                Start Brief
-              </a>
-            </div>
+          <div className="mt-auto pt-10 grid grid-cols-2 gap-3">
+            <a
+              href="tel:+61433366607"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex items-center justify-center h-12 rounded-[8px] border border-bh-steel/60 text-bh-black text-[14px] tracking-[-0.005em] hover:bg-bh-cloud transition-colors"
+            >
+              Call
+            </a>
+            <a
+              href="/#intake"
+              onClick={() => setMobileOpen(false)}
+              className="inline-flex items-center justify-center h-12 rounded-[8px] bg-bh-ink text-bh-paper text-[14px] tracking-[-0.005em] hover:bg-bh-orange transition-colors"
+            >
+              Start Brief
+            </a>
           </div>
         </div>
       </div>

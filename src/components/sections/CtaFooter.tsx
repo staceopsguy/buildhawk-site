@@ -181,7 +181,6 @@ export default function CtaFooter() {
               <li><a href="/articles" className="text-bh-paper hover:text-bh-orange transition-colors">Articles</a></li>
               <li><a href="/faq" className="text-bh-paper hover:text-bh-orange transition-colors">FAQ</a></li>
               <li><a href="/insights" className="text-bh-paper hover:text-bh-orange transition-colors">Field Notes</a></li>
-              <li><a href="/command-centre/login" className="text-bh-paper hover:text-bh-orange transition-colors">Customer login</a></li>
               <li><a href="tel:+61433366607" className="text-bh-paper hover:text-bh-orange transition-colors">Call us</a></li>
               <li><a href="mailto:info@buildhawk.com.au" className="text-bh-paper hover:text-bh-orange transition-colors">Email us</a></li>
             </ul>
