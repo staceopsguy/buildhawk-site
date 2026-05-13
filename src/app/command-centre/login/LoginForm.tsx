@@ -490,18 +490,18 @@ function RequestPanel({
         New here
       </div>
       <h1 className="mt-2 text-2xl font-extrabold tracking-tight">
-        Request access for your team
+        Apply for an engagement
       </h1>
       <p className="mt-2 text-sm text-slate-600">
-        Tell us a bit about your business and we&apos;ll set up your workspace, connect your PM tool, and walk you through the first cost plan. Reply within one business day.
+        Tell us a bit about your business. If we&apos;re a fit we&apos;ll set up your engagement, connect your PM tool, and walk you through the first cost plan. Reply within one business day.
       </p>
 
       {state.status === "sent" ? (
         <div className="mt-6 rounded-xl border border-bh-success-200 bg-bh-success-50 p-4">
-          <div className="font-bold text-bh-success-500 text-sm">Request received.</div>
+          <div className="font-bold text-bh-success-500 text-sm">Application received.</div>
           <p className="mt-1 text-sm text-bh-success-500">
             Thanks. The BuildHawk team will reply to{" "}
-            <strong className="font-semibold">{state.email}</strong> within one business day. If you&apos;re a fit for the founding cohort we&apos;ll send a sign-in link.
+            <strong className="font-semibold">{state.email}</strong> within one business day. If we&apos;re a fit we&apos;ll send a sign-in link.
           </p>
           <button
             type="button"

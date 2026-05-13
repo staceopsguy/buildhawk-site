@@ -40,7 +40,7 @@ export default function SettingsClient({
         <IntegrationsCatalog tenantId={tenant.id} ghl={ghl} isAdmin={isAdmin} />
       </Section>
 
-      <Section title="Team">
+      <Section title="Authorised users">
         <TeamPanel tenantId={tenant.id} isAdmin={isAdmin} />
       </Section>
 
@@ -618,7 +618,7 @@ function TeamPanel({ tenantId, isAdmin }: { tenantId: string; isAdmin: boolean }
             disabled={busy}
             className="h-9 px-3 inline-flex items-center rounded-md bg-bh-ink text-white text-sm font-semibold disabled:opacity-60"
           >
-            {busy ? "Sending…" : "Send invite"}
+            {busy ? "Sending…" : "Add authorised user"}
           </button>
         </form>
       )}
