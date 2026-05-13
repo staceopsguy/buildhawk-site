@@ -15,55 +15,32 @@ type Tier = {
 
 const tiers: Tier[] = [
   {
-    name: "Starter",
-    price: "$149",
+    name: "Base",
+    price: "From $2,750",
     cadence: "/ month",
-    blurb:
-      "For solo directors. Get cost discipline into a small portfolio of estimates with AI briefs and a single GHL connection.",
+    blurb: "For builders running one or two live projects who want a precise estimating partner without committing to a full annual workspace.",
     features: [
-      "Up to 3 estimators",
-      "25 active estimates",
-      "Cost Plan Console + AI briefs",
-      "GHL connector",
-      "Email support",
+      "Estimating tailored to the scope you bring",
+      "Margin and cost tracking through delivery",
+      "Brief to handover, run with our team",
     ],
-    cta: "Start free trial",
-    href: "/command-centre/signup?plan=starter",
+    cta: "Start a brief",
+    href: "#intake",
     featured: false,
   },
   {
-    name: "Pro",
-    price: "$399",
+    name: "Unlimited",
+    price: "From $5,850",
     cadence: "/ month",
-    blurb:
-      "For multi-estimator teams. Unlimited estimates, Hawktress regional benchmarks, Buildxact + Xero connectors.",
+    blurb: "Up to 4 active jobs at a time. Built for builders with consistent pipeline who want a fixed monthly cost and a back-office team that flexes with the work.",
     features: [
-      "Up to 10 estimators",
-      "Unlimited active estimates",
-      "Hawktress benchmarks",
-      "Buildxact + Xero connectors",
-      "Priority support",
+      "Up to 4 active projects",
+      "Estimating, CA and live margin tracking",
+      "Priority response and rolling planning cadence",
     ],
-    cta: "Start free trial",
-    href: "/command-centre/signup?plan=pro",
+    cta: "Talk to us",
+    href: "#intake",
     featured: true,
-  },
-  {
-    name: "Enterprise",
-    price: "Custom",
-    cadence: "",
-    blurb:
-      "For builders running over $50M annual revenue across multiple regions. SSO, audit log, custom benchmark cohorts.",
-    features: [
-      "Unlimited seats",
-      "SSO + audit log",
-      "Custom benchmark cohorts",
-      "Dedicated CSM",
-      "Volume pricing",
-    ],
-    cta: "Talk to sales",
-    href: "mailto:sales@buildhawk.com.au?subject=Enterprise%20enquiry",
-    featured: false,
   },
 ];
 
@@ -74,6 +51,7 @@ export default function Pricing() {
       className="relative bg-bh-white py-16 md:py-36 scroll-mt-20"
     >
       <div className="mx-auto max-w-[1480px] px-5 md:px-10">
+        {/* Header */}
         <div className="grid grid-cols-12 gap-6 md:gap-8 mb-8 md:mb-14">
           <div className="col-span-12 md:col-span-3">
             <p className="text-[11px] tracking-[0.2em] uppercase text-bh-graphite">
@@ -82,28 +60,27 @@ export default function Pricing() {
           </div>
           <div className="col-span-12 md:col-span-9">
             <h2 className="font-medium tracking-[-0.03em] leading-[1.05] text-[32px] sm:text-[40px] md:text-[56px] lg:text-[72px] text-bh-black">
-              Precision pricing.
+              Built around your build.
               <br />
-              <span className="text-bh-graphite">Pre-contract clarity.</span>
+              <span className="text-bh-graphite">Priced around your scope.</span>
             </h2>
             <p className="mt-6 max-w-2xl text-[14px] md:text-[17px] leading-[1.5] tracking-[-0.005em] text-bh-graphite">
-              14-day free trial. No credit card. Cancel any time. AUD, GST not included. For a fully managed estimating engagement, see{" "}
-              <a className="underline" href="/partners">
-                BuildHawk delivery services
-              </a>
-              .
+              Two simple starting points. Every quote is tailored after a short
+              brief, so what you pay matches the work and the number of jobs in
+              your pipeline.
             </p>
           </div>
         </div>
 
-        <div className="grid gap-6 grid-cols-1 md:grid-cols-3 bh-pricing-grid">
+        {/* Tier cards */}
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-2 bh-pricing-grid">
           {tiers.map((t, i) => (
             <Tilt
               as="article"
               key={t.name}
               max={3}
               lift={4}
-              className={`relative flex flex-col p-6 md:p-7 min-h-[440px] border transition-colors bh-pricing-card ${
+              className={`relative flex flex-col p-6 md:p-7 min-h-[420px] border transition-colors bh-pricing-card ${
                 t.featured
                   ? "bg-bh-ink text-bh-paper border-bh-ink shadow-[0_30px_60px_-20px_rgba(222,81,35,0.25)]"
                   : "bg-bh-white text-bh-black border-bh-steel/60 hover:border-bh-graphite/60"
@@ -112,7 +89,7 @@ export default function Pricing() {
             >
               {t.featured && (
                 <span className="absolute -top-3 left-6 inline-flex items-center h-6 px-2.5 rounded-full bg-bh-orange text-bh-paper text-[10px] tracking-[0.18em] uppercase font-medium">
-                  Most popular
+                  Recommended
                 </span>
               )}
               <h3
@@ -122,65 +99,106 @@ export default function Pricing() {
               >
                 {t.name}
               </h3>
-              <div className="mb-4">
-                <span
-                  className={`text-[36px] md:text-[44px] font-medium tracking-[-0.02em] leading-none ${
-                    t.featured ? "text-bh-paper" : "text-bh-black"
-                  }`}
-                >
-                  {t.price}
-                </span>
-                {t.cadence && (
+              <div className="mb-6">
+                <p className="flex items-baseline gap-2 flex-wrap">
                   <span
-                    className={`ml-1 text-[14px] tracking-[-0.005em] ${
-                      t.featured ? "text-bh-paper/70" : "text-bh-graphite"
+                    className={`font-medium tracking-[-0.03em] tabular-nums ${
+                      t.featured ? "text-bh-orange" : "text-bh-black"
+                    } text-[40px] md:text-[48px] leading-[1]`}
+                  >
+                    {t.price}
+                  </span>
+                  <span
+                    className={`text-[12px] tracking-[0.04em] uppercase ${
+                      t.featured ? "text-bh-steel/80" : "text-bh-graphite"
                     }`}
                   >
                     {t.cadence}
                   </span>
-                )}
+                </p>
+                <p
+                  className={`mt-3 text-[13px] leading-[1.5] tracking-[-0.005em] ${
+                    t.featured ? "text-bh-steel/90" : "text-bh-graphite"
+                  }`}
+                >
+                  {t.blurb}
+                </p>
               </div>
-              <p
-                className={`text-[13px] md:text-[14px] leading-[1.55] tracking-[-0.005em] mb-5 ${
-                  t.featured ? "text-bh-paper/80" : "text-bh-graphite"
-                }`}
-              >
-                {t.blurb}
-              </p>
-              <ul className="space-y-2.5 mb-7">
-                {t.features.map((f) => (
+
+              <ul className="space-y-2.5 mb-8">
+                {t.features.map((line) => (
                   <li
-                    key={f}
-                    className={`text-[13px] tracking-[-0.005em] leading-[1.4] flex items-start gap-2 ${
-                      t.featured ? "text-bh-paper/90" : "text-bh-black"
+                    key={line}
+                    className={`flex items-start gap-2.5 text-[13px] leading-[1.45] ${
+                      t.featured ? "text-bh-steel" : "text-bh-graphite"
                     }`}
                   >
-                    <span
-                      className={`mt-1 inline-flex w-1.5 h-1.5 rounded-full shrink-0 ${
-                        t.featured ? "bg-bh-orange" : "bg-bh-black"
-                      }`}
-                    />
-                    {f}
+                    <span className="mt-1.5 inline-block w-1 h-1 rounded-full flex-none bg-bh-orange" />
+                    <span>{line}</span>
                   </li>
                 ))}
               </ul>
+
               <a
                 href={t.href}
-                className={`mt-auto inline-flex items-center justify-center h-11 px-5 rounded-[8px] text-[13px] tracking-[-0.005em] transition-colors ${
+                className={`mt-auto inline-flex items-center justify-between gap-4 rounded-[8px] pl-5 pr-2 h-11 text-[13px] tracking-[-0.005em] font-medium transition-colors ${
                   t.featured
-                    ? "bg-bh-orange text-bh-paper hover:bg-bh-paper hover:text-bh-ink"
+                    ? "bg-bh-orange text-bh-paper hover:bg-bh-orange-700"
                     : "bg-bh-ink text-bh-paper hover:bg-bh-orange"
                 }`}
               >
                 {t.cta}
+                <span
+                  className={`inline-flex items-center justify-center rounded-full w-7 h-7 ${
+                    t.featured ? "bg-bh-paper/20" : "bg-bh-paper/15"
+                  }`}
+                >
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    aria-hidden
+                  >
+                    <path
+                      d="M3 7h8m0 0L7.5 3.5M11 7l-3.5 3.5"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                </span>
               </a>
             </Tilt>
           ))}
         </div>
 
-        <p className="mt-10 text-[12px] tracking-[-0.005em] text-bh-graphite text-center">
-          Indicative monthly prices, ex GST. Annual billing saves 15%. Founding-cohort pricing locks in for 12 months.
-        </p>
+        {/* Footnote */}
+        <div className="mt-10 md:mt-12 grid grid-cols-12 gap-6 md:gap-8">
+          <div className="col-span-12 md:col-span-9 md:col-start-4">
+            <p className="text-[12px] tracking-[-0.005em] text-bh-graphite leading-[1.5]">
+              Indicative starting prices, ex GST. Final pricing is set after a
+              short brief so it matches your scope, project count and cadence.
+              Payment terms 14 days from invoice. Full conditions in the
+              builder terms.
+            </p>
+            <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2 text-[12px] tracking-[-0.005em]">
+              <a
+                href="/terms-builders"
+                className="text-bh-orange hover:text-bh-orange-700 underline underline-offset-4"
+              >
+                Builder terms
+              </a>
+              <a
+                href="/data-policy"
+                className="text-bh-orange hover:text-bh-orange-700 underline underline-offset-4"
+              >
+                Data policy
+              </a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
