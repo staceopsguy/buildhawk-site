@@ -3,7 +3,8 @@ import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
-import MarketingChrome from "@/components/MarketingChrome";
+import SmoothScroll from "@/components/SmoothScroll";
+import ChatWidget from "@/components/chat/ChatWidget";
 
 const suisse = Inter({
   variable: "--font-suisse",
@@ -53,8 +54,9 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${suisse.variable} h-full`}>
       <body className="min-h-full bg-bh-white text-bh-black antialiased">
-        <MarketingChrome />
+        <SmoothScroll />
         {children}
+        <ChatWidget />
         <Analytics />
         <SpeedInsights />
       </body>

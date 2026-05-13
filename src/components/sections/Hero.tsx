@@ -52,10 +52,10 @@ export default function Hero() {
             </Reveal>
             <Reveal as="div" className="mt-7 md:mt-10 flex flex-col sm:flex-row sm:flex-wrap sm:items-center gap-3 w-full sm:w-auto" duration={700} delay={420}>
               <Magnetic pull={6} className="w-full sm:w-auto">
-                <Button href="/command-centre/signup">Start free trial</Button>
+                <Button href="#intake">Start Your Brief</Button>
               </Magnetic>
-              <Button href="#intake" variant="secondary">
-                Talk to estimating team
+              <Button href="#hawktress" variant="secondary">
+                Explore Hawktress
               </Button>
             </Reveal>
           </div>

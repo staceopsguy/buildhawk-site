@@ -4,7 +4,6 @@ import Lifecycle from "@/components/sections/Lifecycle";
 import HowItWorks from "@/components/sections/HowItWorks";
 import ValueCase from "@/components/sections/ValueCase";
 import Pricing from "@/components/sections/Pricing";
-import Integrations from "@/components/sections/Integrations";
 import Portfolio from "@/components/sections/Portfolio";
 import Founder from "@/components/sections/Founder";
 import WhoWeAre from "@/components/sections/WhoWeAre";
@@ -23,7 +22,6 @@ export default function Home() {
       <Lifecycle />
       <HowItWorks />
       <ValueCase />
-      <Integrations />
       <Pricing />
       <Portfolio />
       <Founder />
