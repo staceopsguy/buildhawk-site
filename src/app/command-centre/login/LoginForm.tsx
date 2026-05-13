@@ -211,7 +211,7 @@ export default function LoginForm({
             {invitationOnly && (
               <div className="mb-5 rounded-2xl border border-bh-orange-200/60 bg-bh-orange-50/70 backdrop-blur p-3 text-xs text-bh-orange-700">
                 <strong className="block font-bold mb-0.5">By invitation only.</strong>
-                BuildHawk is currently onboarding a small founding cohort. Submit the form below and the team will reply within one business day.
+                BuildHawk works with a small number of builders at a time. Submit the form below and the team will reply within one business day.
               </div>
             )}
             {tab === "signin" ? (
