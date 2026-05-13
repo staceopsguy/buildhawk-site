@@ -260,14 +260,7 @@ export default function LoginForm({
                   >
                     Request access
                   </button>{" "}
-                  for a guided onboarding, or{" "}
-                  <Link
-                    href="/command-centre/signup"
-                    className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
-                  >
-                    start a free trial workspace
-                  </Link>{" "}
-                  yourself. By signing in you agree to our{" "}
+                  to be set up on an engagement. By signing in you agree to our{" "}
                   <Link
                     href="/data-policy"
                     className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
@@ -286,14 +279,7 @@ export default function LoginForm({
                   >
                     Sign in
                   </button>
-                  . Want to skip the queue?{" "}
-                  <Link
-                    href="/command-centre/signup"
-                    className="font-semibold text-slate-700 underline underline-offset-2 hover:text-slate-900"
-                  >
-                    Start a free trial workspace
-                  </Link>
-                  .
+                  . Access is by invitation only.
                 </>
               )}
             </div>
