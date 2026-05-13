@@ -36,9 +36,9 @@ export async function POST(req: Request) {
   }
 
   const ctx = await getActiveContext().catch(() => null);
-  const cfg =
-    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
-    getLegacyGhlConfig();
+  const cfg = ctx
+    ? await getGhlConfig(ctx.tenant.id).catch(() => null)
+    : getLegacyGhlConfig();
 
   const result = await createProject(
     {

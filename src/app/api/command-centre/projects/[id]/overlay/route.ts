@@ -3,6 +3,7 @@ import { updateProjectOverlay, type ProjectOverlay } from "@/lib/ghl-homesbynh";
 import { getActiveContext } from "@/lib/auth";
 import { getGhlConfig, getLegacyGhlConfig } from "@/lib/integrations";
 import { recordAudit } from "@/lib/audit";
+import { recordBenchmarkSamples } from "@/lib/benchmarks";
 
 export const runtime = "nodejs";
 
@@ -79,9 +80,9 @@ export async function POST(req: Request, { params }: { params: Params }) {
   };
 
   const ctx = await getActiveContext().catch(() => null);
-  const cfg =
-    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
-    getLegacyGhlConfig();
+  const cfg = ctx
+    ? await getGhlConfig(ctx.tenant.id).catch(() => null)
+    : getLegacyGhlConfig();
 
   const result = await updateProjectOverlay(
     {
@@ -112,6 +113,29 @@ export async function POST(req: Request, { params }: { params: Params }) {
         costToCompleteCount: overlay.costToComplete?.length ?? 0,
       },
     });
+    // Feed cross-tenant Hawktress benchmark cohort. Tenant + builder + supplier
+    // identifiers are NOT stored — only region × trade × project-type dimensions.
+    const region = overlay.setup?.regionCode?.trim() ?? "";
+    if (region && (overlay.awardedSubs?.length ?? 0) > 0) {
+      try {
+        await recordBenchmarkSamples(
+          {
+            tenantId: ctx.tenant.id,
+            sourceOpportunityId: id,
+            region,
+            projectType: overlay.setup?.projectType?.trim() || undefined,
+          },
+          (overlay.awardedSubs ?? []).map((a) => ({
+            sourceAwardId: a.id,
+            tradeSection: a.tradeSection,
+            awardedValue: a.awardedValue,
+            awardDate: a.awardDate,
+          })),
+        );
+      } catch (e) {
+        console.error("[benchmarks] recordBenchmarkSamples failed:", e);
+      }
+    }
   }
   return NextResponse.json(result, { status: 200 });
 }

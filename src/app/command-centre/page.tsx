@@ -180,9 +180,12 @@ export default async function CommandCentrePage() {
     }
   }
 
-  const ghlConfig =
-    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
-    getLegacyGhlConfig();
+  // Multi-tenant correctness: signed-in users only see their tenant's
+  // integration. The env-var legacy fallback applies only when no session is
+  // present (preview / snapshot / unauth render paths).
+  const ghlConfig = ctx
+    ? await getGhlConfig(ctx.tenant.id).catch(() => null)
+    : getLegacyGhlConfig();
   const ghlConnected = isGhlConnected(ghlConfig);
   const ghlProjects = ghlConnected ? await getActiveProjects(ghlConfig) : null;
 

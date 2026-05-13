@@ -14,8 +14,8 @@ export const dynamic = "force-dynamic";
 
 export default async function NewProjectPage() {
   const ctx = await getActiveContext().catch(() => null);
-  const cfg =
-    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
-    getLegacyGhlConfig();
+  const cfg = ctx
+    ? await getGhlConfig(ctx.tenant.id).catch(() => null)
+    : getLegacyGhlConfig();
   return <NewProjectForm pipelines={PIPELINE_OPTIONS} ghlConnected={isGhlConnected(cfg)} />;
 }

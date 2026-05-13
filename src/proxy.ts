@@ -8,7 +8,7 @@ export const config = {
   //   /api/command-centre/stripe/webhook                (Stripe-signed)
   matcher: [
     "/command-centre/:path*",
-    "/api/command-centre/((?!auth|stripe/webhook|admin/seed-founding|request-access).*)",
+    "/api/command-centre/((?!auth|stripe/webhook|admin/seed-founding|admin/diagnostics|request-access).*)",
   ],
 };
 

@@ -21,9 +21,9 @@ export async function POST(req: Request, { params }: { params: Params }) {
     return NextResponse.json({ ok: false, error: "Missing project id" }, { status: 400 });
   }
   const ctx = await getActiveContext().catch(() => null);
-  const cfg =
-    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
-    getLegacyGhlConfig();
+  const cfg = ctx
+    ? await getGhlConfig(ctx.tenant.id).catch(() => null)
+    : getLegacyGhlConfig();
   const project = await getProjectById(id, cfg);
   if (!project) {
     return NextResponse.json({ ok: false, error: "Project not found" }, { status: 404 });

@@ -23,9 +23,9 @@ type Params = Promise<{ id: string }>;
 export default async function EditProjectPage({ params }: { params: Params }) {
   const { id } = await params;
   const ctx = await getActiveContext().catch(() => null);
-  const cfg =
-    (ctx ? await getGhlConfig(ctx.tenant.id).catch(() => null) : null) ??
-    getLegacyGhlConfig();
+  const cfg = ctx
+    ? await getGhlConfig(ctx.tenant.id).catch(() => null)
+    : getLegacyGhlConfig();
   const ghlOn = isGhlConnected(cfg);
   const overlayFieldOn = isProjectDataFieldConfigured(cfg);
 

@@ -47,8 +47,11 @@ for (const file of files) {
       await sql.query(stmt);
       console.log(`  ✓ [${i + 1}/${statements.length}] ${preview}`);
     } catch (e) {
-      if (e.message?.includes("already exists")) {
-        console.log(`  ~ [${i + 1}/${statements.length}] already exists, skipping`);
+      if (
+        e.message?.includes("already exists") ||
+        e.message?.includes("does not exist")
+      ) {
+        console.log(`  ~ [${i + 1}/${statements.length}] ${e.message.replace(/\n.*/s, "")}`);
       } else {
         console.error(`  ✗ [${i + 1}/${statements.length}] ${preview}`);
         console.error(`    ${e.message}`);

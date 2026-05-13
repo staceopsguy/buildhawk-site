@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PLANS, type PlanTier } from "@/lib/billing/plans";
 import {
   CONNECTORS,
@@ -53,7 +53,85 @@ export default function SettingsClient({
       <Section title="Team">
         <TeamPanel tenantId={tenant.id} isAdmin={isAdmin} />
       </Section>
+
+      {isAdmin && (
+        <Section title="Activity log">
+          <AuditPanel />
+        </Section>
+      )}
     </div>
+  );
+}
+
+function AuditPanel() {
+  const [events, setEvents] = useState<
+    Array<{
+      id: string;
+      action: string;
+      target: string | null;
+      actorEmail: string | null;
+      metadata: Record<string, unknown> | null;
+      createdAt: string;
+    }>
+  >([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch("/api/command-centre/audit", { cache: "no-store" });
+        const data = await res.json();
+        if (cancelled) return;
+        if (res.ok && data.ok) setEvents(data.events);
+        else setError(data.error ?? `Request failed (${res.status})`);
+      } catch (e) {
+        if (!cancelled) setError(e instanceof Error ? e.message : String(e));
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  if (loading) {
+    return <div className="text-sm text-slate-500">Loading…</div>;
+  }
+  if (error) {
+    return <div className="text-sm text-rose-700">{error}</div>;
+  }
+  if (events.length === 0) {
+    return (
+      <div className="text-sm text-slate-500">
+        No activity yet. Saves, integration changes and member events will show here.
+      </div>
+    );
+  }
+  return (
+    <ul className="divide-y divide-slate-200/70 text-sm">
+      {events.map((e) => (
+        <li key={e.id} className="flex items-center justify-between gap-3 py-2">
+          <div className="min-w-0">
+            <div className="font-semibold text-slate-900 truncate">{e.action}</div>
+            <div className="text-[11px] text-slate-500 truncate">
+              {e.actorEmail ?? "system"}
+              {e.target ? ` · ${e.target}` : ""}
+            </div>
+          </div>
+          <div className="text-[11px] text-slate-500 tabular-nums whitespace-nowrap">
+            {new Date(e.createdAt).toLocaleString("en-AU", {
+              day: "numeric",
+              month: "short",
+              hour: "numeric",
+              minute: "2-digit",
+            })}
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
 
