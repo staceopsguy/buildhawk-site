@@ -105,6 +105,30 @@ export const isAuthConfigured = () =>
   Boolean(getSecret()) && isDbConfigured() && Boolean(process.env.RESEND_API_KEY);
 
 /* ------------------------------------------------------------------ */
+/* Lockdown gates                                                     */
+/* ------------------------------------------------------------------ */
+/**
+ * BH_SIGNIN_ALLOWLIST  comma-separated emails. When set, only these emails
+ *                      may receive magic links or complete signup. Invite
+ *                      acceptance still works (admin-driven, bypasses gate).
+ *                      Empty/unset = open SaaS, anyone can sign in / sign up.
+ *
+ * BH_DISABLE_SIGNUP    "true" = self-serve signup is closed. The signup
+ *                      endpoint refuses with a friendly message and the
+ *                      signup page renders a "By invitation only" notice.
+ */
+
+export const isSignupDisabled = () =>
+  process.env.BH_DISABLE_SIGNUP?.toLowerCase() === "true";
+
+export function isSigninAllowed(email: string): boolean {
+  const list = process.env.BH_SIGNIN_ALLOWLIST;
+  if (!list) return true; // open mode
+  const allowed = list.split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
+  return allowed.includes(normalizeEmail(email));
+}
+
+/* ------------------------------------------------------------------ */
 /* Session cookie                                                     */
 /* ------------------------------------------------------------------ */
 

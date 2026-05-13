@@ -1,14 +1,27 @@
 import { NextRequest, NextResponse } from "next/server";
 import { SESSION_COOKIE, verifyEdgeSession } from "@/lib/auth-edge";
 
+/**
+ * Public/gated boundary for the Cost Plan Console.
+ *
+ *  PAGE PATHS  matcher: /command-centre/:path*
+ *    PUBLIC_PATHS below are exempted (pass through unauthenticated).
+ *    Every other /command-centre/* path requires a valid session cookie.
+ *
+ *  API PATHS  matcher: /api/command-centre/((?!auth|stripe/webhook|request-access).*)
+ *    Negative-lookahead carves out three public API namespaces:
+ *      - /auth/*           the auth flow itself validates internally
+ *      - /stripe/webhook   Stripe signs the payload; we verify the signature
+ *      - /request-access   self-serve top-of-funnel, no session yet
+ *    Everything else under /api/command-centre/ requires a session.
+ *
+ *  /api/* OUTSIDE /api/command-centre/ (intake, waitlist, lead, chat, health)
+ *  is never seen by this proxy and is publicly callable.
+ */
 export const config = {
-  // Gate /command-centre/* and /api/command-centre/* with these public exceptions:
-  //   /command-centre/login, /signup, /request-access  (auth top-of-funnel)
-  //   /api/command-centre/auth/*                        (auth handles its own validation)
-  //   /api/command-centre/stripe/webhook                (Stripe-signed)
   matcher: [
     "/command-centre/:path*",
-    "/api/command-centre/((?!auth|stripe/webhook|admin/seed-founding|admin/diagnostics|request-access).*)",
+    "/api/command-centre/((?!auth|stripe/webhook|request-access).*)",
   ],
 };
 

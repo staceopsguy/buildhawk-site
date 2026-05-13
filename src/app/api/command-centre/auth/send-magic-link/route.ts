@@ -3,6 +3,7 @@ import { eq } from "drizzle-orm";
 import { Resend } from "resend";
 import {
   isAuthConfigured,
+  isSigninAllowed,
   issueMagicLink,
   normalizeEmail,
 } from "@/lib/auth";
@@ -34,8 +35,12 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: false, error: "Enter a valid email" }, { status: 400 });
   }
 
-  // Always respond OK to avoid leaking whether an account exists. Only send if user exists.
+  // Always respond OK to avoid leaking whether an account exists or whether the
+  // allowlist would have permitted them. Only send if user exists AND is allowlisted.
   try {
+    if (!isSigninAllowed(email)) {
+      return NextResponse.json({ ok: true });
+    }
     const existing = (
       await db().select().from(users).where(eq(users.email, email)).limit(1)
     )[0];

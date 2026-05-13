@@ -2,6 +2,8 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import {
   isAuthConfigured,
+  isSigninAllowed,
+  isSignupDisabled,
   issueMagicLink,
   normalizeEmail,
 } from "@/lib/auth";
@@ -17,6 +19,16 @@ export async function POST(req: Request) {
     return NextResponse.json(
       { ok: false, error: "Auth not configured." },
       { status: 503 },
+    );
+  }
+  if (isSignupDisabled()) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          "BuildHawk is currently invitation-only. Use the Request Access form on the sign-in page and the team will reply within one business day.",
+      },
+      { status: 403 },
     );
   }
   let body: {
@@ -47,6 +59,11 @@ export async function POST(req: Request) {
       { ok: false, error: "Company name is required" },
       { status: 400 },
     );
+  }
+  if (!isSigninAllowed(email)) {
+    // Don't tell the visitor they're not on the allowlist (low-key reveal of
+    // the gate). Pretend success — the email simply never arrives.
+    return NextResponse.json({ ok: true });
   }
 
   try {

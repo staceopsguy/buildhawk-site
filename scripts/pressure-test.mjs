@@ -198,11 +198,15 @@ await check("request-access 400 on empty body", async () => {
   });
   eqStatus("request-access bad", 400)(res);
 });
-await check("seed-founding 404 (deleted)", async () =>
-  eqStatus("seed-founding", 404)(
-    await fetchSite("/api/command-centre/admin/seed-founding"),
-  ),
-);
+await check("seed-founding inaccessible (deleted + gated)", async () => {
+  // The route file is deleted. The proxy still gates everything under
+  // /api/command-centre/ that isn't an auth/stripe-webhook/request-access
+  // exception, so unauth GET returns 401 (which is a better disclosure
+  // posture than 404 — never reveals whether the path exists).
+  const res = await fetchSite("/api/command-centre/admin/seed-founding");
+  if (res.status !== 401 && res.status !== 404)
+    throw new Error(`expected 401 or 404, got ${res.status}`);
+});
 
 // --- 5. Authenticated as HBNH owner ----------------------------------------
 section("Authenticated as HBNH owner (real session via DB-minted magic link)");
