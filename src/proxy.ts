@@ -8,10 +8,11 @@ import { SESSION_COOKIE, verifyEdgeSession } from "@/lib/auth-edge";
  *    PUBLIC_PATHS below are exempted (pass through unauthenticated).
  *    Every other /command-centre/* path requires a valid session cookie.
  *
- *  API PATHS  matcher: /api/command-centre/((?!auth|stripe/webhook|request-access).*)
- *    Negative-lookahead carves out three public API namespaces:
+ *  API PATHS  matcher: /api/command-centre/((?!auth|stripe/webhook|admin|request-access).*)
+ *    Negative-lookahead carves out four public API namespaces:
  *      - /auth/*           the auth flow itself validates internally
  *      - /stripe/webhook   Stripe signs the payload; we verify the signature
+ *      - /admin/*          gated by SETUP_SECRET inside each handler
  *      - /request-access   self-serve top-of-funnel, no session yet
  *    Everything else under /api/command-centre/ requires a session.
  *
@@ -21,7 +22,7 @@ import { SESSION_COOKIE, verifyEdgeSession } from "@/lib/auth-edge";
 export const config = {
   matcher: [
     "/command-centre/:path*",
-    "/api/command-centre/((?!auth|stripe/webhook|request-access).*)",
+    "/api/command-centre/((?!auth|stripe/webhook|admin|request-access).*)",
   ],
 };
 
