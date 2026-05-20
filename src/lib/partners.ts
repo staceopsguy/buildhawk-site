@@ -68,6 +68,13 @@ export const featuredCaseStudy: FeaturedCaseStudy = {
 
 export const partners: Partner[] = [
   {
+    name: "Wunderbuild",
+    src: "/logos/wunderbuild.svg",
+    width: 296,
+    height: 58,
+    url: "https://www.wunderbuild.com/",
+  },
+  {
     name: "Homes By NH",
     src: "/logos/homes-by-nh.webp",
     width: 320,
